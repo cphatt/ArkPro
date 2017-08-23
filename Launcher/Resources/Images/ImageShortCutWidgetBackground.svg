@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="46"
+   height="46"
+   viewBox="0 0 46 46.000001"
+   id="svg4270"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="ImageShortCutWidgetBackground.svg">
+  <defs
+     id="defs4272" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="256"
+     inkscape:cx="29.486109"
+     inkscape:cy="-0.36935043"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1280"
+     inkscape:window-height="937"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4275">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1006.3622)">
+    <g
+       transform="matrix(4.2554256,0,0,8.7368159,-24.424018,419.68946)"
+       id="Layer1070">
+      <path
+         d="m 8.4467,68.3047 -2.423,3.8275 4.6132,0 -2.1902,-3.8275 z"
+         style="fill:none;stroke:#ffffff;stroke-width:0.56690001;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+         id="path2243"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 12.4485,67.148 -2.7892,3.2281 0.5752,2.0237 6.3157,0 -4.1017,-5.2518 z"
+         style="fill:#ffffff;fill-rule:evenodd"
+         id="path2245"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

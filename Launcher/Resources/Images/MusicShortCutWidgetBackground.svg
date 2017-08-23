@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="46"
+   height="46"
+   viewBox="0 0 46 46.000001"
+   id="svg4270"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="MusicShortCutWidgetBackground.svg">
+  <defs
+     id="defs4272" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="15.839192"
+     inkscape:cx="36.362257"
+     inkscape:cy="17.638571"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1280"
+     inkscape:window-height="937"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4275">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1006.3622)">
+    <path
+       inkscape:connector-curvature="0"
+       d="m 23.000348,1006.3622 c 12.700323,0 22.999652,10.2992 22.999652,23 0,12.7008 -10.299329,23 -22.999652,23 C 10.299329,1052.3622 0,1042.063 0,1029.3622 c 0,-12.7008 10.299329,-23 23.000348,-23 z m 0,13.47 c 5.261841,0 9.53012,4.2675 9.53012,9.53 0,5.2625 -4.268279,9.53 -9.53012,9.53 -5.262537,0 -9.530816,-4.2675 -9.530816,-9.53 0,-5.2625 4.268279,-9.53 9.530816,-9.53 z"
+       style="fill:#ffffff;fill-rule:evenodd"
+       id="path921" />
+    <path
+       inkscape:connector-curvature="0"
+       d="m 23.000348,1021.4208 c 4.384636,0 7.940837,3.5561 7.940837,7.9414 0,4.3853 -3.556201,7.9414 -7.940837,7.9414 -4.385332,0 -7.941533,-3.5561 -7.941533,-7.9414 0,-4.3853 3.556201,-7.9414 7.941533,-7.9414 z m 0,4.6507 c 1.816422,0 3.290044,1.4736 3.290044,3.2907 0,1.8171 -1.473622,3.2907 -3.290044,3.2907 -1.817118,0 -3.29074,-1.4736 -3.29074,-3.2907 0,-1.8171 1.473622,-3.2907 3.29074,-3.2907 z"
+       style="fill:#ffffff;fill-rule:evenodd"
+       id="path923" />
+  </g>
+</svg>

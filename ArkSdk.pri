@@ -1,0 +1,84 @@
+SDKPATH = $$PWD
+COMPILER = arm-none-linux-gnueabi-gcc
+DEFINES += $$QMAKE_CC
+PROJECT = Project
+DEFINES += $$TARGET$$PROJECT
+
+if (contains(DEFINES, $$COMPILER)) {
+ARCHITECTURE = arm
+} else {
+ARCHITECTURE = x86
+}
+message($$QMAKE_CC)
+
+system(mkdir -p $$SDKPATH/Package/$$TARGET/$$ARCHITECTURE)
+MOC_DIR += $$SDKPATH/Package/$$TARGET/$$ARCHITECTURE
+OBJECTS_DIR += $$SDKPATH/Package/$$TARGET/$$ARCHITECTURE
+RCC_DIR += $$SDKPATH/Package/$$TARGET/$$ARCHITECTURE
+DESTDIR += $$SDKPATH/Package/$$TARGET/$$ARCHITECTURE
+
+if (contains(DEFINES, $$COMPILER)) {
+unix:!macx: LIBS += -ldl
+unix:!macx: LIBS += -L$$SDKPATH/AVService -larkcmn
+} else {
+unix:!macx: LIBS += -lz
+}
+unix:!macx: LIBS += -L$$SDKPATH/Package/ArkApplication/$$ARCHITECTURE -lArkApplication
+unix:!macx: LIBS += -L$$SDKPATH/Package/AutoConnect/$$ARCHITECTURE -lAutoConnect
+unix:!macx: LIBS += -L$$SDKPATH/Package/RunnableThread/$$ARCHITECTURE -lRunnableThread
+unix:!macx: LIBS += -L$$SDKPATH/Package/DiskDeviceWatcher/$$ARCHITECTURE -lDiskDeviceWatcher
+unix:!macx: LIBS += -L$$SDKPATH/Package/Utility/$$ARCHITECTURE -lUtility
+unix:!macx: LIBS += -L$$SDKPATH/Package/EventEngine/$$ARCHITECTURE -lEventEngine
+unix:!macx: LIBS += -L$$SDKPATH/Package/DbusService/$$ARCHITECTURE -lDbusService
+unix:!macx: LIBS += -L$$SDKPATH/Package/AudioService/$$ARCHITECTURE -lAudioService
+unix:!macx: LIBS += -L$$SDKPATH/Package/AVService/$$ARCHITECTURE -lAVService
+unix:!macx: LIBS += -L$$SDKPATH/Package/SettingService/$$ARCHITECTURE -lSettingService
+unix:!macx: LIBS += -L$$SDKPATH/Package/MultimediaService/$$ARCHITECTURE -lMultimediaService
+
+DISKDEVICEWATCHER = $$SDKPATH/DiskDeviceWatcher
+INCLUDEPATH += $$DISKDEVICEWATCHER
+DEPENDPATH += $$DISKDEVICEWATCHER
+
+UTILITY = $$SDKPATH/Utility
+INCLUDEPATH += $$UTILITY
+DEPENDPATH += $$UTILITY
+
+ARKAPPLICATION = $$SDKPATH/ArkApplication
+INCLUDEPATH += $$ARKAPPLICATION
+DEPENDPATH += $$ARKAPPLICATION
+
+EVENENGINE = $$SDKPATH/EventEngine
+INCLUDEPATH += $$EVENENGINE
+DEPENDPATH += $$EVENENGINE
+
+DBUSSERVICE = $$SDKPATH/DbusService
+INCLUDEPATH += $$DBUSSERVICE
+DEPENDPATH += $$DBUSSERVICE
+
+AUTOCONNECT = $$SDKPATH/AutoConnect
+INCLUDEPATH += $$AUTOCONNECT
+DEPENDPATH += $$AUTOCONNECT
+
+RUNNABLETHREAD = $$SDKPATH/RunnableThread
+INCLUDEPATH += $$RUNNABLETHREAD
+DEPENDPATH += $$RUNNABLETHREAD
+
+AVSERVICE = $$SDKPATH/AVService
+INCLUDEPATH += $$AVSERVICE
+DEPENDPATH += $$AVSERVICE
+
+SETTINGSERVICE = $$SDKPATH/SettingService
+INCLUDEPATH += $$SETTINGSERVICE
+DEPENDPATH += $$SETTINGSERVICE
+
+MULTIMEDIASERVICE = $$SDKPATH/MultimediaService
+INCLUDEPATH += $$MULTIMEDIASERVICE
+DEPENDPATH += $$MULTIMEDIASERVICE
+
+AUDIOSERVICE = $$SDKPATH/AudioService
+INCLUDEPATH += $$AUDIOSERVICE
+DEPENDPATH += $$AUDIOSERVICE
+
+AVSERVICE = $$SDKPATH/AVService
+INCLUDEPATH += $$AVSERVICE
+DEPENDPATH += $$AVSERVICE
