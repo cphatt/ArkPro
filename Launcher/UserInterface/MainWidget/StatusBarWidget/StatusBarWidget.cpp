@@ -216,6 +216,7 @@ void StatusBarWidget::ontWidgetTypeChange(const Widget::Type type, const QString
         case Widget::T_AV2FullScreen:
         case Widget::T_Mirror:
         case Widget::T_Carplay:
+        case Widget::T_Carlife:
         case Widget::T_Video:
         case Widget::T_VideoFullScreen:
         case Widget::T_Image:

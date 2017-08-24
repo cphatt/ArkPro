@@ -31,7 +31,7 @@ protected slots:
     void onBrightnessChange(const int value);
     void onContrastChange(const int value);
     void onHueChange(const int value);
-    void onVolumeChange(const int value);
+    void onVolumeChange(const int type, const int value);
     void onEffectChange(const int type, const int hight, const int middle, const int low);
 private slots:
     void onToolButtonRelease();

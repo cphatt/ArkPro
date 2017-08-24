@@ -10,9 +10,9 @@
 #include <QDomElement>
 
 namespace SourceString {
-static const QString No_Carplay_Device = QString(QObject::tr("No Carplay Device..."));
-static const QString Conneting_Carplay_Device = QString(QObject::tr("Conneting Carplay Device..."));
-static const QString Remove_Carplay_Device = QString(QObject::tr("Remove Carplay Device..."));
+static const QString No_Carplay_Device = QString(QObject::tr("No Carlife Device..."));
+static const QString Conneting_Carplay_Device = QString(QObject::tr("Conneting Carlife Device..."));
+static const QString Remove_Carplay_Device = QString(QObject::tr("Remove Carlife Device..."));
 }
 
 class CarlifeLinkWidgetPrivate
@@ -97,7 +97,7 @@ void CarlifeLinkWidget::mousePressEvent(QMouseEvent *event)
         touchEvent.y = event->pos().y();
         touchPointList.append(touchEvent);
         QString touchPointXml = m_Private->translateTouchEvent(touchPointList);
-        g_Link->requestTouchStatus(CARPLAY, TouchBegin, touchPointXml);
+        g_Link->requestTouchStatus(CARLIFE, TouchBegin, touchPointXml);
     }
 }
 
@@ -112,7 +112,7 @@ void CarlifeLinkWidget::mouseReleaseEvent(QMouseEvent *event)
         touchEvent.y = event->pos().y();
         touchPointList.append(touchEvent);
         QString touchPointXml = m_Private->translateTouchEvent(touchPointList);
-        g_Link->requestTouchStatus(CARPLAY, TouchBegin, touchPointXml);
+        g_Link->requestTouchStatus(CARLIFE, TouchBegin, touchPointXml);
     }
 }
 
@@ -127,7 +127,7 @@ void CarlifeLinkWidget::mouseMoveEvent(QMouseEvent *event)
         touchEvent.y = event->pos().y();
         touchPointList.append(touchEvent);
         QString touchPointXml = m_Private->translateTouchEvent(touchPointList);
-        g_Link->requestTouchStatus(CARPLAY, TouchBegin, touchPointXml);
+        g_Link->requestTouchStatus(CARLIFE, TouchBegin, touchPointXml);
     }
 }
 
@@ -302,7 +302,7 @@ void CarlifeLinkWidgetPrivate::touchBeginEventHandler(QEvent *event)
         }
         if (touchPointList.size() != 0) {
             QString touchPointXml = translateTouchEvent(touchPointList);
-            g_Link->requestTouchStatus(CARPLAY, TouchBegin, touchPointXml);
+            g_Link->requestTouchStatus(CARLIFE, TouchBegin, touchPointXml);
         }
     }
 }
@@ -325,7 +325,7 @@ void CarlifeLinkWidgetPrivate::touchUpdateEventHandler(QEvent *event)
         }
         if (touchPointList.size() != 0) {
             QString touchPointXml = translateTouchEvent(touchPointList);
-            g_Link->requestTouchStatus(CARPLAY, TouchUpdate, touchPointXml);
+            g_Link->requestTouchStatus(CARLIFE, TouchUpdate, touchPointXml);
         }
     }
 }
@@ -348,7 +348,7 @@ void CarlifeLinkWidgetPrivate::touchEndEventHandler(QEvent *event)
         }
         if (touchPointList.size() != 0) {
             QString touchPointXml = translateTouchEvent(touchPointList);
-            g_Link->requestTouchStatus(CARPLAY, TouchEnd, touchPointXml);
+            g_Link->requestTouchStatus(CARLIFE, TouchEnd, touchPointXml);
         }
     }
 }

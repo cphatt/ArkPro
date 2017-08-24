@@ -109,7 +109,7 @@ public Q_SLOTS: // METHODS
 Q_SIGNALS: // SIGNALS
     void onFMChange(int freq);
     void onFMIsOpen(int open);
-    void onVolumeChange(int volume);
+    void onVolumeChange(int type, int volume);
     void onVolumeRangeChange(int min, int max);
 };
 

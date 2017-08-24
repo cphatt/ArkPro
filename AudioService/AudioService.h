@@ -66,7 +66,7 @@ public:
         //    signals:
         virtual void onFMChange(int freq) = 0;
         virtual void onFMIsOpen(int open) = 0;
-        virtual void onVolumeChange(int volume) = 0;
+        virtual void onVolumeChange(int type, int volume) = 0;
         virtual void onVolumeRangeChange(int min, int max) = 0;
     };
 public slots:
@@ -86,11 +86,12 @@ public slots:
 signals:
     void onFMChange(int freq);
     void onFMIsOpen(int open);
-    void onVolumeChange(int volume);
+    void onVolumeChange( int volume);
     void onVolumeRangeChange(int min, int max);
 private:
     friend class AudioServicePrivate;
     QScopedPointer<AudioServicePrivate> m_Private;
+
 };
 
 #endif // AUDIOSERVICE_H

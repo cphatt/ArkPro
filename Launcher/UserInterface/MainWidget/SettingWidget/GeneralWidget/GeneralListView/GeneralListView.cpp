@@ -202,7 +202,7 @@ void GeneralListView::onFMIsOpen(int open)
 {
 }
 
-void GeneralListView::onVolumeChange(int volume)
+void GeneralListView::onVolumeChange(int type ,int volume)
 {
     m_Private->m_VolumeSlider->setTickMarksMillesimal(1000 * volume / (40 - (-0)));
     QModelIndex modelIndex = m_Private->m_StandardItemModel->index(3, 0, QModelIndex());

@@ -106,7 +106,7 @@ bool FMToolWidget::event(QEvent *event)
     QWidget::event(event);
 }
 
-void FMToolWidget::onVolumeChange(const int volume)
+void FMToolWidget::onVolumeChange(const int type, const int volume)
 {
 }
 

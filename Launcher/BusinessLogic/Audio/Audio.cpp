@@ -194,7 +194,7 @@ void AudioPrivate::connectAllSlots()
                                           ArkMicroAudioInterface,
                                           QString("onVolumeChange"),
                                           m_Parent,
-                                          SIGNAL(onVolumeChange(const int)));
+                                          SIGNAL(onVolumeChange(const int, const int)));
     QDBusConnection::sessionBus().connect(QString(),
                                           QString(),
                                           ArkMicroAudioInterface,

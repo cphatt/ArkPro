@@ -10,7 +10,8 @@ typedef enum
 {
     CARPLAY = 0X00,
     CARLIFE,
-    ANDROID_MIRROR
+    CARLIFE1,
+    ANDROID_MIRROR,
 }Link_Type;
 
 #define Link_Type int

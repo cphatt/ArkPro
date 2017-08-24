@@ -35,9 +35,9 @@ void MirrorToolWidget::resizeEvent(QResizeEvent *event)
     int height(40);
     g_Widget->geometryFit(0, 0, width, g_Widget->baseWindowHeight(), this);
     g_Widget->geometryFit(0, 40 + (160 - 40) * 0.5, width, height, m_Private->m_MenuBtn);
-    g_Widget->geometryFit(0, 200 + (160 - 40) * 0.5, width, height, m_Private->m_HomeBtn);
-    g_Widget->geometryFit(0, 360 + (160 - 40) * 0.5, width, height, m_Private->m_BackBtn);
-    g_Widget->geometryFit(0, 480 + (160 - 40) * 0.5, width, height, m_Private->m_CarBtn);
+    g_Widget->geometryFit(0, 140 + (160 - 40) * 0.5, width, height, m_Private->m_HomeBtn);
+    g_Widget->geometryFit(0, 240 + (160 - 40) * 0.5, width, height, m_Private->m_BackBtn);
+    g_Widget->geometryFit(0, 340 + (160 - 40) * 0.5, width, height, m_Private->m_CarBtn);
     QWidget::resizeEvent(event);
 }
 

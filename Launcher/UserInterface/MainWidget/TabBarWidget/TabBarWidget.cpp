@@ -133,6 +133,7 @@ void TabBarWidget::ontWidgetTypeChange(const Widget::Type type, const QString &s
         }
         case Widget::T_Mirror:
         case Widget::T_Carplay:
+        case Widget::T_Carlife:
         case Widget::T_AV1FullScreen:
         case Widget::T_AV2FullScreen:
         case Widget::T_Image:

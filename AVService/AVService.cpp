@@ -137,7 +137,7 @@ void AVService::stopAV(const AVType type)
 #endif
 #ifdef gcc
     m_Private->dvr_fd = -1;
-    qDebug() << "m_Private->dvr_fd2" << m_Private->dvr_fd;
+    qDebug() << "m_Private->dvr_fd2" << m_Private->dvr_fd ;
 #endif
     emit onAVStatus(type, m_Private->m_AVStatus);
 }

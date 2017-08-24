@@ -219,7 +219,7 @@ void LanguageWidget::onHueChange(const int value)
 {
 }
 
-void LanguageWidget::onVolumeChange(const int value)
+void LanguageWidget::onVolumeChange(const int type, const int value)
 {
 }
 

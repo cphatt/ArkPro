@@ -79,7 +79,7 @@ void EffectSoundWidget::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
 }
 
-void EffectSoundWidget::onVolumeChange(int volume)  //z回调了
+void EffectSoundWidget::onVolumeChange(int type, int volume)  //z回调了
 {
     qDebug() << "EffectSoundWidget::onVolumeChange" << volume;
     m_Private->m_HightPitchValue = volume;

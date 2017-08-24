@@ -87,7 +87,7 @@ void VolumeToolWidget::onFMIsOpen(int open)
     qDebug() << "VolumeToolWidget::onFMIsOpen" << open;
 }
 
-void VolumeToolWidget::onVolumeChange(int volume)  //z回调了
+void VolumeToolWidget::onVolumeChange(int type ,int volume)  //z回调了
 {
     qDebug() << "VolumeToolWidget::onVolumeChange" << volume;
     m_Private->m_Volume = volume;

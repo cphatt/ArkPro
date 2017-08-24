@@ -22,7 +22,7 @@ protected slots:
     //AudioManager::Interface
 //    void onFMChange(int freq);
 //    void onFMIsOpen(int open);
-    void onVolumeChange(int volume);
+    void onVolumeChange(int type ,int volume);
 //    void onVolumeRangeChange(int min, int max);
 private slots:
     void onMinusBtnRelease();
