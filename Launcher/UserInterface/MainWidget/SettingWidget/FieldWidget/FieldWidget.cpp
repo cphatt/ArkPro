@@ -7,6 +7,8 @@
 #include <QDebug>
 #include <QtXml>
 #include <QString>
+#include <QTimer>
+
 #define PATH "/home/user/Version.xml"
 
 namespace SourceString {
@@ -36,7 +38,7 @@ public:
     TextWidget* resetText;
     BmpWidget* m_Background;
     QString value[3];
-
+    QTimer* m_Timer;
 
 
 private:
@@ -51,6 +53,22 @@ FieldWidget::FieldWidget(QWidget *parent)
 
 FieldWidget::~FieldWidget()
 {
+}
+void FieldWidget::onTimeout()
+{
+    qDebug() << "-----------------------------";
+    //将字体重新设置
+
+    m_Private->MANText->setText(StringLeftMove(m_Private->MANText->getText()));
+    m_Private->m_Timer->start();
+}
+
+QString FieldWidget::StringLeftMove(const QString string){
+    QByteArray ba = string.toLatin1();
+    char *text = ba.data();
+    text++;
+  //  QDebug() <<text << "  ";
+    return QString(QLatin1String(text));
 }
 
 void FieldWidget::showEvent(QShowEvent *event)
@@ -76,9 +94,9 @@ void FieldWidget::resizeEvent(QResizeEvent *event)
     g_Widget->geometryFit(174 - 165 + 80, 194, width, height, m_Private->APPText);
     width = 161;
     height = 108;
-    g_Widget->geometryFit(613 + (773 - 613 - width) * 0.5 - 278, this->height() - 120, width, height, m_Private->mcuUpdateBtn);
+    g_Widget->geometryFit(200, this->height() - 100, width, height, m_Private->mcuUpdateBtn);
     g_Widget->geometryFit(0, 0, width, height, m_Private->mcuUpdateText);
-    g_Widget->geometryFit(950 + (1110 - 950 - width) * 0.5 - 278,this->height() - 120, width, height, m_Private->resetBtn);
+    g_Widget->geometryFit(400,this->height() - 100, width, height, m_Private->resetBtn);
     g_Widget->geometryFit(0, 0, width, height, m_Private->resetText);
     QWidget::resizeEvent(event);
 }
@@ -133,8 +151,10 @@ FieldWidgetPrivate::FieldWidgetPrivate(FieldWidget *parent)
     mcuUpdateText = NULL;
     resetBtn = NULL;
     resetText = NULL;
+    m_Timer = NULL;
     initialize();
     connectAllSlots();
+   // m_Timer->start();
 }
 
 FieldWidgetPrivate::~FieldWidgetPrivate()
@@ -149,7 +169,7 @@ void FieldWidgetPrivate::initialize()
     m_Background->setBackgroundBmpPath(QString(":/Images/Resources/Images/LanguageSoundWidgetBackground"));
     MANText = new TextWidget(m_Parent);
     MANText->setLanguageType(TextWidget::T_NoTranslate);
-    int fontPointSize(18 * g_Widget->widthScalabilityFactor());
+    int fontPointSize(16 * g_Widget->widthScalabilityFactor());
     MANText->setFontPointSize(fontPointSize);
     MANText->show();
     BSPText = new TextWidget(m_Parent);
@@ -179,7 +199,7 @@ void FieldWidgetPrivate::initialize()
     BSPText->setText(value[1]);
     APPText->setText(value[2]);
     mcuUpdateBtn = new BmpButton(m_Parent);
-    mcuUpdateBtn->hide();
+    mcuUpdateBtn->show();
     mcuUpdateBtn->setNormalBmpPath(QString(":/Images/Resources/Images/EffectWidgetToolBtnNormal"));
     mcuUpdateBtn->setPressBmpPath(QString(":/Images/Resources/Images/EffectWidgetToolBtnNormal"));
     mcuUpdateBtn->setCheckBmpPath(QString(":/Images/Resources/Images/EffectWidgetToolBtnPress"));
@@ -188,7 +208,7 @@ void FieldWidgetPrivate::initialize()
     mcuUpdateText->setText(QString("update"));
     mcuUpdateText->setFontPointSize(fontPointSize);
     resetBtn = new BmpButton(m_Parent);
-    resetBtn->hide();
+    resetBtn->show();
     resetBtn->setNormalBmpPath(QString(":/Images/Resources/Images/EffectWidgetToolBtnNormal"));
     resetBtn->setPressBmpPath(QString(":/Images/Resources/Images/EffectWidgetToolBtnNormal"));
     resetBtn->setCheckBmpPath(QString(":/Images/Resources/Images/EffectWidgetToolBtnPress"));
@@ -198,12 +218,19 @@ void FieldWidgetPrivate::initialize()
     resetText->setFontPointSize(fontPointSize);
     m_Parent->setVisible(false);
 
+    m_Timer = new QTimer(m_Parent);
+    m_Timer->setSingleShot(true);
+    m_Timer->setInterval(3000);
 
 }
 
 void FieldWidgetPrivate::connectAllSlots()
 {
     connectSignalAndSlotByNamesake(g_Widget, m_Parent);
+    Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::AutoConnection | Qt::UniqueConnection);
+//    QObject::connect(m_Timer,  SIGNAL(timeout()),
+//                     m_Parent, SLOT(onTimeout()),
+//                     type);
 }
 
 void FieldWidgetPrivate::initFile(){

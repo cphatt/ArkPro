@@ -29,9 +29,12 @@ private slots:
     void onMinusBtnRelease();
     void onPlusBtnRelease();
     void onTickMarksMillesimalEnd(const int millesimal);
+signals:
+    void clicked();
 private:
     friend class VolumeToolWidgetPrivate;
     QScopedPointer<VolumeToolWidgetPrivate> m_Private;
+
 };
 
 #endif // VOLUMETOOLWIDGET_H

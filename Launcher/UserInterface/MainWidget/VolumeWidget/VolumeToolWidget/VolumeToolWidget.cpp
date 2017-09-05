@@ -5,7 +5,10 @@
 #include "UserInterface/Common/TextWidget.h"
 #include "AutoConnect.h"
 #include "VolumeSliderWidget/VolumeSliderWidget.h"
+#include "EventEngine.h"
+#include "BusinessLogic/Common/BusinessLogicUtility.h"
 #include <QDebug>
+
 
 namespace SourceString {
 static const QString Volume = QString(QObject::tr("Volume"));
@@ -42,7 +45,7 @@ void VolumeToolWidget::resizeEvent(QResizeEvent *event)
 {
     g_Widget->geometryFit(0, 50, 800, 360, this);
     g_Widget->geometryFit(0, 0, 853, 360, m_Private->m_Background);
-    g_Widget->geometryFit(0, 0, 853, 180, m_Private->m_TitleText);
+    g_Widget->geometryFit(0, 0, 400, 180, m_Private->m_TitleText);
     QWidget::resizeEvent(event);
 }
 
@@ -52,6 +55,9 @@ bool VolumeToolWidget::event(QEvent *event)
     case QEvent::MouseButtonPress:
     case QEvent::MouseMove:
     case QEvent::MouseButtonRelease: {
+        EventEngine::CustomEvent<void*> event1(static_cast<QEvent::Type>(CustomEventType::VolumeWidgetClick), NULL);
+        g_EventEngine->postCustomEvent(event1);
+
         event->accept();
         return true;
         break;
@@ -67,7 +73,7 @@ void VolumeToolWidget::changeEvent(QEvent *event)
 {
     switch (event->type()) {
     case QEvent::LanguageChange: {
-        m_Private->m_TitleText->setText(QString(QObject::tr(SourceString::Volume.toLocal8Bit().constData())) + QString(" ") + QString::number(m_Private->m_Volume));
+        //m_Private->m_TitleText->setText(QString(QObject::tr(SourceString::Volume.toLocal8Bit().constData())) + QString(" ") + QString::number(m_Private->m_Volume));
         break;
     }
     default: {
@@ -91,7 +97,7 @@ void VolumeToolWidget::onVolumeChange(int type ,int volume)  //z回调了
 {
     qDebug() << "VolumeToolWidget::onVolumeChange" << volume;
     m_Private->m_Volume = volume;
-    m_Private->m_TitleText->setText(QString(QObject::tr(SourceString::Volume.toLocal8Bit().constData())) + QString(" ") + QString::number(m_Private->m_Volume));
+   // m_Private->m_TitleText->setText(QString(QObject::tr(SourceString::Volume.toLocal8Bit().constData())) + QString(" ") + QString::number(m_Private->m_Volume));
     m_Private->m_VolumeSliderWidget->setTickMarksMillesimal(1000 * volume / (40 - 0));
 }
 
@@ -137,7 +143,7 @@ VolumeToolWidgetPrivate::~VolumeToolWidgetPrivate()
 void VolumeToolWidgetPrivate::initialize()
 {
     m_Background = new BmpWidget(m_Parent);
-    m_Background->setBackgroundBmpPath(QString(":/Images/Resources/Images/MessageBackground"));
+    m_Background->setBackgroundBmpPath(QString(":/Images/Resources/Images/VolumeToolWidgetBackgroud"));
     m_Background->show();
     m_TitleText = new TextWidget(m_Parent);
     m_TitleText->setAlignmentFlag(Qt::AlignCenter);

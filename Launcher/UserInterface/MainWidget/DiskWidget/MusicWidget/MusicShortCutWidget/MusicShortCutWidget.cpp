@@ -110,8 +110,8 @@ void MusicShortCutWidgetPrivate::initialize()
 {
     m_Background = new BmpButton(m_Parent);
     m_Background->show();
-    m_Background->setNormalBmpPath(QString(":/Images/Resources/Images/MusicShortCutWidgetBackground"));
-    m_Background->setPressBmpPath(QString(":/Images/Resources/Images/MusicShortCutWidgetBackground"));
+//    m_Background->setNormalBmpPath(QString(":/Images/Resources/Images/MusicShortCutWidgetBackground"));
+//    m_Background->setPressBmpPath(QString(":/Images/Resources/Images/MusicShortCutWidgetBackground"));
 }
 
 void MusicShortCutWidgetPrivate::receiveAllCustomEvent()
@@ -123,7 +123,7 @@ void MusicShortCutWidgetPrivate::connectAllSlots()
 {
     connectSignalAndSlotByNamesake(g_Multimedia, m_Parent);
     Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::AutoConnection | Qt::UniqueConnection);
-    QObject::connect(m_Background, SIGNAL(bmpButtonRelease()),
-                     m_Parent,     SLOT(onBmpButtonRelease()),
-                     type);
+//    QObject::connect(m_Background, SIGNAL(bmpButtonRelease()),
+//                     m_Parent,     SLOT(onBmpButtonRelease()),
+//                     type);
 }

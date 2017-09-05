@@ -155,5 +155,6 @@
         <file>Resources/Images/VideoToolWidgetEffectBtnNormal.svg</file>
         <file>Resources/Images/VideoToolWidgetFMBtnNormal.svg</file>
         <file>Resources/Images/VideoToolWidgetIRBtnNormal.svg</file>
+        <file>Resources/Images/VolumeToolWidgetBackgroud.png</file>
     </qresource>
 </RCC>

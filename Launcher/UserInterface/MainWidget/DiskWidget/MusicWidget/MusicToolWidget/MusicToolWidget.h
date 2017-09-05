@@ -16,6 +16,7 @@ class MusicToolWidget
 public:
     explicit MusicToolWidget(QWidget *parent = NULL);
     ~MusicToolWidget();
+    QString StringLeftMove(const QString string);
 protected:
     void resizeEvent(QResizeEvent *event);
     void paintEvent(QPaintEvent *event);
@@ -34,6 +35,8 @@ public slots:
     void onTickMarksMillesimalStart();
     void onTickMarksMillesimalEnd(const int millesimal);
     void onToolButtonRelease();
+private slots:
+    void onTimeout();
 private:
     friend class MusicToolWidgetPrivate;
     QScopedPointer<MusicToolWidgetPrivate> m_Private;

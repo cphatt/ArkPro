@@ -319,12 +319,12 @@ void HomeWidget::onBmpButtonRelease()
 {
     if (sender() == m_Private->m_Media && (m_Private->isSDAlive || m_Private->isUSBAlive)) {
         //获得disk的状态，根据状态决定信号发不发
-        //g_Widget->setWidgetType(Widget::T_Media, WidgetStatus::RequestShow); //
-        if(m_Private->isUSBAlive){
-            g_Widget->setWidgetType(Widget::T_USBDisk, WidgetStatus::RequestShow);
-        }else if(m_Private->isSDAlive){
-            g_Widget->setWidgetType(Widget::T_SDDisk, WidgetStatus::RequestShow);
-        }
+        g_Widget->setWidgetType(Widget::T_Media, WidgetStatus::RequestShow); //
+//        if(m_Private->isUSBAlive){
+//            g_Widget->setWidgetType(Widget::T_USBDisk, WidgetStatus::RequestShow);
+//        }else if(m_Private->isSDAlive){
+//            g_Widget->setWidgetType(Widget::T_SDDisk, WidgetStatus::RequestShow);
+//        }
     } else if (sender() == m_Private->m_Link) {
         g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
 

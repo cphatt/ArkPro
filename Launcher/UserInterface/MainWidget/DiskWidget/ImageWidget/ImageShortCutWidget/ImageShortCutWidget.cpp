@@ -91,7 +91,7 @@ void ImageShortCutWidget::onImagePlayerPlayStatus(const ImagePlayerPlayStatus st
 
 void ImageShortCutWidget::onBmpButtonRelease()
 {
-    g_Widget->setWidgetType(Widget::T_Image, WidgetStatus::RequestShow);
+//    g_Widget->setWidgetType(Widget::T_Image, WidgetStatus::RequestShow);
 }
 
 ImageShortCutWidgetPrivate::ImageShortCutWidgetPrivate(ImageShortCutWidget *parent)
@@ -112,8 +112,8 @@ void ImageShortCutWidgetPrivate::initialize()
 {
     m_Background = new BmpButton(m_Parent);
     m_Background->show();
-    m_Background->setNormalBmpPath(QString(":/Images/Resources/Images/ImageShortCutWidgetBackground"));
-    m_Background->setPressBmpPath(QString(":/Images/Resources/Images/ImageShortCutWidgetBackground"));
+//    m_Background->setNormalBmpPath(QString(":/Images/Resources/Images/ImageShortCutWidgetBackground"));
+//    m_Background->setPressBmpPath(QString(":/Images/Resources/Images/ImageShortCutWidgetBackground"));
 }
 
 void ImageShortCutWidgetPrivate::receiveAllCustomEvent()

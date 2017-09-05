@@ -28,6 +28,7 @@ public:
     MessageBox* m_SDDiskMusicMessageBox;
     BmpButton* m_ListBtn;
     bool m_RequestShow;
+    DeviceWatcherStatus USBStatus;
 private:
     SDDiskMusicListViewWidget* m_Parent;
 };
@@ -159,6 +160,8 @@ void SDDiskMusicListViewWidget::onDeviceWatcherStatus(const DeviceWatcherType ty
         }
         }
     }
+    if (DWT_USBDisk == type)
+        m_Private->USBStatus = status;
 }
 
 void SDDiskMusicListViewWidget::onMusicPlayerFileNames(const DeviceWatcherType type, const QString &xml)
@@ -197,6 +200,9 @@ void SDDiskMusicListViewWidget::onMusicPlayerFileNames(const DeviceWatcherType t
                             } else {
                                 m_Private->m_SDDiskMusicMessageBox->setVisible(false);
                                 m_Private->m_MusicListView->setVisible(true);
+
+                                if(m_Private->USBStatus != DWS_Ready && m_Private->USBStatus != DWS_Busy)
+                                    onMusicListViewItemRelease(0);
                             }
                         }
                     }
@@ -241,6 +247,7 @@ SDDiskMusicListViewWidgetPrivate::SDDiskMusicListViewWidgetPrivate(SDDiskMusicLi
     m_MusicListView = NULL;
     m_ListBtn = NULL;
     m_RequestShow = false;
+    USBStatus = DWS_Remove;
     initialize();
     receiveAllCustomEvent();
     connectAllSlots();

@@ -100,7 +100,8 @@ bool MainWidget::event(QEvent* event)
                         setting.sync();
 #ifndef gcc
                         system("ts_calibrate");
-                        //system("reboot");
+                         qDebug() << "-----------------------------------";
+                        system("reboot");
 #endif
                         exit(EXIT_SUCCESS);
                     }

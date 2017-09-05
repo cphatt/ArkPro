@@ -88,7 +88,7 @@ void VideoShortCutWidget::onVideoPlayerPlayStatus(const VideoPlayerPlayStatus st
 
 void VideoShortCutWidget::onBmpButtonRelease()
 {
-    g_Widget->setWidgetType(Widget::T_Video, WidgetStatus::RequestShow);
+   // g_Widget->setWidgetType(Widget::T_Video, WidgetStatus::RequestShow);
 }
 
 VideoShortCutWidgetPrivate::VideoShortCutWidgetPrivate(VideoShortCutWidget *parent)
@@ -109,8 +109,8 @@ void VideoShortCutWidgetPrivate::initialize()
 {
     m_Background = new BmpButton(m_Parent);
     m_Background->show();
-    m_Background->setNormalBmpPath(QString(":/Images/Resources/Images/VideoShortCutWidgetBackground"));
-    m_Background->setPressBmpPath(QString(":/Images/Resources/Images/VideoShortCutWidgetBackground"));
+//    m_Background->setNormalBmpPath(QString(":/Images/Resources/Images/VideoShortCutWidgetBackground"));
+//    m_Background->setPressBmpPath(QString(":/Images/Resources/Images/VideoShortCutWidgetBackground"));
 }
 
 void VideoShortCutWidgetPrivate::receiveAllCustomEvent()
@@ -122,7 +122,7 @@ void VideoShortCutWidgetPrivate::connectAllSlots()
 {
     connectSignalAndSlotByNamesake(g_Multimedia, m_Parent);
     Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::AutoConnection | Qt::UniqueConnection);
-    QObject::connect(m_Background, SIGNAL(bmpButtonRelease()),
-                     m_Parent,     SLOT(onBmpButtonRelease()),
-                     type);
+//    QObject::connect(m_Background, SIGNAL(bmpButtonRelease()),
+//                     m_Parent,     SLOT(onBmpButtonRelease()),
+//                     type);
 }

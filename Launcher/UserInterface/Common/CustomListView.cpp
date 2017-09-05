@@ -1,4 +1,6 @@
 #include "CustomListView.h"
+#include "AutoConnect.h"
+#include "UserInterface/Common/Utility.h"
 #include <QEvent>
 #include <QDebug>
 #include <QMouseEvent>
@@ -39,10 +41,24 @@ CustomListView::~CustomListView()
 {
 }
 
+void CustomListView::setItemDelegate(QAbstractItemDelegate *delegate)
+{
+    connectSignalAndSlotByNamesake(this, delegate);
+    QListView::setItemDelegate(delegate);
+}
+
 void CustomListView::mousePressEvent(QMouseEvent *event)
 {
+    qDebug() << "CustomListView::mousePressEvent";
     m_Private->m_StartMovePoint = event->pos();
     m_Private->m_Filter = false;
+    QModelIndex modelIndex = indexAt(event->pos());
+    if (modelIndex.isValid()) {
+        qWarning() << "asdasdasd" << "ddd";
+        emit onPressIndexChanged(modelIndex);
+
+        update(modelIndex);
+    }
     QListView::mousePressEvent(event);
 }
 
@@ -54,6 +70,7 @@ void CustomListView::mouseMoveEvent(QMouseEvent *event)
         m_Private->m_StartMovePoint = event->pos();
         verticalScrollBar()->setValue(verticalOffset() + relativePos.y());
     } else if ((qAbs(deltaEnd) > m_Private->m_Threshold)) {
+        emit onPressIndexChanged(QModelIndex());
         m_Private->m_Filter = true;
         m_Private->m_StartMovePoint = event->pos();
         if (relativePos.y() > 0) {
@@ -68,8 +85,16 @@ void CustomListView::mouseMoveEvent(QMouseEvent *event)
 void CustomListView::mouseReleaseEvent(QMouseEvent *event)
 {
     if (!m_Private->m_Filter) {
-        listViewItemRelease(indexAt(event->pos()).row());
+        QModelIndex modelIndex = indexAt(event->pos());
+        if (modelIndex.isValid()) {
+            emit listViewItemRelease(modelIndex.row());
+        }
     }
+    m_Private->m_StartMovePoint = event->pos();
+    m_Private->m_Filter = false;
+    QModelIndex modelIndex = indexAt(event->pos());
+    emit onPressIndexChanged(modelIndex);
+    emit onCurrentIndexChange(modelIndex);
     m_Private->m_Filter = false;
     QListView::mouseReleaseEvent(event);
 }

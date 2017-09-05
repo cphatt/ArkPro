@@ -11,6 +11,7 @@ private:
 
 CustomScrollBar::CustomScrollBar(QWidget *parent)
     : QScrollBar(parent)
+    , m_Private(new CustomScrollBarPrivate(this))
 {
 }
 

@@ -14,12 +14,17 @@ class FieldWidget
 public:
     explicit FieldWidget(QWidget *parent = NULL);
     ~FieldWidget();
+    QString StringLeftMove(const QString string);
 protected:
     void showEvent(QShowEvent* event);
     void resizeEvent(QResizeEvent* event);
     void paintEvent(QPaintEvent* event);
 protected slots:
     void ontWidgetTypeChange(const Widget::Type type, const QString &status);
+
+private slots:
+    void onTimeout();
+
 private:
     friend class FieldWidgetPrivate;
     QScopedPointer<FieldWidgetPrivate> m_Private;

@@ -22,6 +22,7 @@ static const QEvent::Type VideoToolBarWidgetAddChild = static_cast<QEvent::Type>
 static const QEvent::Type LinkMessageWidgetAddChild = static_cast<QEvent::Type>(VideoToolBarWidgetAddChild + 1);
 static const QEvent::Type FMWidgetStatus = static_cast<QEvent::Type>(LinkMessageWidgetAddChild + 1);
 static const QEvent::Type VolumeWidgetStatus = static_cast<QEvent::Type>(FMWidgetStatus + 1);
+static const QEvent::Type VolumeWidgetClick = static_cast<QEvent::Type>(VolumeWidgetStatus + 1);
 }
 
 class BusinessLogicUtilityPrivate;

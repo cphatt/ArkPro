@@ -28,6 +28,7 @@ public:
     TextWidget* m_USBDiskText;
     bool isUSBAlive;
     bool isSDAlive;
+    MediaStatus mediaStatus;
 
 private:
     MediaWidget* m_Parent;
@@ -85,9 +86,27 @@ void MediaWidget::ontWidgetTypeChange(const Widget::Type type, const QString &st
                break;
            }
         case Widget::T_Media: {
-            //接受服务的消息
+            //接受服务的消息, 还会判断当前媒体的状态，选择进入哪一个区域，先预留出判断段的接口
             if (WidgetStatus::RequestShow == status) {
-                g_Widget->setWidgetType(Widget::T_Media, WidgetStatus::Show);
+                if(m_Private->isUSBAlive){
+                    switch (m_Private->mediaStatus) {
+                    case MPPS:
+                        g_Widget->setWidgetType(Widget::T_Music, WidgetStatus::RequestShow);
+                        break;
+                    case IPPS:
+                        g_Widget->setWidgetType(Widget::T_Image, WidgetStatus::RequestShow);
+                        break;
+                    case VPPS:
+                        g_Widget->setWidgetType(Widget::T_Video, WidgetStatus::RequestShow);
+                        break;
+                    default:
+                        g_Widget->setWidgetType(Widget::T_USBDisk, WidgetStatus::RequestShow);
+                        break;
+                    }
+
+                }else if(m_Private->isSDAlive){
+                    g_Widget->setWidgetType(Widget::T_SDDisk, WidgetStatus::RequestShow);
+                }
             } else if (WidgetStatus::Show == status) {
 
                 setVisible(true);
@@ -105,6 +124,30 @@ void MediaWidget::ontWidgetTypeChange(const Widget::Type type, const QString &st
         }
     }
 }
+
+
+void MediaWidget::onMusicPlayerPlayStatus(const MusicPlayerPlayStatus status)
+{
+
+    if(status == MPPS_Start)
+        m_Private->mediaStatus = MPPS;
+     qDebug() << "MediaWidget::onMusicPlayerPlayStatus" << status;
+}
+void MediaWidget::onImagePlayerPlayStatus(const ImagePlayerPlayStatus status)
+{
+
+    if(status == IPPS_Start)
+        m_Private->mediaStatus = IPPS;
+     qDebug() << "MediaWidget::onImagePlayerPlayStatus" << status;
+}
+void MediaWidget::onVideoPlayerPlayStatus(const VideoPlayerPlayStatus status)
+{
+
+    if(status == VPPS_Start)
+        m_Private->mediaStatus = VPPS;
+    qDebug() << "MediaWidget::onVideoPlayerPlayStatus" << status;
+}
+
 void MediaWidget::onDeviceWatcherStatus(const DeviceWatcherType type, const DeviceWatcherStatus status)
 {
     qDebug() << "MediaWidget::onDeviceWatcherStatus" << type << status;
@@ -124,6 +167,7 @@ void MediaWidget::onDeviceWatcherStatus(const DeviceWatcherType type, const Devi
             }
             case DWS_Remove: {
                 m_Private->isSDAlive = false;
+                m_Private->mediaStatus = None;
                 break;
             }
             default: {
@@ -165,6 +209,7 @@ MediaWidgetPrivate::MediaWidgetPrivate(MediaWidget *parent)
     m_USBDiskText = NULL;
     isUSBAlive = false;
     isSDAlive = false;
+    mediaStatus = None;
     initialize();
     receiveAllCustomEvent();
     connectAllSlots();

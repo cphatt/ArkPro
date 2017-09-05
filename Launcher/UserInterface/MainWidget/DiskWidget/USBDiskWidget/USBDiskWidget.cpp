@@ -161,7 +161,7 @@ void USBDiskWidget::onDeviceWatcherStatus(const DeviceWatcherType type, const De
         case DWS_Ready: {
             m_Private->m_USBDiskDeviceMessageBox->setVisible(false);
             if (m_Private->m_RequestShow) {
-                //                g_Widget->setWidgetType(Widget::T_USBDisk, WidgetStatus::Show);
+                                g_Widget->setWidgetType(Widget::T_USBDisk, WidgetStatus::Show);
             }
             m_Private->m_USBDiskTip->setBackgroundBmpPath(QString(":/Images/Resources/Images/USBDiskWidgetTipNormal"));
                             m_Private->m_USBDiskTip->setVisible(true);
@@ -173,6 +173,7 @@ void USBDiskWidget::onDeviceWatcherStatus(const DeviceWatcherType type, const De
             m_Private->m_USBDiskDeviceMessageBox->setText(SourceString::Remove_USB_Device);
             m_Private->m_USBDiskDeviceMessageBox->setAutoHide(false);
             m_Private->m_USBDiskDeviceMessageBox->setVisible(true);
+            g_Widget->setWidgetType(Widget::T_Home, WidgetStatus::Show);
             break;
         }
         default: {

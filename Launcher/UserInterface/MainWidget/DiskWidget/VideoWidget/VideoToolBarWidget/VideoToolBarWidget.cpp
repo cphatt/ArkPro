@@ -1,5 +1,6 @@
 #include "VideoToolBarWidget.h"
 #include "UserInterface/Common/BmpButton.h"
+#include "UserInterface/Common/BmpWidget.h"
 #include "UserInterface/Common/Slider.h"
 #include "BusinessLogic/Multimedia/Multimedia.h"
 #include "UserInterface/Common/Utility.h"
@@ -35,7 +36,9 @@ public:
     BmpButton* m_FMBtn;
     BmpButton* m_EffectBtn;
     BmpButton* m_IRBtn;
+    BmpWidget* m_Background;
     BmpButton* m_SwitchFunctionBtn;
+
     FunctionType m_FunctionType;
 private:
     VideoToolBarWidget* m_Parent;
@@ -56,6 +59,7 @@ VideoToolBarWidget::~VideoToolBarWidget()
 void VideoToolBarWidget::resizeEvent(QResizeEvent *event)
 {
     g_Widget->geometryFit(0, 398, 800, 82, this);
+    g_Widget->geometryFit(0, 398, 800, 82, m_Private->m_Background);
     g_Widget->geometryFit(0, 7, 50 * 2, 27, m_Private->m_ElapsedTimeText);
     g_Widget->geometryFit(100, 7, 600, 27, m_Private->m_Slider);
     g_Widget->geometryFit(800 - 100, 7, 50 * 2, 27, m_Private->m_EndTimeText);
@@ -175,7 +179,8 @@ void VideoToolBarWidget::onToolButtonRelease()
         EventEngine::CustomEvent<QString> event(CustomEventType::VolumeWidgetStatus, new QString(WidgetStatus::RequestShow));
         g_EventEngine->sendCustomEvent(event);
     } else if (ptr == m_Private->m_SwitchFunctionBtn) {
-        m_Private->switchFunction();
+                g_Widget->setWidgetType(Widget::T_Home, WidgetStatus::RequestShow);
+        //m_Private->switchFunction();
     } else if (ptr == m_Private->m_FMBtn) {
         EventEngine::CustomEvent<QString> event(CustomEventType::FMWidgetStatus, new QString(WidgetStatus::RequestShow));
         g_EventEngine->sendCustomEvent(event);
@@ -199,6 +204,7 @@ void VideoToolBarWidget::onTickMarksMillesimalEnd(const int millesimal)
 VideoToolBarWidgetPrivate::VideoToolBarWidgetPrivate(VideoToolBarWidget *parent)
     : m_Parent(parent)
 {
+    m_Background = NULL;
     m_ElapsedTimeText = NULL;
     m_Slider = NULL;
     m_EndTimeText = NULL;
@@ -222,6 +228,9 @@ VideoToolBarWidgetPrivate::~VideoToolBarWidgetPrivate()
 
 void VideoToolBarWidgetPrivate::initialize()
 {
+    m_Background = new BmpWidget(m_Parent);
+    m_Background->setVisible(true);
+    m_Background->setBackgroundBmpPath(QString(":/Images/Resources/Images/HomeWidgetBackground"));
     m_ElapsedTimeText = new TextWidget(m_Parent);
     m_ElapsedTimeText->hide();
     m_ElapsedTimeText->setFontPointSize(15 * g_Widget->widthScalabilityFactor());

@@ -11,6 +11,7 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <QVariant>
+#include <QTimer>
 
 namespace SourceString {
 static const QString Unknown = QString(QObject::tr("Unknown"));
@@ -44,6 +45,8 @@ public:
     TextWidget* m_ElapsedTimeText;
     TextWidget* m_EndTimeText;
     Slider* m_Slider;
+    QString filename;
+    QTimer* m_Timer;
 private:
     MusicToolWidget* m_Parent;
 };
@@ -213,7 +216,11 @@ void MusicToolWidget::onMusicPlayerID3TagChange(const int index, const QString &
 {
     qDebug() << fileName << endTime;;
     if (!fileName.isEmpty()) {
+        m_Private->filename = fileName;
         m_Private->m_TitleText->setText(fileName);
+        //启动定时器
+//        if(fileName.size() > 8)
+//            m_Private->m_Timer->start();
     } else {
         m_Private->m_TitleText->setText(QObject::tr(SourceString::Unknown.toLocal8Bit().constData()));
     }
@@ -281,10 +288,12 @@ MusicToolWidgetPrivate::MusicToolWidgetPrivate(MusicToolWidget *parent)
     m_TitleText = NULL;
     m_ElapsedTimeText = NULL;
     m_EndTimeText = NULL;
+    m_Timer = NULL;
     initialize();
     receiveAllCustomEvent();
     connectAllSlots();
     m_Parent->setVisible(false);
+   // m_Timer->start();
 }
 
 MusicToolWidgetPrivate::~MusicToolWidgetPrivate()
@@ -349,6 +358,7 @@ void MusicToolWidgetPrivate::initialize()
     m_TitleText->setLanguageType(TextWidget::T_NoTranslate);
     m_TitleText->setAlignmentFlag(Qt::AlignLeft | Qt::AlignVCenter);
     m_TitleText->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
+  //  m_TitleText->setText(QString("好久不见.mp3"));
     m_ElapsedTimeText = new TextWidget(m_Parent);
     m_ElapsedTimeText->hide();
     m_ElapsedTimeText->setAlignmentFlag(Qt::AlignLeft | Qt::AlignVCenter);
@@ -357,6 +367,10 @@ void MusicToolWidgetPrivate::initialize()
     m_EndTimeText->hide();
     m_EndTimeText->setAlignmentFlag(Qt::AlignRight | Qt::AlignVCenter);
     m_EndTimeText->setFontPointSize(15 * g_Widget->widthScalabilityFactor());
+
+    m_Timer = new QTimer(m_Parent);
+    m_Timer->setSingleShot(true);
+    m_Timer->setInterval(1500);
 }
 
 void MusicToolWidgetPrivate::receiveAllCustomEvent()
@@ -389,12 +403,29 @@ void MusicToolWidgetPrivate::connectAllSlots()
     QObject::connect(m_ModeBtn, SIGNAL(bmpButtonRelease()),
                      m_Parent,  SLOT(onToolButtonRelease()),
                      type);
+    QObject::connect(m_Timer,  SIGNAL(timeout()),
+                     m_Parent, SLOT(onTimeout()),
+                     type);
 }
 
 void MusicToolWidget::onTickMarksMillesimalEnd(const int millesimal)
 {
     qDebug() << "onTickMarksMillesimalEnd" << millesimal;
     g_Multimedia->musicPlayerSeekToMillesimal(millesimal);
+}
+
+void MusicToolWidget::onTimeout()
+{
+
+    qDebug() << m_Private->m_TitleText->getText();
+    m_Private->m_TitleText->setText(StringLeftMove(m_Private->m_TitleText->getText()));
+    m_Private->m_Timer->start();
+}
+QString MusicToolWidget::StringLeftMove(const QString string){
+    QByteArray ba = string.toLatin1();
+    char *text = ba.data();
+//  qDebug() <<string << text << "";
+    return QString(QLatin1String(text));
 }
 
 void MusicToolWidget::onToolButtonRelease()

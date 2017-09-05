@@ -27,7 +27,8 @@ QColor Utility::mainWidgetBackgroundColor()
 
 QColor Utility::multimediaAlphaColor()
 {
-    return QColor(210, 210, 210, 180);
+//    return QColor(210, 210, 210, 180);
+    return QColor(16, 6, 119);
 }
 
 void Utility::startTime()

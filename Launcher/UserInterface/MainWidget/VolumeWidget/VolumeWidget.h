@@ -17,6 +17,11 @@ protected:
     void resizeEvent(QResizeEvent* event);
     void customEvent(QEvent* event);
     void mouseReleaseEvent(QMouseEvent* event);
+
+
+private slots:
+    void onTimeout();
+
 private:
     friend class VolumeWidgetPrivate;
     QScopedPointer<VolumeWidgetPrivate> m_Private;

@@ -39,10 +39,11 @@ void VolumeSliderWidget::setTickMarksMillesimal(const int millesimal)
 
 void VolumeSliderWidget::resizeEvent(QResizeEvent *event)
 {
+    int a(27);
     g_Widget->geometryFit(0, 180, 853, 180, this);
-    g_Widget->geometryFit(52, (180 - 37) * 0.5, 31, 37, m_Private->m_MinusBtn);
-    g_Widget->geometryFit(117, (180 - 40) * 0.5, 619, 40, m_Private->m_Slider);
-    g_Widget->geometryFit(853 - 52 - 31, (180 - 37) * 0.5, 31, 37, m_Private->m_PlusBtn);
+    g_Widget->geometryFit(152 + a, (180 - 37) * 0.5 - 30, 31, 37, m_Private->m_MinusBtn);
+    g_Widget->geometryFit(214 + a, (180 - 40) * 0.5 - 30, 619 * 0.6, 40, m_Private->m_Slider);
+    g_Widget->geometryFit(853 + a - 52 - 31 - 150, (180 - 37) * 0.5 - 30, 31, 37, m_Private->m_PlusBtn);
     QWidget::resizeEvent(event);
 }
 

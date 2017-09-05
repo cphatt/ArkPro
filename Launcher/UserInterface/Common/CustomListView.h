@@ -12,11 +12,14 @@ class CustomListView : public QListView
 public:
     explicit CustomListView(QWidget *parent = NULL);
     ~CustomListView();
+    void setItemDelegate(QAbstractItemDelegate *delegate);
 protected:
-    void mousePressEvent(QMouseEvent* event);
-    void mouseMoveEvent(QMouseEvent* event);
-    void mouseReleaseEvent(QMouseEvent* event);
+    void mousePressEvent(QMouseEvent* event) ;
+    void mouseMoveEvent(QMouseEvent* event) ;
+    void mouseReleaseEvent(QMouseEvent* event)  ;
 signals:
+    void onPressIndexChanged(const QModelIndex &index);
+    void onCurrentIndexChange(const QModelIndex &index);
     void listViewItemRelease(const int index);
 private:
     friend class CustomListViewPrivate;

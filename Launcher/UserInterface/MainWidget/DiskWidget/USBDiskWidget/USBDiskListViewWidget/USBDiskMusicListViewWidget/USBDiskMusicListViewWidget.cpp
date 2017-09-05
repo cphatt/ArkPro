@@ -196,6 +196,14 @@ void USBDiskMusicListViewWidget::onMusicPlayerFileNames(const DeviceWatcherType 
                             } else {
                                 m_Private->m_USBDiskMusicMessageBox->setVisible(false);
                                 m_Private->m_MusicListView->setVisible(true);
+
+                                //发起音乐播放申请
+                               // g_Multimedia->musicPlayerPlayListViewIndex(DWT_USBDisk, 0);
+
+#ifndef gcc
+                                 onMusicListViewItemRelease(0);
+#endif
+
                             }
                         }
                     }
@@ -220,7 +228,7 @@ void USBDiskMusicListViewWidget::onMusicPlayerPlayStatus(const MusicPlayerPlaySt
         }
     }
 }
-
+//原来在这里
 void USBDiskMusicListViewWidget::onMusicListViewItemRelease(const int index)
 {
     m_Private->m_RequestShow = true;
@@ -229,6 +237,7 @@ void USBDiskMusicListViewWidget::onMusicListViewItemRelease(const int index)
 
 void USBDiskMusicListViewWidget::onToolButtonRelease()
 {
+    g_Widget->setWidgetType(Widget::T_USBDisk, WidgetStatus::RequestShow);
     g_Widget->setWidgetType(Widget::T_USBDiskMusic, WidgetStatus::RequestShow);
 }
 

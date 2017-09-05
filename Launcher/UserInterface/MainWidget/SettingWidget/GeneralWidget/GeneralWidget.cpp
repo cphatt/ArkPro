@@ -53,7 +53,8 @@ void GeneralWidget::mousePressEvent(QMouseEvent *event)
 
     system("ts_calibrate");
     qDebug() << "finish Calibrate" ;
-
+//    giveupvideo
+//            takevideo
     g_Widget->setWidgetType(Widget::T_Home, WidgetStatus::RequestShow);
     g_Widget->setWidgetType(Widget::T_Setting, WidgetStatus::RequestShow);
 

@@ -228,7 +228,7 @@ void DiskWidgetPrivate::initialize()
     m_MusicWidget = new MusicWidget(m_Parent);
     m_VideoWidget = new VideoWidget(m_Parent);
     m_SDDisk = new BmpButton(m_Parent);
-    m_SDDisk->show();
+    m_SDDisk->hide();
     m_SDDisk->setNormalBmpPath(QString(":/Images/Resources/Images/SD"));
     m_SDDisk->setPressBmpPath(QString(":/Images/Resources/Images/SD"));
     m_SDDisk->setCheckBmpPath(QString(":/Images/Resources/Images/SD-p"));

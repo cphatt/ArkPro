@@ -29,6 +29,11 @@ void TextWidget::setText(const QString &text)
     update();
 }
 
+QString TextWidget::TextWidget::getText()
+{
+    return m_Private->m_Text;
+}
+
 void TextWidget::setLanguageType(const TextWidget::Type type)
 {
     m_Private->m_LanguageType = type;
