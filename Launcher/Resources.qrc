@@ -156,5 +156,6 @@
         <file>Resources/Images/VideoToolWidgetFMBtnNormal.svg</file>
         <file>Resources/Images/VideoToolWidgetIRBtnNormal.svg</file>
         <file>Resources/Images/VolumeToolWidgetBackgroud.png</file>
+        <file>Resources/Images/MusicSliderBlock.png</file>
     </qresource>
 </RCC>

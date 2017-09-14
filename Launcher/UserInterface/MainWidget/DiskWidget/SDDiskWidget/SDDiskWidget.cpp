@@ -167,6 +167,7 @@ void SDDiskWidget::onDeviceWatcherStatus(const DeviceWatcherType type, const Dev
             m_Private->m_SDDiskDeviceMessageBox->setText(SourceString::Remove_SD_Device);
             m_Private->m_SDDiskDeviceMessageBox->setAutoHide(false);
             m_Private->m_SDDiskDeviceMessageBox->setVisible(true);
+            g_Widget->setWidgetType(Widget::T_Home, WidgetStatus::Show);
             break;
         }
         default: {

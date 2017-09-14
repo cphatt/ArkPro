@@ -227,6 +227,11 @@ void LanguageWidget::onEffectChange(const int type, const int hight, const int m
 {
 }
 
+void LanguageWidget::onTest()
+{
+    qDebug() << "LanguageWidget::onTest()";
+}
+
 void LanguageWidget::onToolButtonRelease()
 {
     qDebug() << __FUNCTION__;

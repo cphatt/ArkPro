@@ -31,6 +31,7 @@ public:
         virtual void onBrightnessChange(const int value) = 0;
         virtual void onContrastChange(const int value) = 0;
         virtual void onHueChange(const int value) = 0;
+        virtual void onTest() {};
     };
     inline static Setting* instance() {
         static Setting* setting(new Setting(qApp));
@@ -44,6 +45,8 @@ public:
     //    void setContrast(const SetType type, const int value);
     void setHue(const int type, const int value);
     //    void setHue(const SetType type, const int value);
+    void test();
+
 signals:
     void onDateTimeChange(const QString &date, const QString &time);
     void onLanguageTranslateChange(const int language);
@@ -51,6 +54,7 @@ signals:
     void onBrightnessChange(const int value);
     void onContrastChange(const int value);
     void onHueChange(const int value);
+    void onTest();
 protected:
     void customEvent(QEvent* event);
 private slots:

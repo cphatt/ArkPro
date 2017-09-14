@@ -94,7 +94,7 @@ void FieldWidget::resizeEvent(QResizeEvent *event)
     g_Widget->geometryFit(174 - 165 + 80, 194, width, height, m_Private->APPText);
     width = 161;
     height = 108;
-    g_Widget->geometryFit(200, this->height() - 100, width, height, m_Private->mcuUpdateBtn);
+    g_Widget->geometryFit(100, this->height() - 100, width, height, m_Private->mcuUpdateBtn);
     g_Widget->geometryFit(0, 0, width, height, m_Private->mcuUpdateText);
     g_Widget->geometryFit(400,this->height() - 100, width, height, m_Private->resetBtn);
     g_Widget->geometryFit(0, 0, width, height, m_Private->resetText);
@@ -224,14 +224,51 @@ void FieldWidgetPrivate::initialize()
 
 }
 
+
 void FieldWidgetPrivate::connectAllSlots()
 {
-    connectSignalAndSlotByNamesake(g_Widget, m_Parent);
-    Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::AutoConnection | Qt::UniqueConnection);
-//    QObject::connect(m_Timer,  SIGNAL(timeout()),
-//                     m_Parent, SLOT(onTimeout()),
-//                     type);
+    connectSignalAndSlotByNamesake(g_Widget, m_Parent);//所
+    connectSignalAndSlotByNamesake(g_Port, m_Parent);
+    Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::UniqueConnection | Qt::AutoConnection);
+
+    QObject::connect(resetBtn, SIGNAL(bmpButtonRelease()),
+                     m_Parent,  SLOT(onBmpButtonRelease()),
+                     type);
+    QObject::connect(mcuUpdateBtn,   SIGNAL(bmpButtonRelease()),
+                     m_Parent, SLOT(onBmpButtonRelease()),
+                     type);
+
 }
+
+void FieldWidget::onBmpButtonRelease()
+{
+    if (sender() == m_Private->resetBtn) {
+        g_Port->handlerMCUData(Port::D_Volume, "66",3);
+
+    } else if (sender() == m_Private->mcuUpdateBtn) {
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void FieldWidgetPrivate::initFile(){
 

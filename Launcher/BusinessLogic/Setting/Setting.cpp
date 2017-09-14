@@ -91,6 +91,23 @@ void Setting::setHue(const SettingType type, const int value)
     }
 }
 
+void Setting::test()
+{
+    if (NULL != m_Private->m_SettingService) {
+        m_Private->m_SettingService->test();
+    } else if (NULL != m_Private->m_SettingServiceProxy) {
+        qDebug() << "_Private->m_SettingServiceProxy->test(";
+        QDBusPendingReply<> reply = m_Private->m_SettingServiceProxy->test();
+#ifdef gcc
+        reply.waitForFinished();
+        qDebug() << "Dbus call Setting::test" << reply.isFinished();
+        if (reply.isError()) {
+            qDebug() << "method call Setting::test failed" << reply.error();
+        }
+#endif
+    }
+}
+
 void Setting::customEvent(QEvent *event)
 {
     switch (event->type()) {

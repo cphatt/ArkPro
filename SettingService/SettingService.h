@@ -51,6 +51,7 @@ public:
         //    void setContrast(const SettingType type, const int value);
         virtual void setHue(const int type, const int value) = 0;
         //    void setHue(const SettingType type, const int value);
+        virtual void test() = 0;
         //signals:
         virtual void onDateTimeChange(const QString &date, const QString &time) = 0;
         virtual void onLanguageChange(const int language) = 0;
@@ -58,6 +59,7 @@ public:
         virtual void onBrightnessChange(const int value) = 0;
         virtual void onContrastChange(const int value) = 0;
         virtual void onHueChange(const int value) = 0;
+        virtual void onTest() = 0;
     };
     explicit SettingService(QObject* parent = NULL);
     ~SettingService();
@@ -71,6 +73,7 @@ public slots:
     //    void setContrast(const SettingType type, const int value);
     void setHue(const int type, const int value);
     //    void setHue(const SettingType type, const int value);
+    void test();
 signals:
     void onDateTimeChange(const QString &date, const QString &time);
     void onLanguageChange(const int language);
@@ -78,6 +81,7 @@ signals:
     void onBrightnessChange(const int value);
     void onContrastChange(const int value);
     void onHueChange(const int value);
+    void onTest();
 private slots:
     void onTimeout();
 private:

@@ -32,7 +32,7 @@ protected slots:
                                    const QString &fileName,
                                    const int endTime);
 public slots:
-    void onTickMarksMillesimalStart();
+    void onTickMarksMillesimalStart(const int millesimal);
     void onTickMarksMillesimalEnd(const int millesimal);
     void onToolButtonRelease();
 private slots:

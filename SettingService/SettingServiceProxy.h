@@ -70,12 +70,19 @@ public Q_SLOTS: // METHODS
         return asyncCallWithArgumentList(QLatin1String("synchronize"), argumentList);
     }
 
+    inline QDBusPendingReply<> test()
+    {
+        QList<QVariant> argumentList;
+        return asyncCallWithArgumentList(QLatin1String("test"), argumentList);
+    }
+
 Q_SIGNALS: // SIGNALS
     void onBrightnessChange(int value);
     void onContrastChange(int value);
     void onDateTimeChange(const QString &date, const QString &time);
     void onHueChange(int value);
     void onLanguageChange(int language);
+    void onTest();
 };
 
 namespace Local {

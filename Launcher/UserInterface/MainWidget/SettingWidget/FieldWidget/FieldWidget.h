@@ -2,6 +2,7 @@
 #define FIELDWIDGET_H
 
 #include "BusinessLogic/Widget/Widget.h"
+#include "BusinessLogic/Port/Port.h"
 #include <QWidget>
 #include <QScopedPointer>
 
@@ -24,6 +25,7 @@ protected slots:
 
 private slots:
     void onTimeout();
+    void onBmpButtonRelease();
 
 private:
     friend class FieldWidgetPrivate;

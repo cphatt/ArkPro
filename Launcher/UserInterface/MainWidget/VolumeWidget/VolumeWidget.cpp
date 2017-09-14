@@ -100,7 +100,7 @@ VolumeWidgetPrivate::VolumeWidgetPrivate(VolumeWidget *parent)
 {
     m_VolumeToolWidget = NULL;
     m_Timer = NULL;
-
+    initialize();
     receiveAllCustomEvent();
 
 

@@ -14,10 +14,6 @@ class MainWidget
 {
     Q_OBJECT
     Q_DISABLE_COPY(MainWidget)
-#ifdef g_MainWindow
-#undef g_MainWindow
-#endif
-#define g_MainWindow (MainWindow::instance())
 public:
     explicit MainWidget(QWidget* parent = NULL);
     ~MainWidget();
@@ -26,6 +22,7 @@ protected:
     void resizeEvent(QResizeEvent* event);
     void paintEvent(QPaintEvent* event);
     void timerEvent(QTimerEvent* event);
+    void mousePressEvent(QMouseEvent *);
 protected slots:
     //Widget::Interface
     void ontWidgetTypeChange(const Widget::Type type, const QString &status);

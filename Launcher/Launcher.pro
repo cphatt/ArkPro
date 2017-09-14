@@ -1,6 +1,6 @@
 QT += core gui svg xml dbus
 
-CONFIG += C++0x
+CONFIG += C++0x serialport
 
 TEMPLATE = app
 
@@ -110,7 +110,9 @@ SOURCES += \
     UserInterface/MainWidget/MediaWidget/MediaWidget.cpp \
     UserInterface/MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeLinkWidget.cpp \
     BusinessLogic/Link/CarlifeLinkProxy.cpp \
-    UserInterface/MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeShortCutWidget/CarlifeShortCutWidget.cpp
+    UserInterface/MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeShortCutWidget/CarlifeShortCutWidget.cpp \
+    BusinessLogic/Port/Port.cpp \
+    UserInterface/MainWidget/DiskWidget/MusicWidget/MusicToolWidget/MusicInformation/MusicInformation.cpp
 
 HEADERS += \
     BusinessLogic/Widget/Widget.h \
@@ -199,9 +201,45 @@ HEADERS += \
     UserInterface/MainWidget/MediaWidget/MediaWidget.h \
     UserInterface/MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeLinkWidget.h \
     BusinessLogic/Link/CarlifeLinkProxy.h \
-    UserInterface/MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeShortCutWidget/CarlifeShortCutWidget.h
+    UserInterface/MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeShortCutWidget/CarlifeShortCutWidget.h \
+    BusinessLogic/Port/Port.h \
+    UserInterface/MainWidget/DiskWidget/MusicWidget/MusicToolWidget/MusicInformation/MusicInformation.h
+
+TAGLIB = $$PWD/TagLib/Header
+INCLUDEPATH += $$TAGLIB
+DEPENDPATH += $$TAGLIB
+INCLUDEPATH += $$TAGLIB/toolkit
+DEPENDPATH += $$TAGLIB/toolkit
+INCLUDEPATH += $$TAGLIB/flac
+DEPENDPATH += $$TAGLIB/flac
+INCLUDEPATH += $$TAGLIB/ape
+DEPENDPATH += $$TAGLIB/ape
+INCLUDEPATH += $$TAGLIB/mpeg
+DEPENDPATH += $$TAGLIB/mpeg
+INCLUDEPATH += $$TAGLIB/mpeg/id3v1
+DEPENDPATH += $$TAGLIB/mpeg/id3v1
+INCLUDEPATH += $$TAGLIB/mpeg/id3v2
+DEPENDPATH += $$TAGLIB/mpeg/id3v2
+INCLUDEPATH += $$TAGLIB/mpeg/id3v2/frames
+DEPENDPATH += $$TAGLIB/mpeg/id3v2/frames
+INCLUDEPATH += $$TAGLIB/ogg
+DEPENDPATH += $$TAGLIB/ogg
+INCLUDEPATH += $$TAGLIB/ogg/flac
+DEPENDPATH += $$TAGLIB/ogg/flac
+INCLUDEPATH += $$TAGLIB/ogg/opus
+DEPENDPATH += $$TAGLIB/ogg/opus
+INCLUDEPATH += $$TAGLIB/ogg/speex
+DEPENDPATH += $$TAGLIB/ogg/speex
+INCLUDEPATH += $$TAGLIB/ogg/vorbis
+DEPENDPATH += $$TAGLIB/ogg/vorbis
+INCLUDEPATH += $$TAGLIB/mp4
+DEPENDPATH += $$TAGLIB/mp4
 
 include(../ArkSdk.pri)
+
+unix:!macx: LIBS += -L$$PWD/TagLib/Library/arm -ltag
+unix:!macx: LIBS += -L$$PWD/TagLib/Library/arm -lConvert
+unix:!macx: LIBS += -L$$PWD/TagLib/Library/arm -lQtConvert
 
 unix:!macx: LIBS += -L$$SDKPATH/Package/ArkApplication/$$ARCHITECTURE -lArkApplication
 unix:!macx: LIBS += -L$$SDKPATH/Package/AutoConnect/$$ARCHITECTURE -lAutoConnect
@@ -251,5 +289,6 @@ DEPENDPATH += $$SETTINGSERVICE
 
 DISTFILES += \
     Resources/Images/HomeWidgetAUXNormal.png \
-    Resources/Images/HomeWidgetAUXPress.png
+    Resources/Images/HomeWidgetAUXPress.png \
+    Resources/Images/MusicSliderBlock.png
 

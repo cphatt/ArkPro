@@ -154,6 +154,12 @@ void MainWidget::timerEvent(QTimerEvent *event)
     QWidget::timerEvent(event);
 }
 
+void MainWidget::mousePressEvent(QMouseEvent *)
+{
+    qDebug() << "mousePressEvent";
+    g_Setting->test();
+}
+
 void MainWidget::ontWidgetTypeChange(const Widget::Type type, const QString &status)
 {
     //    switch (type) {

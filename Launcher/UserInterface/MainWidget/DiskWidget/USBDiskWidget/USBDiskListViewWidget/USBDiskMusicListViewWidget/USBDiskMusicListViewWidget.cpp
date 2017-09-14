@@ -101,6 +101,7 @@ void USBDiskMusicListViewWidget::ontWidgetTypeChange(const Widget::Type type, co
             }
         } else if (m_Private->m_ListBtn->isVisible()) {
             if (WidgetStatus::RequestShow == status) {
+                g_Widget->setWidgetType(Widget::T_USBDisk, WidgetStatus::Show);
                 g_Widget->setWidgetType(Widget::T_USBDiskMusic, WidgetStatus::RequestShow);
             }
         }

@@ -811,7 +811,8 @@ void MusicPlayer::onTimeout()
                 m_Private->m_Filter = true;
                 QFileInfo fileInfo(m_Private->m_CurrentFilePath);
                 emit onMusicPlayerID3TagChange(m_Private->m_PlayIndex,
-                                               fileInfo.fileName(),
+//                                               fileInfo.fileName(),
+                                               m_Private->m_CurrentFilePath,
                                                m_Private->m_EndTime);
                 if (!m_Private->m_ElapsedTimer->isActive()) {
                     m_Private->m_PlayStatus = MPPS_Play;

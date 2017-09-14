@@ -72,6 +72,7 @@ void MusicWidget::ontWidgetTypeChange(const Widget::Type type, const QString &st
         }
         break;
     }
+
     }
 }
 

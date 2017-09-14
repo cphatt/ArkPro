@@ -9,7 +9,6 @@
 #include "BusinessLogic/Common/BusinessLogicUtility.h"
 #include <QDebug>
 
-
 namespace SourceString {
 static const QString Volume = QString(QObject::tr("Volume"));
 }
@@ -106,6 +105,18 @@ void VolumeToolWidget::onVolumeRangeChange(int min, int max)
     qDebug() << "VolumeToolWidget::onVolumeRangeChange" << min << max;
 }
 
+void VolumeToolWidget::onMCUDataRecv(const Port::Type type, const char *buffer, const int size)
+{
+    qDebug() << "VolumeToolWidget::onMCUDataRecv" << type << buffer << size;
+    switch (type) {
+    case Port::D_Volume:
+        g_Audio->requestSetVolume(20);
+        break;
+    default:
+        break;
+    }
+}
+
 void VolumeToolWidget::onMinusBtnRelease()
 {
     qDebug() << "VolumeToolWidget::onMinusBtnRelease";
@@ -157,7 +168,12 @@ void VolumeToolWidgetPrivate::initialize()
 
 void VolumeToolWidgetPrivate::connectAllSlots()
 {
+    qDebug() << "VolumeToolWidgetPrivate::connectAllSlots()";
     connectSignalAndSlotByNamesake(g_Audio, m_Parent);
+    connectSignalAndSlotByNamesake(g_Port, m_Parent);
+//    QObject::connect(g_Port, SIGNAL(onMCUDataRecv(Port::Type,const char*,int)),
+//                     m_Parent, SLOT(onMCUDataRecv(Port::Type,const char*,int)));
+
     Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::AutoConnection | Qt::UniqueConnection);
     QObject::connect(m_VolumeSliderWidget, SIGNAL(minusBtnRelease()),
                      m_Parent,             SLOT(onMinusBtnRelease()),

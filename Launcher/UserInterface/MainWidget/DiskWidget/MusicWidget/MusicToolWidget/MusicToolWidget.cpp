@@ -6,6 +6,7 @@
 #include "UserInterface/Common/BmpWidget.h"
 #include "UserInterface/Common/Slider.h"
 #include "UserInterface/Common/TextWidget.h"
+#include "MusicInformation/MusicInformation.h"
 #include "EventEngine.h"
 #include <QPainter>
 #include <QDebug>
@@ -33,7 +34,8 @@ public:
     BmpWidget* m_RightBlock;
     BmpWidget* m_DownBlock;
     BmpWidget* m_LogoBlock;
-
+    BmpWidget* m_SliderBlock;
+    BmpWidget* m_SliderPress;
     BmpButton* m_PreviousBtn;
     BmpButton* m_ToggleBtn;
     BmpButton* m_NextBtn;
@@ -41,7 +43,11 @@ public:
 
     BmpButton* m_ModeBtn;
     TextWidget* m_TitleText;
-
+    TextWidget* m_ArtistText;
+    TextWidget* m_AlbumText;
+#ifndef gcc
+    MusicInformation m_MusicInfo;
+#endif
     TextWidget* m_ElapsedTimeText;
     TextWidget* m_EndTimeText;
     Slider* m_Slider;
@@ -91,7 +97,11 @@ void MusicToolWidget::resizeEvent(QResizeEvent *event)
     g_Widget->geometryFit(654, 352, 146, 71, m_Private->m_ModeBtn);
 
     g_Widget->geometryFit(211 , 352, 400, 35, m_Private->m_Slider);
+    g_Widget->geometryFit(211 , 352, 400, 35, m_Private->m_SliderBlock);
+    g_Widget->geometryFit(211 , 352, 0, 35, m_Private->m_SliderPress);
     g_Widget->geometryFit(180, 60, 300, 117 - 74, m_Private->m_TitleText);
+    g_Widget->geometryFit(180, 160, 300, 117 - 74, m_Private->m_ArtistText);
+    g_Widget->geometryFit(180, 260, 300, 117 - 74, m_Private->m_AlbumText);
     g_Widget->geometryFit(211, 390, 90, 30, m_Private->m_ElapsedTimeText);
     g_Widget->geometryFit(400 + 211 - 90, 390, 90, 30, m_Private->m_EndTimeText);
 
@@ -157,12 +167,16 @@ void MusicToolWidget::onMusicPlayerPlayStatus(const MusicPlayerPlayStatus status
         setVisible(false);
         m_Private->m_Background->setVisible(false);
         m_Private->m_PreviousBtn->setVisible(false);
+        m_Private->m_SliderBlock->setVisible(false);
+        m_Private->m_SliderPress->setVisible(false);
         m_Private->m_ToggleBtn->setVisible(false);
         m_Private->m_NextBtn->setVisible(false);
         m_Private->m_StopBtn->setVisible(false);
         m_Private->m_ModeBtn->setVisible(false);
         m_Private->m_Slider->setVisible(false);
         m_Private->m_TitleText->setVisible(false);
+        m_Private->m_ArtistText->setVisible(false);
+        m_Private->m_AlbumText->setVisible(false);
         m_Private->m_ElapsedTimeText->setVisible(false);
         m_Private->m_EndTimeText->setVisible(false);
         break;
@@ -172,12 +186,16 @@ void MusicToolWidget::onMusicPlayerPlayStatus(const MusicPlayerPlayStatus status
         m_Private->m_ToggleBtn->setNormalBmpPath(QString(":/Images/Resources/Images/MusicToolWidgetPauseBtnNormal"));
         m_Private->m_Background->setVisible(true);
         m_Private->m_PreviousBtn->setVisible(true);
+        m_Private->m_SliderBlock->setVisible(true);
+        m_Private->m_SliderPress->setVisible(true);
         m_Private->m_ToggleBtn->setVisible(true);
         m_Private->m_NextBtn->setVisible(true);
         m_Private->m_StopBtn->setVisible(true);
         m_Private->m_ModeBtn->setVisible(true);
         m_Private->m_Slider->setVisible(true);
         m_Private->m_TitleText->setVisible(true);
+        m_Private->m_ArtistText->setVisible(true);
+        m_Private->m_AlbumText->setVisible(true);
         m_Private->m_ElapsedTimeText->setVisible(true);
         m_Private->m_EndTimeText->setVisible(true);
         setVisible(true);
@@ -189,12 +207,16 @@ void MusicToolWidget::onMusicPlayerPlayStatus(const MusicPlayerPlayStatus status
         m_Private->m_ToggleBtn->setNormalBmpPath(QString(":/Images/Resources/Images/MusicToolWidgetPlayBtnNormal"));
         m_Private->m_Background->setVisible(true);
         m_Private->m_PreviousBtn->setVisible(true);
+        m_Private->m_SliderBlock->setVisible(true);
+        m_Private->m_SliderPress->setVisible(true);
         m_Private->m_ToggleBtn->setVisible(true);
         m_Private->m_NextBtn->setVisible(true);
         m_Private->m_StopBtn->setVisible(true);
         m_Private->m_ModeBtn->setVisible(true);
         m_Private->m_Slider->setVisible(true);
         m_Private->m_TitleText->setVisible(true);
+        m_Private->m_ArtistText->setVisible(true);
+        m_Private->m_AlbumText->setVisible(true);
         m_Private->m_ElapsedTimeText->setVisible(true);
         m_Private->m_EndTimeText->setVisible(true);
         setVisible(true);
@@ -210,41 +232,63 @@ void MusicToolWidget::onMusicPlayerElapsedInformation(const int elapsedTime, con
 {
     m_Private->m_ElapsedTimeText->setText(m_Private->convertTime(elapsedTime));
     m_Private->m_Slider->setTickMarksMillesimal(elapsedMillesimal);
+    g_Widget->geometryFit(211 , 352, elapsedMillesimal * 0.4, 35, m_Private->m_SliderPress);
+
 }
 
-void MusicToolWidget::onMusicPlayerID3TagChange(const int index, const QString &fileName, const int endTime)
+void MusicToolWidget::onMusicPlayerID3TagChange(const int index, const QString &filePath, const int endTime)
 {
-    qDebug() << fileName << endTime;;
+    qDebug() << filePath << endTime;
+
+#ifndef gcc
+       // qDebug()<<"OBSPATH" << QFileInfo(fileName).absoluteFilePath();
+        m_Private->m_MusicInfo.parserFilePath(QFileInfo(filePath).absoluteFilePath());
+
+    QString fileName = m_Private->m_MusicInfo.getFileName();
+            qDebug()<< fileName <<"filename";
     if (!fileName.isEmpty()) {
         m_Private->filename = fileName;
+
+
         m_Private->m_TitleText->setText(fileName);
-        //启动定时器
-//        if(fileName.size() > 8)
-//            m_Private->m_Timer->start();
+ //       启动定时器
+        if(fileName.size() > 8)
+            m_Private->m_Timer->start();
     } else {
         m_Private->m_TitleText->setText(QObject::tr(SourceString::Unknown.toLocal8Bit().constData()));
     }
     m_Private->m_EndTimeText->setText(m_Private->convertTime(endTime));
-    /*if (fileName.isEmpty()) {
-        m_Private->m_FileName = QString(QObject::tr("Unknown"));
+
+//    if (fileName.isEmpty()) {
+//        m_Private->m_FileName = QString(QObject::tr("Unknown"));
+//    } else {
+//        m_Private->m_FileName = fileName;
+//    }
+//    if (title.isEmpty()) {
+//        m_Private->m_Titile = QString(QObject::tr("Unknown"));
+//    } else {
+//        m_Private->m_Titile = title;
+//    }
+
+//    if (m_Private->m_MusicInfo.getArtist().isEmpty()) {
+//        m_Private->m_ArtistText->setText(QString(QObject::tr("Unknown")));
+//    } else {
+//        qDebug() << "m_titleText" <<m_Private->m_MusicInfo.getArtist();
+//        m_Private->m_ArtistText->setText(m_Private->m_MusicInfo.getArtist());
+//    }
+    if (m_Private->m_MusicInfo.getArtist().isEmpty()) {
+        m_Private->m_ArtistText->setText(QString(QObject::tr("Unknown")));
     } else {
-        m_Private->m_FileName = fileName;
+        qDebug() << "m_ArtistText" <<m_Private->m_MusicInfo.getArtist();
+        m_Private->m_ArtistText->setText(m_Private->m_MusicInfo.getArtist());
     }
-    if (title.isEmpty()) {
-        m_Private->m_Titile = QString(QObject::tr("Unknown"));
-    }*/ /*else {
-        m_Private->m_Titile = title;
-    }
-    if (artist.isEmpty()) {
-        m_Private->m_Artist = QString(QObject::tr("Unknown"));
+    if (m_Private->m_MusicInfo.getAlbum().isEmpty()) {
+        m_Private->m_AlbumText->setText(QString(QObject::tr("Unknown")));
     } else {
-        m_Private->m_Artist = artist;
+        qDebug() << "m_AlbumText" <<m_Private->m_MusicInfo.getAlbum();
+        m_Private->m_AlbumText->setText(m_Private->m_MusicInfo.getAlbum());
     }
-    if (album.isEmpty()) {
-        m_Private->m_Album = QString(QObject::tr("Unknown"));
-    } else {
-        m_Private->m_Album = album;
-    }*/
+#endif
     //    QImage image(cover);
     //    if (image.isNull()) {
     //        m_Private->m_Conver = QPixmap(QString(":/Images/Resources/Images/MusicCover.png"));
@@ -265,8 +309,9 @@ void MusicToolWidget::onMusicPlayerID3TagChange(const int index, const QString &
     //    }
 }
 
-void MusicToolWidget::onTickMarksMillesimalStart()
+void MusicToolWidget::onTickMarksMillesimalStart(const int millesimal)
 {
+    g_Widget->geometryFit(211 , 352, millesimal * 0.4, 35, m_Private->m_SliderPress);
     g_Multimedia->musicPlayerSetPlayStatus(MPPS_Pause);
 }
 
@@ -280,12 +325,15 @@ MusicToolWidgetPrivate::MusicToolWidgetPrivate(MusicToolWidget *parent)
     m_DownBlock = NULL;
     m_LogoBlock = NULL;
     m_PreviousBtn = NULL;
+    m_SliderBlock = NULL;
     m_ToggleBtn = NULL;
     m_NextBtn = NULL;
     m_StopBtn = NULL;
     m_ModeBtn = NULL;
     m_Slider = NULL;
     m_TitleText = NULL;
+    m_ArtistText = NULL;
+    m_AlbumText = NULL;
     m_ElapsedTimeText = NULL;
     m_EndTimeText = NULL;
     m_Timer = NULL;
@@ -293,7 +341,7 @@ MusicToolWidgetPrivate::MusicToolWidgetPrivate(MusicToolWidget *parent)
     receiveAllCustomEvent();
     connectAllSlots();
     m_Parent->setVisible(false);
-   // m_Timer->start();
+//    m_Timer->start();
 }
 
 MusicToolWidgetPrivate::~MusicToolWidgetPrivate()
@@ -327,8 +375,16 @@ void MusicToolWidgetPrivate::initialize()
     m_Background->hide();
     m_LogoBlock->setBackgroundBmpPath(QString(":/Images/Resources/Images/MusicToolWidgetLogoBlock"));
 
+    m_SliderBlock = new BmpWidget(m_Parent);
+    m_SliderBlock->hide();
+    m_SliderBlock->setBackgroundBmpPath(QString(":/Images/Resources/Images/MusicSliderBlock"));
+    //VideoToolBarWidgetSliderBackground
 
 
+    m_SliderPress = new BmpWidget(m_Parent);
+    m_SliderPress->hide();
+    m_SliderPress->setBackgroundBmpPath(QString(":/Images/Resources/Images/VideoToolBarWidgetSliderBackground"));
+    //VideoToolBarWidgetSliderBackground
 
 
     m_PreviousBtn = new BmpButton(m_Parent);
@@ -350,7 +406,7 @@ void MusicToolWidgetPrivate::initialize()
     m_Slider = new Slider(m_Parent);
     m_Slider->hide();
     m_Slider->setTickMarksSize(QSize(52 * g_Widget->widthScalabilityFactor(), 52 * g_Widget->heightScalabilityFactor()));
-    m_Slider->setBackgroundBmpPath(QString(":/Images/Resources/Images/VideoToolBarWidgetSliderBackground"));
+   // m_Slider->setBackgroundBmpPath(QString(":/Images/Resources/Images/MusicSliderBlock"));
     m_Slider->setTickMarkTickMarkslBmpPath(QString(":/Images/Resources/Images/MusicToolWidgetSliderTickMarksBackground"));
     m_Slider->setTickMarksMillesimal(0);
     m_TitleText = new TextWidget(m_Parent);
@@ -358,7 +414,20 @@ void MusicToolWidgetPrivate::initialize()
     m_TitleText->setLanguageType(TextWidget::T_NoTranslate);
     m_TitleText->setAlignmentFlag(Qt::AlignLeft | Qt::AlignVCenter);
     m_TitleText->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
-  //  m_TitleText->setText(QString("好久不见.mp3"));
+//    m_TitleText->setText(QString("你会不会突然的出现.mp3"));
+//    filename = m_TitleText->getText();
+    m_AlbumText = new TextWidget(m_Parent);
+    m_AlbumText->hide();
+    m_AlbumText->setLanguageType(TextWidget::T_NoTranslate);
+    m_AlbumText->setAlignmentFlag(Qt::AlignLeft | Qt::AlignVCenter);
+    m_AlbumText->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
+
+    m_ArtistText = new TextWidget(m_Parent);
+    m_ArtistText->hide();
+    m_ArtistText->setLanguageType(TextWidget::T_NoTranslate);
+    m_ArtistText->setAlignmentFlag(Qt::AlignLeft | Qt::AlignVCenter);
+    m_ArtistText->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
+
     m_ElapsedTimeText = new TextWidget(m_Parent);
     m_ElapsedTimeText->hide();
     m_ElapsedTimeText->setAlignmentFlag(Qt::AlignLeft | Qt::AlignVCenter);
@@ -383,7 +452,7 @@ void MusicToolWidgetPrivate::connectAllSlots()
     connectSignalAndSlotByNamesake(g_Multimedia, m_Parent);
     Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::UniqueConnection | Qt::AutoConnection);
     QObject::connect(m_Slider, SIGNAL(tickMarksMillesimalStart(const int)),
-                     m_Parent, SLOT(onTickMarksMillesimalStart()),
+                     m_Parent, SLOT(onTickMarksMillesimalStart(const int)),
                      type);
     QObject::connect(m_Slider, SIGNAL(tickMarksMillesimalEnd(const int)),
                      m_Parent, SLOT(onTickMarksMillesimalEnd(const int)),
@@ -417,16 +486,16 @@ void MusicToolWidget::onTickMarksMillesimalEnd(const int millesimal)
 void MusicToolWidget::onTimeout()
 {
 
-    qDebug() << m_Private->m_TitleText->getText();
-    m_Private->m_TitleText->setText(StringLeftMove(m_Private->m_TitleText->getText()));
+  QString title = m_Private->m_TitleText->getText();
+
+ // qDebug() << title<<"timeout";
+     if(title.size() >= 5)
+        m_Private->m_TitleText->setText(title.right(title.size()-1));
+     else
+        m_Private->m_TitleText->setText(m_Private->filename);
     m_Private->m_Timer->start();
 }
-QString MusicToolWidget::StringLeftMove(const QString string){
-    QByteArray ba = string.toLatin1();
-    char *text = ba.data();
-//  qDebug() <<string << text << "";
-    return QString(QLatin1String(text));
-}
+
 
 void MusicToolWidget::onToolButtonRelease()
 {

@@ -178,6 +178,11 @@ void SettingService::setHue(const SettingType type, const int value)
     emit onHueChange(tempValue);
 }
 
+void SettingService::test()
+{
+    emit onTest();
+}
+
 void SettingService::onTimeout()
 {
     QDateTime dateTime = QDateTime::currentDateTime();

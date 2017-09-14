@@ -25,7 +25,7 @@ static const QString AppleCarPlayTip = QString(QObject::tr(" \n"
                                                            "1:Connect usb cable!\n"
                                                            "2:Press Carplay icon!\n"
                                                            " "));
-static const QString AppleCarLife = QString(QObject::tr("Apple CarLife"));
+static const QString AppleCarLife = QString(QObject::tr("Andriod CarLife"));
 static const QString AppleCarLifeTip = QString(QObject::tr(" \n"
                                                            "1:Connect usb cable!\n"
                                                            "2:Press Carplay icon!\n"

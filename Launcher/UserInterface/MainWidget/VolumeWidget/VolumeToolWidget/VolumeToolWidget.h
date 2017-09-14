@@ -2,6 +2,7 @@
 #define VOLUMETOOLWIDGET_H
 
 #include "BusinessLogic/Audio/Audio.h"
+#include "BusinessLogic/Port/Port.h"
 #include <QWidget>
 #include <QScopedPointer>
 
@@ -25,6 +26,7 @@ protected slots:
     void onFMIsOpen(int open);
     void onVolumeChange(int type, int volume);
     void onVolumeRangeChange(int min, int max);
+    void onMCUDataRecv(const Port::Type type, const char *buffer, const int size);
 private slots:
     void onMinusBtnRelease();
     void onPlusBtnRelease();
