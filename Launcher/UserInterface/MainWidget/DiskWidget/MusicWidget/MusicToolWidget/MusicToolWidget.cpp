@@ -457,6 +457,9 @@ void MusicToolWidgetPrivate::connectAllSlots()
     QObject::connect(m_Slider, SIGNAL(tickMarksMillesimalEnd(const int)),
                      m_Parent, SLOT(onTickMarksMillesimalEnd(const int)),
                      type);
+    QObject::connect(m_Slider, SIGNAL(tickMarksMillesimalChange(const int)),
+                     m_Parent, SLOT(onTickMarksMillesimalChanged(const int)),
+                     type);
     QObject::connect(m_PreviousBtn, SIGNAL(bmpButtonRelease()),
                      m_Parent,      SLOT(onToolButtonRelease()),
                      type);
@@ -482,6 +485,15 @@ void MusicToolWidget::onTickMarksMillesimalEnd(const int millesimal)
     qDebug() << "onTickMarksMillesimalEnd" << millesimal;
     g_Multimedia->musicPlayerSeekToMillesimal(millesimal);
 }
+
+void MusicToolWidget::onTickMarksMillesimalChanged(const int millesimal)
+{
+    qDebug() << "onTickMarksMillesimalChanged" << millesimal;
+    //g_Multimedia->musicPlayerSeekToMillesimal(millesimal);
+    g_Widget->geometryFit(211 , 352, millesimal * 0.4, 35, m_Private->m_SliderPress);
+}
+
+
 
 void MusicToolWidget::onTimeout()
 {

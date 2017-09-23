@@ -34,7 +34,9 @@ protected slots:
 public slots:
     void onTickMarksMillesimalStart(const int millesimal);
     void onTickMarksMillesimalEnd(const int millesimal);
+    void onTickMarksMillesimalChanged(const int millesimal);
     void onToolButtonRelease();
+
 private slots:
     void onTimeout();
 private:

@@ -200,11 +200,6 @@ void USBDiskMusicListViewWidget::onMusicPlayerFileNames(const DeviceWatcherType 
 
                                 //发起音乐播放申请
                                // g_Multimedia->musicPlayerPlayListViewIndex(DWT_USBDisk, 0);
-
-#ifndef gcc
-                                 onMusicListViewItemRelease(0);
-#endif
-
                             }
                         }
                     }
@@ -212,6 +207,11 @@ void USBDiskMusicListViewWidget::onMusicPlayerFileNames(const DeviceWatcherType 
                 node = node.nextSibling();
             }
         }
+
+#ifndef gcc
+                                 onMusicListViewItemRelease(0);
+#endif
+
     }
 }
 
