@@ -90,6 +90,13 @@ void Setting::setHue(const SettingType type, const int value)
 #endif
     }
 }
+void Setting:: setCalibrate(){
+   system("ts_calibrate");
+}
+void Setting:: setDateTime(const QDateTime &dateTime){
+    qDebug() << "-----------------------" <<dateTime;
+     emit onDateTimeChange(dateTime.toString(QString("yyyy-MM-dd")), QDateTime::currentDateTime().toString(QString("hh:mm")));
+}
 
 void Setting::test()
 {
@@ -107,13 +114,30 @@ void Setting::test()
 #endif
     }
 }
+void Setting::test1()
+{
+    if (NULL != m_Private->m_SettingService) {
+        m_Private->m_SettingService->test();
+    } else if (NULL != m_Private->m_SettingServiceProxy) {
+        qDebug() << "_Private->m_SettingServiceProxy->test1(";
+        QDBusPendingReply<> reply = m_Private->m_SettingServiceProxy->test1();
+#ifdef gcc
+        reply.waitForFinished();
+        qDebug() << "Dbus call Setting::test1" << reply.isFinished();
+        if (reply.isError()) {
+            qDebug() << "method call Setting::test failed" << reply.error();
+        }
+#endif
+    }
+}
+
 
 void Setting::customEvent(QEvent *event)
 {
     switch (event->type()) {
     case CustomEventType::MainWidgetConstructor: {
         onLanguageChange(SettingPersistent::getLanguage());
-        emit onDateTimeChange(QDateTime::currentDateTime().toString(QString("yyyy-MM-dd")), QDateTime::currentDateTime().toString(QString("hh:mm")));
+    //    emit onDateTimeChange(QDateTime::currentDateTime().toString(QString("yyyy-MM-dd")), QDateTime::currentDateTime().toString(QString("hh:mm")));
         break;
     }
     case CustomEventType::MainWidgetShow: {

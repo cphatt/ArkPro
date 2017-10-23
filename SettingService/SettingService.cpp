@@ -182,6 +182,11 @@ void SettingService::test()
 {
     emit onTest();
 }
+void SettingService::test1()
+{
+    emit onTest1();
+    qDebug()<< "stupid";
+}
 
 void SettingService::onTimeout()
 {

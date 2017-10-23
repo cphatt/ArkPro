@@ -34,6 +34,7 @@ protected slots:
     void onVolumeChange(const int type, const int value);
     void onEffectChange(const int type, const int hight, const int middle, const int low);
     void onTest();
+    void onTest1();
 private slots:
     void onToolButtonRelease();
 private:

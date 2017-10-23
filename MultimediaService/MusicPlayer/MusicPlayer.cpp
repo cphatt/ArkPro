@@ -408,6 +408,7 @@ bool MusicPlayerPrivate::requestAudioSource(const AudioSource source)
                                                 ArkMicroMultimediaPath,
                                                 ArkMicroMultimediaInterface,
                                                 ArkMicroAudioRelease);
+        //在这里申请失败了
         if (reply.isValid()) {
             flag = reply.value();
         } else {

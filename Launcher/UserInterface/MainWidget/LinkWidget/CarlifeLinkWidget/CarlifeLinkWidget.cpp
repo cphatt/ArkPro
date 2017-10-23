@@ -284,7 +284,7 @@ void CarlifeLinkWidgetPrivate::onCarlifeLinkStatus(const int status)  //实现�
     }
 }
 
-void CarlifeLinkWidgetPrivate::touchBeginEventHandler(QEvent *event)
+void CarlifeLinkWidgetPrivate::touchBeginEventHandler(QEvent *event) //触摸事件
 {
     QTouchEvent* ptr = static_cast<QTouchEvent*>(event);
     if (NULL != ptr) {

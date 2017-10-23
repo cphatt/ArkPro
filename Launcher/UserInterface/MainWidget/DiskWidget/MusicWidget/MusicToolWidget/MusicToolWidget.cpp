@@ -230,6 +230,8 @@ void MusicToolWidget::onMusicPlayerPlayStatus(const MusicPlayerPlayStatus status
 
 void MusicToolWidget::onMusicPlayerElapsedInformation(const int elapsedTime, const int elapsedMillesimal)
 {
+    if(elapsedMillesimal >= 1000)
+         g_Multimedia->musicPlayerPlayNextListViewIndex();
     m_Private->m_ElapsedTimeText->setText(m_Private->convertTime(elapsedTime));
     m_Private->m_Slider->setTickMarksMillesimal(elapsedMillesimal);
     g_Widget->geometryFit(211 , 352, elapsedMillesimal * 0.4, 35, m_Private->m_SliderPress);
@@ -378,14 +380,10 @@ void MusicToolWidgetPrivate::initialize()
     m_SliderBlock = new BmpWidget(m_Parent);
     m_SliderBlock->hide();
     m_SliderBlock->setBackgroundBmpPath(QString(":/Images/Resources/Images/MusicSliderBlock"));
-    //VideoToolBarWidgetSliderBackground
-
 
     m_SliderPress = new BmpWidget(m_Parent);
     m_SliderPress->hide();
-    m_SliderPress->setBackgroundBmpPath(QString(":/Images/Resources/Images/VideoToolBarWidgetSliderBackground"));
-    //VideoToolBarWidgetSliderBackground
-
+    m_SliderPress->setBackgroundBmpPath(QString(":/Images/Resources/Images/VideoToolBarWidgetSliderPress"));
 
     m_PreviousBtn = new BmpButton(m_Parent);
     m_PreviousBtn->hide();
@@ -483,7 +481,10 @@ void MusicToolWidgetPrivate::connectAllSlots()
 void MusicToolWidget::onTickMarksMillesimalEnd(const int millesimal)
 {
     qDebug() << "onTickMarksMillesimalEnd" << millesimal;
-    g_Multimedia->musicPlayerSeekToMillesimal(millesimal);
+    if(millesimal >= 1000)
+        g_Multimedia->musicPlayerSeekToMillesimal(998);
+    else
+        g_Multimedia->musicPlayerSeekToMillesimal(millesimal);
 }
 
 void MusicToolWidget::onTickMarksMillesimalChanged(const int millesimal)

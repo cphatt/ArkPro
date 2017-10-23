@@ -46,7 +46,7 @@ void VolumeWidget::paintEvent(QPaintEvent *event)
 
 void VolumeWidget::resizeEvent(QResizeEvent *event)
 {
-    g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), this);
+    g_Widget->geometryFit(190,190, 420, 100, this);
     qDebug() << "VolumeWidget::resizeEvent" << geometry();
     QWidget::resizeEvent(event);
 }

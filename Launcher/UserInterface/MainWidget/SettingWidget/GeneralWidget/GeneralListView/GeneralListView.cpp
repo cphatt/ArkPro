@@ -4,6 +4,8 @@
 #include "GeneralSlider/GeneralSlider.h"
 #include "BusinessLogic/Widget/Widget.h"
 #include "AutoConnect.h"
+#include "EventEngine.h"
+#include "BusinessLogic/Common/BusinessLogicUtility.h"
 #include "UserInterface/Common/CustomScrollBar.h"
 #include <QStandardItemModel>
 #include <QStandardItem>
@@ -11,6 +13,7 @@
 #include <QPainter>
 #include <QMetaType>
 #include <QEvent>
+#include <QMouseEvent>
 
 namespace SourceString {
 static const QString Brightness = QString(QObject::tr("Brightness"));
@@ -18,7 +21,8 @@ static const QString Contrast = QString(QObject::tr("Contrast"));
 static const QString Hue = QString(QObject::tr("Hue"));
 static const QString Volume = QString(QObject::tr("Volume"));
 static const QString Calibrate = QString(QObject::tr("Calibrate"));
-static const QString Reset = QString(QObject::tr("Reset"));
+static const QString Time = QString(QObject::tr("Time"));
+
 }
 
 class GeneralVariant
@@ -53,13 +57,15 @@ public:
     ~GeneralListViewPrivate();
     void initialize();
     void connectAllSlots();
-    QStandardItemModel* m_StandardItemModel;
-    GeneralDelegate* m_GeneralDelegate;
-    CustomScrollBar* m_CustomScrollBar;
+    QStandardItemModel* m_StandardItemModel; //用来存储自定义数据的普通model
+    GeneralDelegate* m_GeneralDelegate; //
+    CustomScrollBar* m_CustomScrollBar; //滚动条
+
     GeneralSlider* m_BrightnessSlider;
     GeneralSlider* m_ConstrastSlider;
     GeneralSlider* m_HueSlider;
     GeneralSlider* m_VolumeSlider;
+    bool m_Filter;
 private:
     GeneralListView* m_Parent;
 };
@@ -93,7 +99,7 @@ void GeneralListView::changeEvent(QEvent *event)
 
 void GeneralListView::resizeEvent(QResizeEvent *event)
 {
-    g_Widget->geometryFit(0, 0, 625, 355, this);
+    g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth() - 170, 626 - 63, this);
     CustomListView::resizeEvent(event);
 }
 
@@ -119,7 +125,31 @@ void GeneralListView::onMinusBtnRelease()
         g_Audio->requestDecreaseVolume();
     }
 }
-
+void GeneralListView::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (!m_Private->m_Filter) {
+        QModelIndex modelIndex = indexAt(event->pos());
+        if (modelIndex.isValid()) {
+            switch (modelIndex.row()) {
+                case GeneralListView::Calibrate:
+                    g_Setting->setCalibrate();
+                    g_Widget->setWidgetType(Widget::T_Home, WidgetStatus::RequestShow);
+                    g_Widget->setWidgetType(Widget::T_Setting, WidgetStatus::RequestShow);
+                    break;
+                case GeneralListView::TimeSetting:
+                    //g_Setting->setDateTime();
+                    EventEngine::CustomEvent<QString> event(CustomEventType::ShowDateTimeWidget, new QString(WidgetStatus::RequestShow));
+                    g_EventEngine->sendCustomEvent(event);
+                    //setVisible(false);
+                    break;
+//                default:
+//                    break;
+                }
+            }
+    }
+    m_Private->m_Filter = false;
+    QListView::mouseReleaseEvent(event);
+}
 void GeneralListView::onPlusBtnRelease()
 {
     qDebug() << "GeneralWidget::onPlusBtnRelease";
@@ -204,11 +234,11 @@ void GeneralListView::onFMIsOpen(int open)
 
 void GeneralListView::onVolumeChange(int type ,int volume)
 {
-    m_Private->m_VolumeSlider->setTickMarksMillesimal(1000 * volume / (40 - (-0)));
-    QModelIndex modelIndex = m_Private->m_StandardItemModel->index(3, 0, QModelIndex());
-    GeneralVariant variant = qVariantValue<GeneralVariant>(modelIndex.data());
-    variant.m_Value = QString::number(volume);
-    m_Private->m_StandardItemModel->setData(modelIndex, qVariantFromValue(variant), Qt::DisplayRole);
+//    m_Private->m_VolumeSlider->setTickMarksMillesimal(1000 * volume / (40 - (-0)));
+//    QModelIndex modelIndex = m_Private->m_StandardItemModel->index(3, 0, QModelIndex());
+//    GeneralVariant variant = qVariantValue<GeneralVariant>(modelIndex.data());
+//    variant.m_Value = QString::number(volume);
+//    m_Private->m_StandardItemModel->setData(modelIndex, qVariantFromValue(variant), Qt::DisplayRole);
 }
 
 void GeneralListView::onVolumeRangeChange(int min, int max)
@@ -223,6 +253,7 @@ GeneralListViewPrivate::GeneralListViewPrivate(GeneralListView *parent)
     m_HueSlider = NULL;
     m_ConstrastSlider = NULL;
     m_VolumeSlider = NULL;
+
     m_StandardItemModel = NULL;
     m_GeneralDelegate = NULL;
     m_CustomScrollBar = NULL;
@@ -259,70 +290,81 @@ void GeneralListViewPrivate::initialize()
                                              ));
     m_Parent->setVerticalScrollBar(m_CustomScrollBar);
     m_Parent->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-    m_BrightnessSlider = new GeneralSlider(m_Parent);
-    m_BrightnessSlider->hide();
-    m_BrightnessSlider->setMinimumValue(-7);
-    m_BrightnessSlider->setMaximumValue(7);
-    m_ConstrastSlider = new GeneralSlider(m_Parent);
-    m_ConstrastSlider->hide();
-    m_ConstrastSlider->setMinimumValue(-7);
-    m_ConstrastSlider->setMaximumValue(7);
-    m_HueSlider = new GeneralSlider(m_Parent);
-    m_HueSlider->hide();
-    m_HueSlider->setMinimumValue(-7);
-    m_HueSlider->setMaximumValue(7);
-    m_VolumeSlider = new GeneralSlider(m_Parent);
-    m_VolumeSlider->hide();
-    m_VolumeSlider->setMinimumValue(0);
-    m_VolumeSlider->setMaximumValue(40);
+//    m_BrightnessSlider = new GeneralSlider(m_Parent);
+//    m_BrightnessSlider->hide();
+//    m_BrightnessSlider->setMinimumValue(-7);
+//    m_BrightnessSlider->setMaximumValue(7);
+//    m_ConstrastSlider = new GeneralSlider(m_Parent);
+//    m_ConstrastSlider->hide();
+//    m_ConstrastSlider->setMinimumValue(-7);
+//    m_ConstrastSlider->setMaximumValue(7);
+//    m_HueSlider = new GeneralSlider(m_Parent);
+//    m_HueSlider->hide();
+//    m_HueSlider->setMinimumValue(-7);
+//    m_HueSlider->setMaximumValue(7);
+//    m_VolumeSlider = new GeneralSlider(m_Parent);
+//    m_VolumeSlider->hide();
+//    m_VolumeSlider->setMinimumValue(0);
+//    m_VolumeSlider->setMaximumValue(40);
+
     m_StandardItemModel = new QStandardItemModel(m_Parent);
     m_GeneralDelegate = new GeneralDelegate(m_Parent);
     m_Parent->setItemDelegate(m_GeneralDelegate);
-    QStandardItem* brightnessItem = new QStandardItem();
     GeneralVariant variant;
-    variant.m_Text = SourceString::Brightness;
-    variant.m_Value = QString("0");
-    variant.m_Slider = m_BrightnessSlider;
-    brightnessItem->setSizeHint(QSize((1174 - 278)  * g_Widget->widthScalabilityFactor(), 92 * g_Widget->heightScalabilityFactor()));
-    brightnessItem->setData(qVariantFromValue(variant), Qt::DisplayRole);
-    QStandardItem* contrastItem = new QStandardItem();
-    variant.m_Text = SourceString::Contrast;
-    variant.m_Value = QString("0");
-    variant.m_Slider = m_ConstrastSlider;
-    contrastItem->setSizeHint(QSize((1174 - 278)  * g_Widget->widthScalabilityFactor(), 92 * g_Widget->heightScalabilityFactor()));
-    contrastItem->setData(qVariantFromValue(variant), Qt::DisplayRole);
-    QStandardItem* hueItem = new QStandardItem();
-    variant.m_Text = SourceString::Hue;
-    variant.m_Value = QString("0");
-    variant.m_Slider = m_HueSlider;
-    hueItem->setSizeHint(QSize((1174 - 278)  * g_Widget->widthScalabilityFactor(), 92 * g_Widget->heightScalabilityFactor()));
-    hueItem->setData(qVariantFromValue(variant), Qt::DisplayRole);
-    QStandardItem* volumeItem = new QStandardItem();
-    variant.m_Text = SourceString::Volume;
-    variant.m_Value = QString("20");
-    variant.m_Slider = m_VolumeSlider;
-    volumeItem->setSizeHint(QSize(1174 - 278, 92 * g_Widget->heightScalabilityFactor()));
-    volumeItem->setData(qVariantFromValue(variant), Qt::DisplayRole);
+
+//    QStandardItem* brightnessItem = new QStandardItem();
+//    variant.m_Text = SourceString::Brightness;
+//    variant.m_Value = QString("0");
+//    variant.m_Slider = m_BrightnessSlider;
+//    brightnessItem->setSizeHint(QSize((1174 - 278)  * g_Widget->widthScalabilityFactor(), 92 * g_Widget->heightScalabilityFactor()));
+//    brightnessItem->setData(qVariantFromValue(variant), Qt::DisplayRole);
+
+//    QStandardItem* contrastItem = new QStandardItem();
+//    variant.m_Text = SourceString::Contrast;
+//    variant.m_Value = QString("0");
+//    variant.m_Slider = m_ConstrastSlider;
+//    contrastItem->setSizeHint(QSize((1174 - 278)  * g_Widget->widthScalabilityFactor(), 92 * g_Widget->heightScalabilityFactor()));
+//    contrastItem->setData(qVariantFromValue(variant), Qt::DisplayRole);
+
+//    QStandardItem* hueItem = new QStandardItem();
+//    variant.m_Text = SourceString::Hue;
+//    variant.m_Value = QString("0");
+//    variant.m_Slider = m_HueSlider;
+//    hueItem->setSizeHint(QSize((1174 - 278)  * g_Widget->widthScalabilityFactor(), 92 * g_Widget->heightScalabilityFactor()));
+//    hueItem->setData(qVariantFromValue(variant), Qt::DisplayRole);
+
+//    QStandardItem* volumeItem = new QStandardItem();
+//    variant.m_Text = SourceString::Volume;
+//    variant.m_Value = QString("20");
+//    variant.m_Slider = m_VolumeSlider;
+//    volumeItem->setSizeHint(QSize(1174 - 278, 92 * g_Widget->heightScalabilityFactor()));
+//    volumeItem->setData(qVariantFromValue(variant), Qt::DisplayRole);
+
     QStandardItem* calibrateItem = new QStandardItem();
     variant.m_Text = SourceString::Calibrate;
     variant.m_Value.clear();
     variant.m_Slider = NULL;
     calibrateItem->setSizeHint(QSize((1174 - 278) * g_Widget->widthScalabilityFactor(), 92 * g_Widget->heightScalabilityFactor()));
     calibrateItem->setData(qVariantFromValue(variant), Qt::DisplayRole);
-    QStandardItem* resetItem = new QStandardItem();
-    variant.m_Text = SourceString::Reset;
+    QStandardItem* TimeItem = new QStandardItem();
+    variant.m_Text = SourceString::Time;
     variant.m_Value.clear();
     variant.m_Slider = NULL;
-    resetItem->setSizeHint(QSize((1174 - 278) * g_Widget->widthScalabilityFactor(), 92 * g_Widget->heightScalabilityFactor()));
-    resetItem->setData(qVariantFromValue(variant), Qt::DisplayRole);
+    TimeItem->setSizeHint(QSize((1174 - 278) * g_Widget->widthScalabilityFactor(), 92 * g_Widget->heightScalabilityFactor()));
+    TimeItem->setData(qVariantFromValue(variant), Qt::DisplayRole);
     QStandardItem* root = m_StandardItemModel->invisibleRootItem();
-    root->setChild(0, 0, brightnessItem);
-    root->setChild(1, 0, contrastItem);
-    root->setChild(2, 0, hueItem);
-    root->setChild(3, 0, volumeItem);
-    root->setChild(4, 0, calibrateItem);
-    root->setChild(5, 0, resetItem);
+
+//    root->setChild(0, 0, brightnessItem);
+//    root->setChild(1, 0, contrastItem);
+//    root->setChild(2, 0, hueItem);
+//    root->setChild(3, 0, volumeItem);
+//    root->setChild(4, 0, calibrateItem);
+//    root->setChild(5, 0, TimeItem);
+        root->setChild(0, 0, calibrateItem);
+        root->setChild(1, 0, TimeItem);
     m_Parent->setModel(m_StandardItemModel);
+
+    m_Filter = false;
 }
 
 void GeneralListViewPrivate::connectAllSlots()

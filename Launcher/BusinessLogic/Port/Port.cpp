@@ -419,6 +419,7 @@ bool PortPrivate::clear(){
         return this->open();
     }
     return false;
+
 }
 
 void PortPrivate::close(){

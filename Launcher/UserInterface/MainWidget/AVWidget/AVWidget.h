@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QScopedPointer>
 
+
 class AVWidgetPrivate;
 class AVWidget
         : protected QWidget

@@ -23,6 +23,9 @@ static const QEvent::Type LinkMessageWidgetAddChild = static_cast<QEvent::Type>(
 static const QEvent::Type FMWidgetStatus = static_cast<QEvent::Type>(LinkMessageWidgetAddChild + 1);
 static const QEvent::Type VolumeWidgetStatus = static_cast<QEvent::Type>(FMWidgetStatus + 1);
 static const QEvent::Type VolumeWidgetClick = static_cast<QEvent::Type>(VolumeWidgetStatus + 1);
+static const QEvent::Type ShowDateTimeWidget = static_cast<QEvent::Type>(VolumeWidgetClick + 1);
+static const QEvent::Type CarPlayLinkMessageWidgetAddChild = static_cast<QEvent::Type>(ShowDateTimeWidget + 1);
+
 }
 
 class BusinessLogicUtilityPrivate;

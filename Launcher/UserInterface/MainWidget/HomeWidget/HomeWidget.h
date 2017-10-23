@@ -27,6 +27,7 @@ protected slots:
     void onDeviceWatcherStatus(const int type, const int status);
 private slots:
     void onBmpButtonRelease();
+    void onTimeout();
 private:
     friend class HomeWidgetPrivate;
     QScopedPointer<HomeWidgetPrivate> m_Private;

@@ -34,6 +34,7 @@ protected slots:
 private slots:
     void onMusicListViewItemRelease(const int index);
     void onToolButtonRelease();
+    void onTimeOut();
 private:
     friend class USBDiskMusicListViewWidgetPrivate;
     QScopedPointer<USBDiskMusicListViewWidgetPrivate> m_Private;

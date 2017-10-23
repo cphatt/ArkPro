@@ -75,6 +75,11 @@ public Q_SLOTS: // METHODS
         QList<QVariant> argumentList;
         return asyncCallWithArgumentList(QLatin1String("test"), argumentList);
     }
+    inline QDBusPendingReply<> test1()
+    {
+        QList<QVariant> argumentList;
+        return asyncCallWithArgumentList(QLatin1String("test1"), argumentList);
+    }
 
 Q_SIGNALS: // SIGNALS
     void onBrightnessChange(int value);
@@ -83,6 +88,7 @@ Q_SIGNALS: // SIGNALS
     void onHueChange(int value);
     void onLanguageChange(int language);
     void onTest();
+        void onTest1();
 };
 
 namespace Local {

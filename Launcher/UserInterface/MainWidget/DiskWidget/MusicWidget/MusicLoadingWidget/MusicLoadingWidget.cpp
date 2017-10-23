@@ -30,8 +30,11 @@ MusicLoadingWidget::~MusicLoadingWidget()
 
 void MusicLoadingWidget::resizeEvent(QResizeEvent *event)
 {
-    g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), this);
-    g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_Private->m_Background);
+//    g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), this);
+//    g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_Private->m_Background);
+
+    g_Widget->geometryFit(200, 100, 400, 280, this);
+    g_Widget->geometryFit(200, 100, 400, 280, m_Private->m_Background);
     QWidget::resizeEvent(event);
 }
 

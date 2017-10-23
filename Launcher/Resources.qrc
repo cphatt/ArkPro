@@ -11,11 +11,14 @@
         <file>Resources/Languages/Launcher_EN.qm</file>
     </qresource>
     <qresource prefix="/Images">
+        <file>Resources/Images/CarlifeLogo.png</file>
         <file>Resources/Images/CarplayShortCutWidgetBackground.svg</file>
         <file>Resources/Images/EffectSoundSliderBackground.svg</file>
+        <file>Resources/Images/EffectSoundSliderBackground_new.png</file>
         <file>Resources/Images/EffectSoundSliderMinusNormal.svg</file>
         <file>Resources/Images/EffectSoundSliderPlusNormal.svg</file>
         <file>Resources/Images/EffectSoundSliderTickMarksBackground.svg</file>
+        <file>Resources/Images/EffectSoundSliderTickMarksBackground_new.png</file>
         <file>Resources/Images/EffectSoundWidgetBackground.svg</file>
         <file>Resources/Images/EffectWidgetCustomBtnNormal.svg</file>
         <file>Resources/Images/EffectWidgetCustomBtnPress.svg</file>
@@ -61,6 +64,9 @@
         <file>Resources/Images/ImageToolBarWidgetZoomOutNormal.png</file>
         <file>Resources/Images/ImageToolBarWidgetZoomOutPress.png</file>
         <file>Resources/Images/LanguageSoundWidgetBackground.png</file>
+        <file>Resources/Images/LibkBackgroud.png</file>
+        <file>Resources/Images/life.png</file>
+        <file>Resources/Images/life-p.png</file>
         <file>Resources/Images/LinkTip.png</file>
         <file>Resources/Images/LinkWidgetBackground.svg</file>
         <file>Resources/Images/LinkWidgetCarlifeBtnNormal.png</file>
@@ -71,10 +77,13 @@
         <file>Resources/Images/LinkWidgetMirrorBtnPress.png</file>
         <file>Resources/Images/LinkWidgetMirrorPotBtnNormal.svg</file>
         <file>Resources/Images/MessageBackground.svg</file>
+        <file>Resources/Images/mirror.png</file>
         <file>Resources/Images/MirrorLinkWidgetBackBtnNormal.svg</file>
         <file>Resources/Images/MirrorLinkWidgetCarBtnNormal.svg</file>
         <file>Resources/Images/MirrorLinkWidgetHomeBtnNormal.svg</file>
         <file>Resources/Images/MirrorLinkWidgetMenuBtnNormal.svg</file>
+        <file>Resources/Images/MirrorLogo.png</file>
+        <file>Resources/Images/mirror-p.png</file>
         <file>Resources/Images/MirrorShortCutWidgetBackground.svg</file>
         <file>Resources/Images/MultimediaListViewCheck.svg</file>
         <file>Resources/Images/MultimediaLoadingBackground.svg</file>
@@ -85,6 +94,7 @@
         <file>Resources/Images/MultimediaWidgetVideoBtnNormal.png</file>
         <file>Resources/Images/MultimediaWidgetVideoBtnPress.png</file>
         <file>Resources/Images/MusicShortCutWidgetBackground.svg</file>
+        <file>Resources/Images/MusicSliderBlock.png</file>
         <file>Resources/Images/MusicToolWidgetAllLoopBtnNormal.png</file>
         <file>Resources/Images/MusicToolWidgetAllLoopBtnPress.png</file>
         <file>Resources/Images/MusicToolWidgetBackground.svg</file>
@@ -110,6 +120,7 @@
         <file>Resources/Images/MusicToolWidgetSliderTickMarksBackground.svg</file>
         <file>Resources/Images/MusicToolWidgetStopBtnNormal.png</file>
         <file>Resources/Images/MusicToolWidgetStopBtnPress.png</file>
+        <file>Resources/Images/noSound.png</file>
         <file>Resources/Images/ScrollBackground.svg</file>
         <file>Resources/Images/SD.png</file>
         <file>Resources/Images/SDDiskWidgetTipNormal.svg</file>
@@ -133,12 +144,22 @@
         <file>Resources/Images/TabBarWidgetTurnOffDisplayBtnNormal.svg</file>
         <file>Resources/Images/TabBarWidgetVolumeBtnNormal.png</file>
         <file>Resources/Images/TabBarWidgetVolumeBtnPress.png</file>
+        <file>Resources/Images/TimeSelectMinusNormal.png</file>
+        <file>Resources/Images/TimeSelectMinusPress.png</file>
+        <file>Resources/Images/TimeSelectNumberWidget.png</file>
+        <file>Resources/Images/TimeSelectOKNormal.png</file>
+        <file>Resources/Images/TimeSelectOKPress.png</file>
+        <file>Resources/Images/TimeSelectPlusNormal.png</file>
+        <file>Resources/Images/TimeSelectPlusPress.png</file>
+        <file>Resources/Images/TimeSelectTextWidget.png</file>
         <file>Resources/Images/TitleLine.png</file>
         <file>Resources/Images/USB.png</file>
         <file>Resources/Images/USBDiskWidgetTipNormal.svg</file>
         <file>Resources/Images/USB-p.png</file>
         <file>Resources/Images/USBPress.png</file>
         <file>Resources/Images/VideoShortCutWidgetBackground.svg</file>
+        <file>Resources/Images/VideoToolBarWidgetBack.png</file>
+        <file>Resources/Images/VideoToolBarWidgetBack-p.png</file>
         <file>Resources/Images/VideoToolBarWidgetListNormal.png</file>
         <file>Resources/Images/VideoToolBarWidgetListPress.png</file>
         <file>Resources/Images/VideoToolBarWidgetNextBtnNormal.png</file>
@@ -149,13 +170,15 @@
         <file>Resources/Images/VideoToolBarWidgetPlayBtnPress.png</file>
         <file>Resources/Images/VideoToolBarWidgetPreviousBtnNormal.png</file>
         <file>Resources/Images/VideoToolBarWidgetPreviousBtnPress.png</file>
-        <file>Resources/Images/VideoToolBarWidgetSliderBackground.svg</file>
+        <file>Resources/Images/VideoToolBarWidgetSliderBackground.png</file>
+        <file>Resources/Images/VideoToolBarWidgetSliderPress.png</file>
         <file>Resources/Images/VideoToolBarWidgetSwitchFunctionNormal.png</file>
         <file>Resources/Images/VideoToolBarWidgetSwitchFunctionPress.png</file>
         <file>Resources/Images/VideoToolWidgetEffectBtnNormal.svg</file>
         <file>Resources/Images/VideoToolWidgetFMBtnNormal.svg</file>
         <file>Resources/Images/VideoToolWidgetIRBtnNormal.svg</file>
         <file>Resources/Images/VolumeToolWidgetBackgroud.png</file>
-        <file>Resources/Images/MusicSliderBlock.png</file>
+        <file>Resources/Images/VolumeToolWidgetBackgroud_old.png</file>
+        <file>Resources/Images/VolumeToolWidgetLogo.png</file>
     </qresource>
 </RCC>

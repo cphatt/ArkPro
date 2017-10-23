@@ -41,7 +41,7 @@ SOURCES += \
     UserInterface/Common/Utility.cpp \
     UserInterface/MainWidget/HomeWidget/HomeWidget.cpp \
     UserInterface/MainWidget/IdleWidget/IdleWidget.cpp \
-    UserInterface/MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.cpp \
+#    UserInterface/MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.cpp \
     UserInterface/MainWidget/LinkWidget/MirrorLinkWidget/MirrorLinkWidget.cpp \
     UserInterface/MainWidget/LinkWidget/LinkWidget.cpp \
     UserInterface/MainWidget/MessageBoxWidget/MessageBoxWidget.cpp \
@@ -99,7 +99,7 @@ SOURCES += \
     UserInterface/MainWidget/DiskWidget/MultimediaLoadingWidget.cpp \
     UserInterface/MainWidget/DiskWidget/MusicWidget/MusicLoadingWidget/MusicLoadingWidget.cpp \
     UserInterface/MainWidget/DiskWidget/VideoWidget/VideoLoadingWidget/VideoLoadingWidget.cpp \
-    UserInterface/MainWidget/LinkWidget/CarplayLinkWidget/CarplayShortCutWidget/CarplayShortCutWidget.cpp \
+#    UserInterface/MainWidget/LinkWidget/CarplayLinkWidget/CarplayShortCutWidget/CarplayShortCutWidget.cpp \
     UserInterface/MainWidget/LinkWidget/MirrorLinkWidget/MirrorShortCutWidget/MirrorShortCutWidget.cpp \
     UserInterface/MainWidget/DiskWidget/ImageWidget/ImageLoadingWidget/ImageLoadingWidget.cpp \
     UserInterface/MainWidget/LinkWidget/MirrorLinkWidget/MirrorToolWidget/MirrorToolWidget.cpp \
@@ -112,7 +112,14 @@ SOURCES += \
     BusinessLogic/Link/CarlifeLinkProxy.cpp \
     UserInterface/MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeShortCutWidget/CarlifeShortCutWidget.cpp \
     BusinessLogic/Port/Port.cpp \
-    UserInterface/MainWidget/DiskWidget/MusicWidget/MusicToolWidget/MusicInformation/MusicInformation.cpp
+#    UserInterface/MainWidget/DiskWidget/MusicWidget/MusicToolWidget/MusicInformation/MusicInformation.cpp \
+    UserInterface/MainWidget/DateTimeWidget/DateTimeWidget.cpp \
+    UserInterface/MainWidget/CarPlayWidget/CarPlayWidget.cpp \
+    UserInterface/MainWidget/CarPlayWidget/CarplayLinkWidget/CarplayShortCutWidget/CarplayShortCutWidget.cpp \
+    UserInterface/MainWidget/CarPlayWidget/CarplayLinkWidget/CarplayLinkWidget.cpp \
+    UserInterface/MainWidget/DateTimeWidget/TimeSelect/TimeSelect.cpp
+
+
 
 HEADERS += \
     BusinessLogic/Widget/Widget.h \
@@ -132,7 +139,7 @@ HEADERS += \
     UserInterface/Common/Utility.h \
     UserInterface/MainWidget/HomeWidget/HomeWidget.h \
     UserInterface/MainWidget/IdleWidget/IdleWidget.h \
-    UserInterface/MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.h \
+#    UserInterface/MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.h \
     UserInterface/MainWidget/LinkWidget/MirrorLinkWidget/MirrorLinkWidget.h \
     UserInterface/MainWidget/LinkWidget/LinkWidget.h \
     UserInterface/MainWidget/MessageBoxWidget/MessageBoxWidget.h \
@@ -190,7 +197,7 @@ HEADERS += \
     UserInterface/MainWidget/DiskWidget/MultimediaLoadingWidget.h \
     UserInterface/MainWidget/DiskWidget/MusicWidget/MusicLoadingWidget/MusicLoadingWidget.h \
     UserInterface/MainWidget/DiskWidget/VideoWidget/VideoLoadingWidget/VideoLoadingWidget.h \
-    UserInterface/MainWidget/LinkWidget/CarplayLinkWidget/CarplayShortCutWidget/CarplayShortCutWidget.h \
+#    UserInterface/MainWidget/LinkWidget/CarplayLinkWidget/CarplayShortCutWidget/CarplayShortCutWidget.h \
     UserInterface/MainWidget/LinkWidget/MirrorLinkWidget/MirrorShortCutWidget/MirrorShortCutWidget.h \
     UserInterface/MainWidget/DiskWidget/ImageWidget/ImageLoadingWidget/ImageLoadingWidget.h \
     UserInterface/MainWidget/LinkWidget/MirrorLinkWidget/MirrorToolWidget/MirrorToolWidget.h \
@@ -203,7 +210,14 @@ HEADERS += \
     BusinessLogic/Link/CarlifeLinkProxy.h \
     UserInterface/MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeShortCutWidget/CarlifeShortCutWidget.h \
     BusinessLogic/Port/Port.h \
-    UserInterface/MainWidget/DiskWidget/MusicWidget/MusicToolWidget/MusicInformation/MusicInformation.h
+    UserInterface/MainWidget/DiskWidget/MusicWidget/MusicToolWidget/MusicInformation/MusicInformation.h \
+    UserInterface/MainWidget/DateTimeWidget/DateTimeWidget.h \
+    UserInterface/MainWidget/CarPlayWidget/CarPlayWidget.h \
+    UserInterface/MainWidget/CarPlayWidget/CarplayLinkWidget/CarplayShortCutWidget/CarplayShortCutWidget.h \
+    UserInterface/MainWidget/CarPlayWidget/CarplayLinkWidget/CarplayLinkWidget.h \
+    UserInterface/MainWidget/DateTimeWidget/TimeSelect/TimeSelect.h
+
+
 
 TAGLIB = $$PWD/TagLib/Header
 INCLUDEPATH += $$TAGLIB
@@ -237,9 +251,9 @@ DEPENDPATH += $$TAGLIB/mp4
 
 include(../ArkSdk.pri)
 
-unix:!macx: LIBS += -L$$PWD/TagLib/Library/arm -ltag
-unix:!macx: LIBS += -L$$PWD/TagLib/Library/arm -lConvert
-unix:!macx: LIBS += -L$$PWD/TagLib/Library/arm -lQtConvert
+#unix:!macx: LIBS += -L$$PWD/TagLib/Library/arm -ltag
+#unix:!macx: LIBS += -L$$PWD/TagLib/Library/arm -lConvert
+#unix:!macx: LIBS += -L$$PWD/TagLib/Library/arm -lQtConvert
 
 unix:!macx: LIBS += -L$$SDKPATH/Package/ArkApplication/$$ARCHITECTURE -lArkApplication
 unix:!macx: LIBS += -L$$SDKPATH/Package/AutoConnect/$$ARCHITECTURE -lAutoConnect
@@ -290,5 +304,14 @@ DEPENDPATH += $$SETTINGSERVICE
 DISTFILES += \
     Resources/Images/HomeWidgetAUXNormal.png \
     Resources/Images/HomeWidgetAUXPress.png \
-    Resources/Images/MusicSliderBlock.png
+    Resources/Images/MusicSliderBlock.png \
+    Resources/Images/TimeSelectMinusNormal.png \
+    Resources/Images/TimeSelectMinusPress.png \
+    Resources/Images/TimeSelectNumberWidget.png \
+    Resources/Images/TimeSelectOKNormal.png \
+    Resources/Images/TimeSelectOKPress.png \
+    Resources/Images/TimeSelectPlusNormal.png \
+    Resources/Images/TimeSelectPlusPress.png \
+    Resources/Images/TimeSelectTextWidget.png \
+    Resources/Images/LibkBackgroud.png
 

@@ -19,8 +19,6 @@ protected:
     void showEvent(QShowEvent* event);
     void resizeEvent(QResizeEvent* event);
     void paintEvent(QPaintEvent* event);
-    void mousePressEvent(QMouseEvent *event);
-
 protected slots:
     //Widget::Interface
     void ontWidgetTypeChange(const Widget::Type type, const QString &status);

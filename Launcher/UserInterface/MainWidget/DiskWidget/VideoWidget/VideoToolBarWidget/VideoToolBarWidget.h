@@ -32,8 +32,10 @@ protected slots:
     void onVideoPlayerElapsedInformation(const int elapsedTime, const int elapsedMillesimal);
 private slots:
     void onToolButtonRelease();
-    void onTickMarksMillesimalStart();
+    void onTickMarksMillesimalStart(const int millesimal);
     void onTickMarksMillesimalEnd(const int millesimal);
+    void onTickMarksMillesimalChange(const int millesimal);
+
 private:
     friend class VideoToolBarWidgetPrivate;
     QScopedPointer<VideoToolBarWidgetPrivate> m_Private;

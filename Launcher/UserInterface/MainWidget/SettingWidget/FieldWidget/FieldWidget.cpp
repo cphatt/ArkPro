@@ -15,6 +15,7 @@ namespace SourceString {
 static const QString MAN_Pitch = QString(QObject::tr("MAN:"));
 static const QString BSP_Pitch = QString(QObject::tr("BSP:"));
 static const QString APP_Pitch = QString(QObject::tr("APP:"));
+static const QString MCU_Pitch = QString(QObject::tr("MCU:"));
 }
 
 class FieldWidgetPrivate
@@ -29,15 +30,17 @@ public:
     TextWidget* MANPitch;
     TextWidget* BSPPitch;
     TextWidget* APPPitch;
+    TextWidget* MCUPitch;
     TextWidget* MANText;
     TextWidget* BSPText;
     TextWidget* APPText;
+    TextWidget* MCUText;
     BmpButton* mcuUpdateBtn;
     TextWidget* mcuUpdateText;
     BmpButton* resetBtn;
     TextWidget* resetText;
     BmpWidget* m_Background;
-    QString value[3];
+    QString value[4];
     QTimer* m_Timer;
 
 
@@ -83,20 +86,23 @@ void FieldWidget::resizeEvent(QResizeEvent *event)
     g_Widget->geometryFit(0, 0, 625, 355, m_Private->m_Background);
     //g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth() - 278, 505 - 73, m_Private->m_Background);
     int width(80);
-    int height(80);
+    int height(60);
     g_Widget->geometryFit(174 - 165, 10, width, height, m_Private->MANPitch);
-    g_Widget->geometryFit(174 - 165, 104, width, height, m_Private->BSPPitch);
-    g_Widget->geometryFit(174 - 165, 194, width, height, m_Private->APPPitch);
+    g_Widget->geometryFit(174 - 165, 74, width, height, m_Private->BSPPitch);
+    g_Widget->geometryFit(174 - 165, 134, width, height, m_Private->APPPitch);
+    g_Widget->geometryFit(174 - 165, 194, width, height, m_Private->MCUPitch);
+
     width = 500;
-    height = 80;
+    height = 60;
     g_Widget->geometryFit(174 - 165 + 80, 10, width, height, m_Private->MANText);
-    g_Widget->geometryFit(174 - 165 + 80, 104, width, height, m_Private->BSPText);
-    g_Widget->geometryFit(174 - 165 + 80, 194, width, height, m_Private->APPText);
+    g_Widget->geometryFit(174 - 165 + 80, 74, width, height, m_Private->BSPText);
+    g_Widget->geometryFit(174 - 165 + 80, 134, width, height, m_Private->APPText);
+    g_Widget->geometryFit(174 - 165 + 80, 194, width, height, m_Private->MCUText);
     width = 161;
     height = 108;
-    g_Widget->geometryFit(100, this->height() - 100, width, height, m_Private->mcuUpdateBtn);
+    g_Widget->geometryFit(80, this->height() - 100, width, height, m_Private->mcuUpdateBtn);
     g_Widget->geometryFit(0, 0, width, height, m_Private->mcuUpdateText);
-    g_Widget->geometryFit(400,this->height() - 100, width, height, m_Private->resetBtn);
+    g_Widget->geometryFit(380,this->height() - 100, width, height, m_Private->resetBtn);
     g_Widget->geometryFit(0, 0, width, height, m_Private->resetText);
     QWidget::resizeEvent(event);
 }
@@ -180,6 +186,10 @@ void FieldWidgetPrivate::initialize()
     APPText->setLanguageType(TextWidget::T_NoTranslate);
     APPText->setFontPointSize(fontPointSize);
     APPText->show();
+    MCUText = new TextWidget(m_Parent);
+    MCUText->setLanguageType(TextWidget::T_NoTranslate);
+    MCUText->setFontPointSize(fontPointSize);
+    MCUText->show();
     MANPitch = new TextWidget(m_Parent);
     MANPitch->setLanguageType(TextWidget::T_NoTranslate);
     MANPitch->setFontPointSize(fontPointSize);
@@ -192,12 +202,18 @@ void FieldWidgetPrivate::initialize()
     APPPitch->setLanguageType(TextWidget::T_NoTranslate);
     APPPitch->setFontPointSize(fontPointSize);
     APPPitch->show();
+    MCUPitch = new TextWidget(m_Parent);
+    MCUPitch->setLanguageType(TextWidget::T_NoTranslate);
+    MCUPitch->setFontPointSize(fontPointSize);
+    MCUPitch->show();
     MANPitch->setText(QString(QObject::tr(SourceString::MAN_Pitch.toLocal8Bit().constData())) + QString(" ") );
     BSPPitch->setText(QString(QObject::tr(SourceString::BSP_Pitch.toLocal8Bit().constData())) + QString(" "));
     APPPitch->setText(QString(QObject::tr(SourceString::APP_Pitch.toLocal8Bit().constData())) + QString(" "));
+    MCUPitch->setText(QString(QObject::tr(SourceString::MCU_Pitch.toLocal8Bit().constData())) + QString(" "));
     MANText->setText(value[0]);
     BSPText->setText(value[1]);
     APPText->setText(value[2]);
+    MCUText->setText(value[3]);
     mcuUpdateBtn = new BmpButton(m_Parent);
     mcuUpdateBtn->show();
     mcuUpdateBtn->setNormalBmpPath(QString(":/Images/Resources/Images/EffectWidgetToolBtnNormal"));
@@ -205,7 +221,7 @@ void FieldWidgetPrivate::initialize()
     mcuUpdateBtn->setCheckBmpPath(QString(":/Images/Resources/Images/EffectWidgetToolBtnPress"));
     mcuUpdateText = new TextWidget(mcuUpdateBtn);
     mcuUpdateText->show();
-    mcuUpdateText->setText(QString("update"));
+    mcuUpdateText->setText(QString(QObject::tr("MCU Update")));
     mcuUpdateText->setFontPointSize(fontPointSize);
     resetBtn = new BmpButton(m_Parent);
     resetBtn->show();
@@ -214,7 +230,7 @@ void FieldWidgetPrivate::initialize()
     resetBtn->setCheckBmpPath(QString(":/Images/Resources/Images/EffectWidgetToolBtnPress"));
     resetText = new TextWidget(resetBtn);
     resetText->show();
-    resetText->setText(QString("reset"));
+    resetText->setText(QString(QObject::tr("reset")));
     resetText->setFontPointSize(fontPointSize);
     m_Parent->setVisible(false);
 

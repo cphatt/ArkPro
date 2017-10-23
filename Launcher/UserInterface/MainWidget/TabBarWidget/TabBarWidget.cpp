@@ -26,7 +26,7 @@ public:
     BmpButton* m_BackBtn;
     BmpButton* m_FMBtn;
     BmpButton* m_EffectBtn;
-    BmpButton* m_IRBtn;
+//    BmpButton* m_IRBtn;
     BmpButton* m_VolumeBtn;
     BmpWidget* m_Background;
 private:
@@ -98,11 +98,12 @@ void TabBarWidget::ontWidgetTypeChange(const Widget::Type type, const QString &s
             m_Private->m_BackBtn->setVisible(false);
             m_Private->m_FMBtn->setVisible(true);
             m_Private->m_EffectBtn->setVisible(true);
-            m_Private->m_IRBtn->setVisible(true);
+//            m_Private->m_IRBtn->setVisible(true);
             m_Private->m_VolumeBtn->setVisible(true);
             setVisible(true);
             break;
         }
+        case Widget::T_CarplayWidget:
         case Widget::T_SDDisk:
         case Widget::T_USBDisk:
         case Widget::T_Music:
@@ -126,7 +127,7 @@ void TabBarWidget::ontWidgetTypeChange(const Widget::Type type, const QString &s
             m_Private->m_BackBtn->setVisible(true);
             m_Private->m_FMBtn->setVisible(true);
             m_Private->m_EffectBtn->setVisible(true);
-            m_Private->m_IRBtn->setVisible(true);
+//            m_Private->m_IRBtn->setVisible(true);
             m_Private->m_VolumeBtn->setVisible(true);
             setVisible(true);
             break;
@@ -147,7 +148,7 @@ void TabBarWidget::ontWidgetTypeChange(const Widget::Type type, const QString &s
             m_Private->m_BackBtn->setVisible(false);
             m_Private->m_FMBtn->setVisible(false);
             m_Private->m_EffectBtn->setVisible(false);
-            m_Private->m_IRBtn->setVisible(false);
+//            m_Private->m_IRBtn->setVisible(false);
             m_Private->m_VolumeBtn->setVisible(false);
             break;
         }
@@ -157,7 +158,7 @@ void TabBarWidget::ontWidgetTypeChange(const Widget::Type type, const QString &s
         }
 }
 
-void TabBarWidget::onTabBarButtonRelease()
+void TabBarWidget::onTabBarButtonRelease() //发送了全局事件
 {
     const BmpButton* ptr = dynamic_cast<const BmpButton*>(sender());
     if(ptr == m_Private->m_TurnOffDisplayBtn) {
@@ -170,9 +171,9 @@ void TabBarWidget::onTabBarButtonRelease()
         g_EventEngine->sendCustomEvent(event);
     } else if (ptr == m_Private->m_EffectBtn) {
 
-    } else if (ptr == m_Private->m_IRBtn) {
+    }/* else if (ptr == m_Private->m_IRBtn) {
 
-    } else if (ptr == m_Private->m_VolumeBtn) {
+    }*/ else if (ptr == m_Private->m_VolumeBtn) {
         EventEngine::CustomEvent<QString> event(CustomEventType::VolumeWidgetStatus, new QString(WidgetStatus::RequestShow));
         g_EventEngine->sendCustomEvent(event);
     } else if (ptr == m_Private->m_BackBtn) {
@@ -224,8 +225,8 @@ void TabBarWidgetPrivate::initialize()
     m_EffectBtn->setVisible(true);
    // m_EffectBtn->setNormalBmpPath(QString(":/Images/Resources/Images/TabBarWidgetEffectBtnNormal"));
     //m_EffectBtn->setPressBmpPath(QString(":/Images/Resources/Images/TabBarWidgetEffectBtnNormal"));
-    m_IRBtn = new BmpButton(m_Parent);
-    m_IRBtn->setVisible(true);
+//    m_IRBtn = new BmpButton(m_Parent);
+//    m_IRBtn->setVisible(true);
    // m_IRBtn->setNormalBmpPath(QString(":/Images/Resources/Images/TabBarWidgetIRBtnNormal"));
     //m_IRBtn->setPressBmpPath(QString(":/Images/Resources/Images/TabBarWidgetIRBtnNormal"));
     m_VolumeBtn = new BmpButton(m_Parent);
@@ -249,15 +250,15 @@ void TabBarWidgetPrivate::connectAllSlots()
     QObject::connect(m_HomeBtn, SIGNAL(bmpButtonRelease()),
                      m_Parent,  SLOT(onTabBarButtonRelease()),
                      type);
-    QObject::connect(m_FMBtn,  SIGNAL(bmpButtonRelease()),
-                     m_Parent, SLOT(onTabBarButtonRelease()),
-                     type);
+//    QObject::connect(m_FMBtn,  SIGNAL(bmpButtonRelease()),
+//                     m_Parent, SLOT(onTabBarButtonRelease()),
+//                     type);
     QObject::connect(m_EffectBtn, SIGNAL(bmpButtonRelease()),
                      m_Parent,    SLOT(onTabBarButtonRelease()),
                      type);
-    QObject::connect(m_IRBtn,  SIGNAL(bmpButtonRelease()),
-                     m_Parent, SLOT(onTabBarButtonRelease()),
-                     type);
+//    QObject::connect(m_IRBtn,  SIGNAL(bmpButtonRelease()),
+//                     m_Parent, SLOT(onTabBarButtonRelease()),
+//                     type);
     QObject::connect(m_VolumeBtn, SIGNAL(bmpButtonRelease()),
                      m_Parent,    SLOT(onTabBarButtonRelease()),
                      type);

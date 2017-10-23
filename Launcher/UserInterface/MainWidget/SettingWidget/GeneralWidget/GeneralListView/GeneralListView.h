@@ -15,12 +15,19 @@ class GeneralListView
     Q_OBJECT
     Q_DISABLE_COPY(GeneralListView)
 public:
+
+    enum GeneraSetType {
+        Calibrate = 0,
+        TimeSetting = 1,
+    };
+
     explicit GeneralListView(QWidget* parent = NULL);
     ~GeneralListView();
 protected:
     void changeEvent(QEvent* event);
     void resizeEvent(QResizeEvent* event);
     void paintEvent(QPaintEvent* event);
+    void mouseReleaseEvent(QMouseEvent* event);
 protected slots:
     //Setting::Interface
     void onDateTimeChange(const QString &date, const QString &time);

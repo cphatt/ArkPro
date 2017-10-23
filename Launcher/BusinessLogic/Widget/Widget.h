@@ -53,7 +53,7 @@ public:
         T_SettingField = 26,
         T_Media = 27,
         T_Carlife = 28,
-        T_test
+        T_CarplayWidget = 29,
     };
     class Interface {
         Q_DISABLE_COPY(Interface)

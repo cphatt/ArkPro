@@ -231,7 +231,10 @@ void LanguageWidget::onTest()
 {
     qDebug() << "LanguageWidget::onTest()";
 }
-
+void LanguageWidget::onTest1()
+{
+    qDebug() << "LanguageWidget::onTest1()";
+}
 void LanguageWidget::onToolButtonRelease()
 {
     qDebug() << __FUNCTION__;

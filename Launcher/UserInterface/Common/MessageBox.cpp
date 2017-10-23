@@ -84,10 +84,10 @@ void MessageBox::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.fillRect(rect(), QColor(0, 0, 1, 127));
     if (!m_Private->m_BackgroundSvg.isNull()) {
-        m_Private->m_BackgroundSvg->render(&painter, QRect((width() - m_Private->m_BackgroundSvg->defaultSize().width() * g_Widget->widthScalabilityFactor()) / 2,
-                                                           (height() - m_Private->m_BackgroundSvg->defaultSize().height() * g_Widget->heightScalabilityFactor()) / 2,
-                                                           m_Private->m_BackgroundSvg->defaultSize().width() * g_Widget->widthScalabilityFactor(),
-                                                           m_Private->m_BackgroundSvg->defaultSize().height() * g_Widget->heightScalabilityFactor()));
+        m_Private->m_BackgroundSvg->render(&painter, QRect((width() - m_Private->m_BackgroundSvg->defaultSize().width() * g_Widget->widthScalabilityFactor() * 800 / 1280) / 2,
+                                                           (height() - m_Private->m_BackgroundSvg->defaultSize().height() * g_Widget->heightScalabilityFactor()) ,
+                                                           m_Private->m_BackgroundSvg->defaultSize().width() * g_Widget->widthScalabilityFactor() * 800 / 1280,
+                                                           m_Private->m_BackgroundSvg->defaultSize().height() * g_Widget->heightScalabilityFactor() * 480 / 720)) ;
     }
     if (!m_Private->m_Text.isEmpty()) {
         painter.setFont(m_Private->m_Font);

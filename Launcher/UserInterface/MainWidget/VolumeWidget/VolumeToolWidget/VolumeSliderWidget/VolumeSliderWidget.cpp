@@ -40,10 +40,10 @@ void VolumeSliderWidget::setTickMarksMillesimal(const int millesimal)
 void VolumeSliderWidget::resizeEvent(QResizeEvent *event)
 {
     int a(27);
-    g_Widget->geometryFit(0, 180, 853, 180, this);
-    g_Widget->geometryFit(152 + a, (180 - 37) * 0.5 - 30, 31, 37, m_Private->m_MinusBtn);
-    g_Widget->geometryFit(214 + a, (180 - 40) * 0.5 - 30, 619 * 0.6, 40, m_Private->m_Slider);
-    g_Widget->geometryFit(853 + a - 52 - 31 - 150, (180 - 37) * 0.5 - 30, 31, 37, m_Private->m_PlusBtn);
+    g_Widget->geometryFit(0, 0, 420, 100, this);
+  //  g_Widget->geometryFit(152 + a, (180 - 37) * 0.5 - 30, 31, 37, m_Private->m_MinusBtn);
+    g_Widget->geometryFit( 60, 50, 300, 40, m_Private->m_Slider);
+   // g_Widget->geometryFit(853 + a - 52 - 31 - 150, (180 - 37) * 0.5 - 30, 31, 37, m_Private->m_PlusBtn);
     QWidget::resizeEvent(event);
 }
 
@@ -65,18 +65,18 @@ VolumeSliderWidgetPrivate::~VolumeSliderWidgetPrivate()
 void VolumeSliderWidgetPrivate::initialize()
 {
     m_MinusBtn = new BmpButton(m_Parent);
-    m_MinusBtn->setNormalBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderMinusNormal"));
-    m_MinusBtn->setPressBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderMinusNormal"));
+//    m_MinusBtn->setNormalBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderMinusNormal"));
+ //   m_MinusBtn->setPressBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderMinusNormal"));
     m_MinusBtn->show();
     m_Slider = new Slider(m_Parent);
     m_Slider->setTickMarksSize(QSize(40 * g_Widget->widthScalabilityFactor(), 40 * g_Widget->heightScalabilityFactor()));
-    m_Slider->setBackgroundBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderBackground"));
+    m_Slider->setBackgroundBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderBackground_new"));
     m_Slider->setTickMarkTickMarkslBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderTickMarksBackground"));
-    m_Slider->setAllowMove(false);
+    m_Slider->setAllowMove(true);
     m_Slider->show();
     m_PlusBtn = new BmpButton(m_Parent);
-    m_PlusBtn->setNormalBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderPlusNormal"));
-    m_PlusBtn->setPressBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderPlusNormal"));
+  //  m_PlusBtn->setNormalBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderPlusNormal"));
+ //   m_PlusBtn->setPressBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderPlusNormal"));
     m_PlusBtn->show();
 }
 

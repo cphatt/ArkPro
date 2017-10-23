@@ -28,7 +28,7 @@ MultimediaLoadingWidget::~MultimediaLoadingWidget()
 void MultimediaLoadingWidget::resizeEvent(QResizeEvent *event) //这个玩意是提示框的位置
 {
     g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), this);
-    g_Widget->geometryFit((800 - 150) / 2, (480 - 150 - 120) / 2 + 56, 150, 150, m_Private->m_Background);
+    g_Widget->geometryFit((800 - 150 - 400) / 2, (480 - 150 - 120 - 200) / 2 + 56, 150, 150, m_Private->m_Background);
     QWidget::resizeEvent(event);
 }
 

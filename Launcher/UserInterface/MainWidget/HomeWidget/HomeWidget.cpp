@@ -2,6 +2,7 @@
 #include "UserInterface/Common/TextWidget.h"
 #include "UserInterface/Common/BmpButton.h"
 #include "UserInterface/Common/Utility.h"
+#include "UserInterface/Common/MessageBox.h"
 #include "AutoConnect.h"
 #include "BusinessLogic/Setting/Setting.h"
 #include "UserInterface/Common/BmpWidget.h"
@@ -21,7 +22,7 @@ static const QString AUX = QString(QObject::tr("AUX"));
 //static const QString AV1 = QString(QObject::tr("Carplay"));
 //static const QString AV2 = QString(QObject::tr("Carlife"));
 static const QString Setting = QString(QObject::tr("Setting"));
-static const QString Nav = QString(QObject::tr("Nav"));
+static const QString Nav = QString(QObject::tr("CarPlay"));
 }
 
 class HomeWidgetPrivate
@@ -46,6 +47,8 @@ public:
     TextWidget* m_FMText;
     BmpButton* m_AUX;
     TextWidget* m_AUXText;
+    MessageBox* m_USBDiskDeviceMessageBox;
+    QTimer* m_Timer;
     bool isUSBAlive;
     bool isSDAlive;
 private:
@@ -74,18 +77,22 @@ void HomeWidget::resizeEvent(QResizeEvent *event)
     g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_Private->m_Background);
     int bmpWidth(261);
     int bmpHeight(172);
-    g_Widget->geometryFit(1, 62, 260, 175, m_Private->m_Media);
-    g_Widget->geometryFit((260 - bmpWidth * 0.75) / 2 , (177 - 40), bmpWidth * 0.75,  40, m_Private->m_MediaText);
-    g_Widget->geometryFit(269, 61, 261, 360, m_Private->m_Link);
-    g_Widget->geometryFit((260 - bmpWidth * 0.75) / 2, (360 - 40)  , bmpWidth * 0.75, 40, m_Private->m_LinkText);
-    g_Widget->geometryFit(539, 61,  261, 360, m_Private->m_Setting);
-    g_Widget->geometryFit((260 - bmpWidth * 0.75) / 2, (360 - 40)  , bmpWidth * 0.75, 40, m_Private->m_SettingText);
+    g_Widget->geometryFit(628, 103, 79, 82, m_Private->m_Media);
+    g_Widget->geometryFit(639, 202, 60, 28, m_Private->m_MediaText);
+    g_Widget->geometryFit(359, 143, 87, 143, m_Private->m_Link);
+    g_Widget->geometryFit(339, 331, 128, 50, m_Private->m_LinkText);
+    g_Widget->geometryFit(628, 270, 88, 82, m_Private->m_Setting);
+    g_Widget->geometryFit(610, 364, 126, 50, m_Private->m_SettingText);
 //    g_Widget->geometryFit(0, 63,  261, 172, m_Private->m_FM);
 //    g_Widget->geometryFit(0, 0, bmpWidth * 0.75, 40, m_Private->m_FMText);
 //    g_Widget->geometryFit(0, 243,  396, 172, m_Private->m_AUX);
 //    g_Widget->geometryFit(0, 0, bmpWidth * 0.75, 40, m_Private->m_AUXText);
-    g_Widget->geometryFit(1, 246, 260, 177, m_Private->m_Nav);
-    g_Widget->geometryFit((260 - bmpWidth * 0.75) / 2, (177 - 40) , bmpWidth * 0.75, 40, m_Private->m_NavText);
+    g_Widget->geometryFit(69, 159, 124, 124, m_Private->m_Nav);
+//    g_Widget->geometryFit((260 - bmpWidth * 0.75) / 2, (177 - 40) , bmpWidth * 0.75, 40, m_Private->m_NavText);
+    g_Widget->geometryFit(69, 335, 113, 40 , m_Private->m_NavText);
+ //   g_Widget->geometryFit(200, 100, 400, 280, m_Private->m_USBDiskDeviceMessageBox);
+
+    g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_Private->m_USBDiskDeviceMessageBox);
     QWidget::resizeEvent(event);
 }
 
@@ -216,6 +223,8 @@ HomeWidgetPrivate::HomeWidgetPrivate(HomeWidget *parent)
     m_FMText = NULL;
     m_AUX = NULL;
     m_AUXText = NULL;
+    m_USBDiskDeviceMessageBox = NULL;
+    m_Timer = NULL;
 
     isUSBAlive = false;
     isSDAlive = false;
@@ -239,10 +248,10 @@ void HomeWidgetPrivate::initialize()
     m_Media->setVisible(true);
     m_Media->setNormalBmpPath(QString(":/Images/Resources/Images/HomeWidgetMediaNormall"));
     m_Media->setPressBmpPath(QString(":/Images/Resources/Images/HomeWidgetMediaPress"));
-    m_MediaText = new TextWidget(m_Media);
+    m_MediaText = new TextWidget(m_Parent);
     m_MediaText->setVisible(true);
     m_MediaText->setText(SourceString::Media);
-    int fontPointSize(25 * g_Widget->widthScalabilityFactor());
+    int fontPointSize(22 * g_Widget->widthScalabilityFactor());
     m_MediaText->setFontPointSize(fontPointSize);
     int flag(Qt::AlignHCenter | Qt::AlignVCenter);
     m_MediaText->setAlignmentFlag(flag);
@@ -250,7 +259,7 @@ void HomeWidgetPrivate::initialize()
     m_Link->setVisible(true);
     m_Link->setNormalBmpPath(QString(":/Images/Resources/Images/HomeWidgetLinkNormall"));
     m_Link->setPressBmpPath(QString(":/Images/Resources/Images/HomeWidgetLinkPress"));
-    m_LinkText = new TextWidget(m_Link);
+    m_LinkText = new TextWidget(m_Parent);
     m_LinkText->setVisible(true);
     m_LinkText->setText(SourceString::Link);
     m_LinkText->setFontPointSize(fontPointSize);
@@ -260,7 +269,7 @@ void HomeWidgetPrivate::initialize()
     m_Setting->setVisible(true);
     m_Setting->setPressBmpPath(QString(":/Images/Resources/Images/HomeWidgetSettingPress"));
     m_Setting->setNormalBmpPath(QString(":/Images/Resources/Images/HomeWidgetSettingNormal"));
-    m_SettingText = new TextWidget(m_Setting);
+    m_SettingText = new TextWidget(m_Parent);
     m_SettingText->setVisible(true);
     m_SettingText->setText(SourceString::Setting);
     m_SettingText->setFontPointSize(fontPointSize);
@@ -270,7 +279,7 @@ void HomeWidgetPrivate::initialize()
     m_Nav->setVisible(true);
     m_Nav->setPressBmpPath(QString(":/Images/Resources/Images/HomeWidgetNavPress"));
     m_Nav->setNormalBmpPath(QString(":/Images/Resources/Images/HomeWidgetNavNormal"));
-    m_NavText = new TextWidget(m_Nav);
+    m_NavText = new TextWidget(m_Parent);
     m_NavText->setVisible(true);
     m_NavText->setText(SourceString::Nav);
     m_NavText->setFontPointSize(fontPointSize);
@@ -295,6 +304,21 @@ void HomeWidgetPrivate::initialize()
     m_AUXText->setText(SourceString::AUX);
     m_AUXText->setFontPointSize(fontPointSize);
     m_AUXText->setAlignmentFlag(flag);
+
+    m_USBDiskDeviceMessageBox = new MessageBox(m_Parent);
+    m_USBDiskDeviceMessageBox->setText(QString(QObject::tr("No USB Device Or SD Card")));
+    m_USBDiskDeviceMessageBox->setAutoHide(false);
+    m_USBDiskDeviceMessageBox->setFontPointSize(25 * g_Widget->widthScalabilityFactor());
+    m_USBDiskDeviceMessageBox->setVisible(false);
+
+    m_Timer = new QTimer(m_Parent);
+    m_Timer->setSingleShot(true);
+    m_Timer->setInterval(1500);
+}
+void HomeWidget::onTimeout()
+{
+    //g_Widget->setWidgetType(Widget::T_Home, WidgetStatus::RequestShow);
+    m_Private->m_USBDiskDeviceMessageBox->setVisible(false);
 }
 
 void HomeWidgetPrivate::connectAllSlots()
@@ -313,22 +337,31 @@ void HomeWidgetPrivate::connectAllSlots()
     QObject::connect(m_Setting, SIGNAL(bmpButtonRelease()),
                      m_Parent,  SLOT(onBmpButtonRelease()),
                      type);
+    QObject::connect(m_Nav, SIGNAL(bmpButtonRelease()),
+                     m_Parent,  SLOT(onBmpButtonRelease()),
+                     type);
+    QObject::connect(m_Timer,  SIGNAL(timeout()),
+                     m_Parent, SLOT(onTimeout()),
+                     type);
 }
 
 void HomeWidget::onBmpButtonRelease()
 {
-    if (sender() == m_Private->m_Media && (m_Private->isSDAlive || m_Private->isUSBAlive)) {
+    if (sender() == m_Private->m_Media){
         //获得disk的状态，根据状态决定信号发不发
-        g_Widget->setWidgetType(Widget::T_Media, WidgetStatus::RequestShow); //
-//        if(m_Private->isUSBAlive){
-//            g_Widget->setWidgetType(Widget::T_USBDisk, WidgetStatus::RequestShow);
-//        }else if(m_Private->isSDAlive){
-//            g_Widget->setWidgetType(Widget::T_SDDisk, WidgetStatus::RequestShow);
-//        }
+        if (m_Private->isSDAlive || m_Private->isUSBAlive){
+            g_Widget->setWidgetType(Widget::T_Media, WidgetStatus::RequestShow); //
+        }else{
+            m_Private->m_USBDiskDeviceMessageBox->setAutoHide(false);
+            m_Private->m_USBDiskDeviceMessageBox->setVisible(true);
+            m_Private->m_Timer->start();
+        }
     } else if (sender() == m_Private->m_Link) {
         g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
 
     } else if (sender() == m_Private->m_Setting) {
         g_Widget->setWidgetType(Widget::T_Setting, WidgetStatus::RequestShow);
+    } else if (sender() == m_Private->m_Nav) {
+        g_Widget->setWidgetType(Widget::T_Carplay, WidgetStatus::RequestShow);
     }
 }

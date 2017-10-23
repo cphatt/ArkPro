@@ -32,6 +32,7 @@ public:
         virtual void onContrastChange(const int value) = 0;
         virtual void onHueChange(const int value) = 0;
         virtual void onTest() {};
+//                virtual void onTest1() {};
     };
     inline static Setting* instance() {
         static Setting* setting(new Setting(qApp));
@@ -46,6 +47,9 @@ public:
     void setHue(const int type, const int value);
     //    void setHue(const SetType type, const int value);
     void test();
+    void test1();
+    void setCalibrate();
+    void setDateTime(const QDateTime &dateTime);
 
 signals:
     void onDateTimeChange(const QString &date, const QString &time);
@@ -55,6 +59,7 @@ signals:
     void onContrastChange(const int value);
     void onHueChange(const int value);
     void onTest();
+    void onTest1(); //转发来自proxy中的信号
 protected:
     void customEvent(QEvent* event);
 private slots:

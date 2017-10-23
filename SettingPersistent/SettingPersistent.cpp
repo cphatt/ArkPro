@@ -23,7 +23,7 @@ void SettingPersistent::setLanguage(const int value)
 
 int SettingPersistent::getLanguage()
 {
-    int defaultValue(0);
+    int defaultValue(1); //默认的值
     bool flag(false);
     int ret = settings.value(Language, defaultValue).toInt(&flag);
     if (!flag) {

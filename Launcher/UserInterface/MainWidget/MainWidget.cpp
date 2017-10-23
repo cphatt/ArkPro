@@ -7,6 +7,7 @@
 #include "UserInterface/MainWidget/MediaWidget/MediaWidget.h"
 #include "BusinessLogic/Common/BusinessLogicUtility.h"
 #include "LinkWidget/LinkWidget.h"
+#include "CarPlayWidget/CarPlayWidget.h"
 #include "SettingWidget/SettingWidget.h"
 #include "BusinessLogic/Widget/Widget.h"
 #include "TabBarWidget/TabBarWidget.h"
@@ -18,6 +19,7 @@
 #include "AudioService.h"
 #include "FMWidget/FMWidget.h"
 #include "VolumeWidget/VolumeWidget.h"
+#include "DateTimeWidget/DateTimeWidget.h"
 //#include "CalibrateWidget/CalibrateWidget.h"
 #include <QDBusConnection>
 #include <QEvent>
@@ -42,6 +44,7 @@ public:
     HomeWidget* m_HomeWidget;
     DiskWidget* m_DiskWidget;
     LinkWidget* m_LinkWidget;
+
     SettingWidget* m_SettingWidget;
     MediaWidget* m_MediaWidget;
    // AVWidget* m_AVWidget;
@@ -49,8 +52,10 @@ public:
     TabBarWidget* m_TabBarWidget;
     FMWidget* m_FMWidget;
     VolumeWidget* m_VolumeWidget;
+    DateTimeWidget* m_dateTimeWidget;
     MessageBoxWidget* m_MessageBoxWidget;
     IdleWidget* m_IdleWidget;
+    CarPlayWidget* m_CarPlayWidget;
 private:
     MainWidget* m_Parent;
 };
@@ -114,6 +119,7 @@ bool MainWidget::event(QEvent* event)
                 qDebug() << "LauncherService Register QDbus ok!";
                 m_Private->m_FMWidget = new FMWidget(this);
                 m_Private->m_VolumeWidget = new VolumeWidget(this);
+                m_Private->m_dateTimeWidget = new DateTimeWidget(this);
                 m_Private->m_MessageBoxWidget = new MessageBoxWidget(this);
                 //    m_CalibrateWidget = new CalibrateWidget(m_Parent);
                 m_Private->m_IdleWidget = new IdleWidget(this);
@@ -158,6 +164,7 @@ void MainWidget::mousePressEvent(QMouseEvent *)
 {
     qDebug() << "mousePressEvent";
     g_Setting->test();
+    g_Setting->test1();
 }
 
 void MainWidget::ontWidgetTypeChange(const Widget::Type type, const QString &status)
@@ -260,6 +267,7 @@ MainWidgetPrivate::MainWidgetPrivate(MainWidget *parent)
     m_FMWidget = NULL;
     m_MessageBoxWidget = NULL;
     m_IdleWidget = NULL;
+    m_CarPlayWidget = NULL;
     //    if (qApp->arguments().contains(QString("-calibrate"))) {
     //        m_Parent->setVisible(true);
     //        m_CalibrateWidget = new CalibrateWidget(m_Parent);
@@ -277,7 +285,7 @@ MainWidgetPrivate::~MainWidgetPrivate()
 
 void MainWidgetPrivate::initialize()
 {
-
+    m_CarPlayWidget = new CarPlayWidget(m_Parent);
     m_DiskWidget = new DiskWidget(m_Parent);
     m_LinkWidget = new LinkWidget(m_Parent);
    // m_AVWidget = new AVWidget(m_Parent);

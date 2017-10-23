@@ -10,7 +10,9 @@
 #include <QPainter>
 #include <QDebug>
 #include <QDomDocument>
+#include <QTimer>
 
+bool isFirst = true;
 namespace SourceString {
 static const QString No_Music_Resource = QString(QObject::tr("No Music Resource..."));
 }
@@ -27,6 +29,7 @@ public:
     MultimediaListView* m_MusicListView;
     MessageBox* m_USBDiskMusicMessageBox;
     BmpButton* m_ListBtn;
+    QTimer *m_Timer;
     bool m_RequestShow;
 private:
     USBDiskMusicListViewWidget* m_Parent;
@@ -127,6 +130,17 @@ void USBDiskMusicListViewWidget::ontWidgetTypeChange(const Widget::Type type, co
     }
 }
 
+void USBDiskMusicListViewWidget::onTimeOut(){
+        if(::isFirst){
+            onMusicListViewItemRelease(0);
+            onMusicListViewItemRelease(0);
+            isFirst = !isFirst;
+        }else{
+            onMusicListViewItemRelease(0);
+        }
+
+}
+
 void USBDiskMusicListViewWidget::onDeviceWatcherStatus(const DeviceWatcherType type, const DeviceWatcherStatus status)
 {
     qDebug() << "USBDiskMusicListViewWidget::onDeviceWatcherStatus" << type << status;
@@ -197,9 +211,6 @@ void USBDiskMusicListViewWidget::onMusicPlayerFileNames(const DeviceWatcherType 
                             } else {
                                 m_Private->m_USBDiskMusicMessageBox->setVisible(false);
                                 m_Private->m_MusicListView->setVisible(true);
-
-                                //发起音乐播放申请
-                               // g_Multimedia->musicPlayerPlayListViewIndex(DWT_USBDisk, 0);
                             }
                         }
                     }
@@ -209,7 +220,7 @@ void USBDiskMusicListViewWidget::onMusicPlayerFileNames(const DeviceWatcherType 
         }
 
 #ifndef gcc
-                                 onMusicListViewItemRelease(0);
+                                 m_Private->m_Timer->start();
 #endif
 
     }
@@ -270,6 +281,10 @@ void USBDiskMusicListViewWidgetPrivate::initialize()
     m_ListBtn->setNormalBmpPath(QString(":/Images/Resources/Images/MusicToolWidgetListNormal"));
     m_ListBtn->setPressBmpPath(QString(":/Images/Resources/Images/MusicToolWidgetListPress"));
     m_Parent->setVisible(true);
+
+    m_Timer = new QTimer(m_Parent);
+    m_Timer->setSingleShot(true);
+    m_Timer->setInterval(500);
 }
 
 void USBDiskMusicListViewWidgetPrivate::receiveAllCustomEvent()
@@ -290,5 +305,8 @@ void USBDiskMusicListViewWidgetPrivate::connectAllSlots()
                      type);
     QObject::connect(m_ListBtn,   SIGNAL(bmpButtonRelease()),
                      m_Parent,    SLOT(onToolButtonRelease()),
+                     type);
+    QObject::connect(m_Timer,  SIGNAL(timeout()),
+                     m_Parent, SLOT(onTimeOut()),
                      type);
 }

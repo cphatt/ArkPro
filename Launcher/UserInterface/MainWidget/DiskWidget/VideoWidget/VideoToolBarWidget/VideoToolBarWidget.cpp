@@ -37,6 +37,8 @@ public:
     BmpButton* m_EffectBtn;
     BmpButton* m_IRBtn;
     BmpWidget* m_Background;
+    BmpWidget* m_SliderBlock;
+    BmpWidget* m_SliderPress;
     BmpButton* m_SwitchFunctionBtn;
 
     FunctionType m_FunctionType;
@@ -61,7 +63,9 @@ void VideoToolBarWidget::resizeEvent(QResizeEvent *event)
     g_Widget->geometryFit(0, 398, 800, 82, this);
     g_Widget->geometryFit(0, 398, 800, 82, m_Private->m_Background);
     g_Widget->geometryFit(0, 7, 50 * 2, 27, m_Private->m_ElapsedTimeText);
-    g_Widget->geometryFit(100, 7, 600, 27, m_Private->m_Slider);
+    g_Widget->geometryFit(100, 7, 600, 35, m_Private->m_Slider);
+    g_Widget->geometryFit(100 , 7, 600, 27, m_Private->m_SliderBlock);
+    g_Widget->geometryFit(100 , 7, 0, 27, m_Private->m_SliderPress);
     g_Widget->geometryFit(800 - 100, 7, 50 * 2, 27, m_Private->m_EndTimeText);
     int width(54);
     int height(48);
@@ -106,8 +110,11 @@ void VideoToolBarWidget::ontWidgetTypeChange(const Widget::Type type, const QStr
                 m_Private->m_IRBtn->setVisible(true);
             }
             m_Private->m_VolumeBtn->setVisible(true);
-            m_Private->m_Slider->setVisible(true);
+
+            m_Private->m_SliderBlock->setVisible(true);
+            m_Private->m_SliderPress->setVisible(true);
             m_Private->m_ElapsedTimeText->setVisible(true);
+            m_Private->m_Slider->setVisible(true);
             setVisible(true);
         }
         break;
@@ -120,6 +127,8 @@ void VideoToolBarWidget::ontWidgetTypeChange(const Widget::Type type, const QStr
             m_Private->m_NextBtn->setVisible(false);
             m_Private->m_VolumeBtn->setVisible(false);
             m_Private->m_Slider->setVisible(false);
+            m_Private->m_SliderPress->setVisible(false);
+            m_Private->m_SliderBlock->setVisible(false);
             m_Private->m_ElapsedTimeText->setVisible(false);
         }
         break;
@@ -163,6 +172,8 @@ void VideoToolBarWidget::onVideoPlayerElapsedInformation(const int elapsedTime, 
 {
     m_Private->m_ElapsedTimeText->setText(m_Private->convertTime(elapsedTime));
     m_Private->m_Slider->setTickMarksMillesimal(elapsedMillesimal);
+    //g_Widget->geometryFit(211 , 352, elapsedMillesimal * 0.4, 35, m_Private->m_SliderPress);
+    g_Widget->geometryFit(100 , 7, elapsedMillesimal * 0.56, 27, m_Private->m_SliderPress);
 }
 
 void VideoToolBarWidget::onToolButtonRelease()
@@ -191,16 +202,26 @@ void VideoToolBarWidget::onToolButtonRelease()
     }
 }
 
-void VideoToolBarWidget::onTickMarksMillesimalStart()
+void VideoToolBarWidget::onTickMarksMillesimalStart(const int millesimal)
 {
+    qDebug() <<"onTickMarksMillesimalStart" << millesimal;
     g_Multimedia->videoPlayerSetPlayStatus(VPPS_Pause);
+    g_Widget->geometryFit(100 , 7, millesimal * 0.56, 27, m_Private->m_SliderPress);
 }
 
 void VideoToolBarWidget::onTickMarksMillesimalEnd(const int millesimal)
 {
+    qDebug() <<"onTickMarksMillesimalEnd" << millesimal;
     g_Multimedia->videoPlayerSeekToMillesimal(millesimal);
+    g_Widget->geometryFit(100 , 7, millesimal * 0.56, 27, m_Private->m_SliderPress);
 }
 
+void VideoToolBarWidget::onTickMarksMillesimalChange(const int millesimal)
+{
+     qDebug() << millesimal;
+     g_Multimedia->videoPlayerSeekToMillesimal(millesimal);
+     g_Widget->geometryFit(100 , 7, millesimal * 0.56, 27, m_Private->m_SliderPress);
+}
 VideoToolBarWidgetPrivate::VideoToolBarWidgetPrivate(VideoToolBarWidget *parent)
     : m_Parent(parent)
 {
@@ -237,12 +258,21 @@ void VideoToolBarWidgetPrivate::initialize()
     m_EndTimeText = new TextWidget(m_Parent);
     m_EndTimeText->hide();
     m_EndTimeText->setFontPointSize(15 * g_Widget->widthScalabilityFactor());
+
+    m_SliderBlock = new BmpWidget(m_Parent);
+    m_SliderBlock->hide();
+    m_SliderBlock->setBackgroundBmpPath(QString(":/Images/Resources/Images/VideoToolBarWidgetSliderBackground"));
+
+    m_SliderPress = new BmpWidget(m_Parent);
+    m_SliderPress->hide();
+    m_SliderPress->setBackgroundBmpPath(QString(":/Images/Resources/Images/VideoToolBarWidgetSliderPress"));
     m_Slider = new Slider(m_Parent);
     m_Slider->setTickMarksSize(QSize(40 * g_Widget->widthScalabilityFactor(), 40 * g_Widget->heightScalabilityFactor()));
-    m_Slider->setBackgroundBmpPath(QString(":/Images/Resources/Images/VideoToolBarWidgetSliderBackground"));
+   // m_Slider->setBackgroundBmpPath(QString(":/Images/Resources/Images/VideoToolBarWidgetSliderBackground"));
     m_Slider->setTickMarkTickMarkslBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderTickMarksBackground"));
     m_Slider->setTickMarksMillesimal(0);
     m_Slider->hide();
+
     m_VolumeBtn = new BmpButton(m_Parent);
     m_VolumeBtn->show();
     m_VolumeBtn->setNormalBmpPath(QString(":/Images/Resources/Images/TabBarWidgetVolumeBtnNormal"));
@@ -271,8 +301,9 @@ void VideoToolBarWidgetPrivate::initialize()
   //  m_IRBtn->setPressBmpPath(QString(":/Images/Resources/Images/VideoToolWidgetIRBtnNormal"));
     m_SwitchFunctionBtn = new BmpButton(m_Parent);
     m_SwitchFunctionBtn->show();
-    m_SwitchFunctionBtn->setNormalBmpPath(QString(":/Images/Resources/Images/VideoToolBarWidgetSwitchFunctionNormal"));
-    m_SwitchFunctionBtn->setPressBmpPath(QString(":/Images/Resources/Images/VideoToolBarWidgetSwitchFunctionNormal"));
+    m_SwitchFunctionBtn->setNormalBmpPath(QString(":/Images/Resources/Images/VideoToolBarWidgetBack"));
+    m_SwitchFunctionBtn->setPressBmpPath(QString(":/Images/Resources/Images/VideoToolBarWidgetBack-p"));
+
 }
 
 void VideoToolBarWidgetPrivate::connectAllSlots()
@@ -308,7 +339,10 @@ void VideoToolBarWidgetPrivate::connectAllSlots()
                      m_Parent, SLOT(onTickMarksMillesimalEnd(const int)),
                      type);
     QObject::connect(m_Slider, SIGNAL(tickMarksMillesimalStart(const int)),
-                     m_Parent, SLOT(onTickMarksMillesimalStart()),
+                     m_Parent, SLOT(onTickMarksMillesimalStart(const int)),
+                     type);
+    QObject::connect(m_Slider, SIGNAL(tickMarksMillesimalChange(const int)),
+                     m_Parent, SLOT(onTickMarksMillesimalChange(const int)),
                      type);
 }
 
