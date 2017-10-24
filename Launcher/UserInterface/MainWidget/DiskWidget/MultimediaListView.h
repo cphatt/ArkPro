@@ -15,9 +15,6 @@ public:
     void clearListView();
     void appendListView(QString path);
     void setCurrentIndex(const QModelIndex &index);
-private slots:
-    void onCurrentIndexChange(const QModelIndex &index) ;
-    void onPressIndexChanged(const QModelIndex &index) ;
 private:
     friend class MultimediaListViewPrivate;
     QScopedPointer<MultimediaListViewPrivate> m_Private;

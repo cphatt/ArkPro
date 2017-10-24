@@ -49,12 +49,10 @@ void CustomListView::setItemDelegate(QAbstractItemDelegate *delegate)
 
 void CustomListView::mousePressEvent(QMouseEvent *event)
 {
-    qDebug() << "CustomListView::mousePressEvent";
     m_Private->m_StartMovePoint = event->pos();
     m_Private->m_Filter = false;
     QModelIndex modelIndex = indexAt(event->pos());
     if (modelIndex.isValid()) {
-        qWarning() << "asdasdasd" << "ddd";
         emit onPressIndexChanged(modelIndex);
 
         update(modelIndex);
@@ -90,11 +88,7 @@ void CustomListView::mouseReleaseEvent(QMouseEvent *event)
             emit listViewItemRelease(modelIndex.row());
         }
     }
-    m_Private->m_StartMovePoint = event->pos();
-    m_Private->m_Filter = false;
-    QModelIndex modelIndex = indexAt(event->pos());
-    emit onPressIndexChanged(modelIndex);
-    emit onCurrentIndexChange(modelIndex);
+    emit onPressIndexChanged(QModelIndex());
     m_Private->m_Filter = false;
     QListView::mouseReleaseEvent(event);
 }

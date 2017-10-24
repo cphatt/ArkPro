@@ -1,0 +1,44 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <interface name="Local.DbusServer.AudioManager">
+    <signal name="onVolumeChange">
+      <arg name="volume" type="i" direction="out"/>
+    </signal>
+    <signal name="onVolumeRangeChange">
+      <arg name="min" type="i" direction="out"/>
+      <arg name="max" type="i" direction="out"/>
+    </signal>
+    <signal name="onFMChange">
+      <arg name="freq" type="i" direction="out"/>
+    </signal>
+    <signal name="onFMIsOpen">
+      <arg name="open" type="i" direction="out"/>
+    </signal>
+    <method name="requestStart">
+    </method>
+    <method name="synchronize">
+    </method>
+    <method name="requestIncreaseVolume">
+    </method>
+    <method name="requestDecreaseVolume">
+    </method>
+    <method name="requsetIsOpenFM">
+    </method>
+    <method name="requestFMToggle">
+    </method>
+    <method name="requestOpenFM">
+      <arg name="open" type="i" direction="in"/>
+    </method>
+    <method name="requestSetVolume">
+      <arg name="volume" type="i" direction="in"/>
+    </method>
+    <method name="requestSetFreqency">
+      <arg name="freq" type="i" direction="in"/>
+    </method>
+    <method name="requestget">
+    </method>
+    <method name="requstset">
+      <arg name="volume" type="i" direction="in"/>
+    </method>
+  </interface>
+</node>

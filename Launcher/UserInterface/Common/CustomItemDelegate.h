@@ -45,6 +45,10 @@ protected:
     void setModelData(QWidget* editor,
                       QAbstractItemModel *model,
                       const QModelIndex &index) const;
+protected slots:
+    virtual void onCurrentIndexChange(const QModelIndex &index);
+    virtual void onPressIndexChanged(const QModelIndex &index);
+
 private:
     friend class CustomItemDelegatePrivate;
     QScopedPointer<CustomItemDelegatePrivate> m_Private;

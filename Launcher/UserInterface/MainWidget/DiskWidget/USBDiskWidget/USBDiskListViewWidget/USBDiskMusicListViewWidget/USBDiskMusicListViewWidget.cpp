@@ -31,6 +31,7 @@ public:
     BmpButton* m_ListBtn;
     QTimer *m_Timer;
     bool m_RequestShow;
+    int m_LastIndex = -1;
 private:
     USBDiskMusicListViewWidget* m_Parent;
 };
@@ -91,6 +92,14 @@ void USBDiskMusicListViewWidget::customEvent(QEvent *event)
     }
     }
     QWidget::customEvent(event);
+}
+void USBDiskMusicListViewWidget::onMusicPlayerID3TagChange(const DeviceWatcherType type, const int index, const QString &fileName, const int endTime)
+{
+    qDebug() << "USBDiskMusicListViewWidget::onMusicPlayerID3TagChange" << index;
+    if (DWT_USBDisk == type) {
+        m_Private->m_LastIndex = index;
+        m_Private->m_MusicListView->setCurrentIndex(m_Private->m_MusicListView->model()->index(index, 0, QModelIndex()));
+    }
 }
 
 void USBDiskMusicListViewWidget::ontWidgetTypeChange(const Widget::Type type, const QString &status)

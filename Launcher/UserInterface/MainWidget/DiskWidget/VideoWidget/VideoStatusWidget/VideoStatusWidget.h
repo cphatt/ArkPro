@@ -23,7 +23,7 @@ protected:
     void customEvent(QEvent* event);
 protected slots:
     void ontWidgetTypeChange(const Widget::Type type, const QString &status);
-    void onVideoPlayerInformation(const QString &fileName, const int endTime);
+    void onVideoPlayerInformation(const int type, const int index,const QString &fileName, const int endTime);
 private:
     friend class VideoStatusWidgetPrivate;
     QScopedPointer<VideoStatusWidgetPrivate> m_Private;

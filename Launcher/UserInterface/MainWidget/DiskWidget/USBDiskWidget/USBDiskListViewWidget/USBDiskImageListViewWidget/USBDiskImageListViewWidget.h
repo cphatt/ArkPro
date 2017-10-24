@@ -32,6 +32,8 @@ protected slots:
 //    void onImagePlayerFileNames(const DeviceWatcherType type, const QString &xml);
     void onImagePlayerPlayStatus(const int status);
     //        void onImagePlayerPlayStatus(const ImagePlayerPlayStatus status);
+    void onImagePlayerChange(const int type, const QString &filePath, const int index, const int percent, const int rotate);
+    //    void onImagePlayerChange(const DeviceWatcherType type, const QString &filePath, const int index, const int percent, const int rotate);
 private slots:
     void onImageListViewItemRelease(const int index);
     void onListBtnRelease();

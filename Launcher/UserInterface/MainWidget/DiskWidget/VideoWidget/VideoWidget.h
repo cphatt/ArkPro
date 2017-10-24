@@ -29,7 +29,7 @@ protected slots:
     //Multimedia::Interface
     void onVideoPlayerPlayStatus(const int status);
     //    void onVideoPlayerPlayStatus(const VideoPlayerPlayStatus status);
-    void onVideoPlayerInformation(const QString &fileName, const int endTime);
+    void onVideoPlayerInformation(const int type, const int index,const QString &fileName, const int endTime);
 private slots:
     void onTimeout();
 private:

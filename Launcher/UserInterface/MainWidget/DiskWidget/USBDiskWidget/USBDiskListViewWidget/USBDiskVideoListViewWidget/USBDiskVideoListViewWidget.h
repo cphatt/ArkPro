@@ -32,6 +32,7 @@ protected slots:
     //    void onVideoPlayerFileNames(const DeviceWatcherType type, const QString &xml);
     void onVideoPlayerPlayStatus(const int status);
     //    void onVideoPlayerPlayStatus(const VideoPlayerPlayStatus status);
+     void onVideoPlayerInformation(const int type, const int index, const QString &fileName, const int endTime);
 private slots:
     void onVideoListViewItemRelease(const int index);
     void onToolButtonRelease();

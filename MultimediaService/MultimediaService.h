@@ -142,7 +142,8 @@ public:
         //    virtual void onMusicPlayerPlayStatus(const MusicPlayerPlayStatus status) = 0;
         virtual void onMusicPlayerElapsedInformation(const int elapsedTime,
                                                      const int elapsedMillesimal) = 0;
-        virtual void onMusicPlayerID3TagChange(const int index,
+        virtual void onMusicPlayerID3TagChange(const int type,
+                                               const int index,
                                                const QString &fileName,
                                                const int endTime) = 0;
         virtual void onMusicPlayerFileNames(const int type, const QString &xml) = 0;
@@ -161,7 +162,7 @@ public:
         //    void onVideoPlayerPlayStatus(const VideoPlayerPlayStatus status);
         virtual void onVideoPlayerFileNames(const int type, const QString& xml) = 0;
         //    void onVideoPlayerFileNames(const DeviceWatcherType type, const QString &xml);
-        virtual void onVideoPlayerInformation(const QString &fileName, const int endTime) = 0;
+        virtual void onVideoPlayerInformation(const int type, const int index,const QString &fileName, const int endTime) = 0;
         virtual void onVideoPlayerElapsedInformation(const int elapsedTime, const int elapsedMillesimal) = 0;
     };
     explicit MultimediaService(QObject* parent = NULL);
@@ -236,7 +237,8 @@ signals:
     //    void onMusicPlayerPlayStatus(const MusicPlayerPlayStatus status);
     void onMusicPlayerElapsedInformation(const int elapsedTime,
                                          const int elapsedMillesimal);
-    void onMusicPlayerID3TagChange(const int index,
+    void onMusicPlayerID3TagChange(const int type,
+                                    const int index,
                                            const QString &fileName,
                                            const int endTime);
     void onMusicPlayerFileNames(const int type, const QString &xml);
@@ -255,7 +257,7 @@ signals:
     //    void onVideoPlayerPlayStatus(const VideoPlayerPlayStatus status);
     void onVideoPlayerFileNames(const int type, const QString& xml);
     //    void onVideoPlayerFileNames(const DeviceWatcherType type, const QString &xml);
-    void onVideoPlayerInformation(const QString &fileName, const int endTime);
+    void onVideoPlayerInformation(const int type, const int index,const QString &fileName, const int endTime);
     void onVideoPlayerElapsedInformation(const int elapsedTime, const int elapsedMillesimal);
 private:
     friend class MultimediaServicePrivate;

@@ -90,6 +90,13 @@ void CustomItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *model
 {
     QItemDelegate::setModelData(editor, model, index);
 }
+void CustomItemDelegate::onCurrentIndexChange(const QModelIndex &index)
+{
+}
+
+void CustomItemDelegate::onPressIndexChanged(const QModelIndex &index)
+{
+}
 
 void CustomItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {

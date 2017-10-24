@@ -40,7 +40,8 @@ public:
         //    void onMusicPlayerPlayStatus(const MusicPlayerPlayStatus status);
         void onMusicPlayerElapsedInformation(const int elapsedTime,
                                              const int elapsedMillesimal);
-        void onMusicPlayerID3TagChange(const int index,
+        void onMusicPlayerID3TagChange(const int type,
+                                        const int index,
                                        const QString &fileName,
                                        const int endTime);
         void onMusicPlayerFileNames(const int type, const QString &xml);
@@ -59,7 +60,7 @@ public:
         //    void onVideoPlayerPlayStatus(const VideoPlayerPlayStatus status);
         void onVideoPlayerFileNames(const int type, const QString& xml);
         //    void onVideoPlayerFileNames(const DeviceWatcherType type, const QString &xml);
-        void onVideoPlayerInformation(const QString &fileName, const int endTime);
+        void onVideoPlayerInformation(const int type, const int index,const QString &fileName, const int endTime);
         void onVideoPlayerElapsedInformation(const int elapsedTime, const int elapsedMillesimal);
     };
     inline static Multimedia* instance() {
@@ -127,7 +128,8 @@ signals:
     //    void onMusicPlayerPlayStatus(const MusicPlayerPlayStatus status);
     void onMusicPlayerElapsedInformation(const int elapsedTime,
                                          const int elapsedMillesimal);
-    void onMusicPlayerID3TagChange(const int index,
+    void onMusicPlayerID3TagChange(const int type,
+                                    const int index,
                                    const QString &fileName,
                                    const int endTime);
     void onMusicPlayerFileNames(const int type, const QString &xml);
@@ -146,7 +148,7 @@ signals:
     //    void onVideoPlayerPlayStatus(const VideoPlayerPlayStatus status);
     void onVideoPlayerFileNames(const int type, const QString& xml);
     //    void onVideoPlayerFileNames(const DeviceWatcherType type, const QString &xml);
-    void onVideoPlayerInformation(const QString &fileName, const int endTime);
+    void onVideoPlayerInformation(const int type, const int index,const QString &fileName, const int endTime);
     void onVideoPlayerElapsedInformation(const int elapsedTime, const int elapsedMillesimal);
 protected:
     void customEvent(QEvent* event);

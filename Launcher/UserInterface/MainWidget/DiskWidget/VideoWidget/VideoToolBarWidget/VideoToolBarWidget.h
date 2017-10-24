@@ -28,7 +28,7 @@ protected slots:
     //    void onVideoPlayerShowStatus(const VideoPlayerShowStatus status);
     void onVideoPlayerPlayStatus(const int status);
     //    void onVideoPlayerPlayStatus(const VideoPlayerPlayStatus status);
-    void onVideoPlayerInformation(const QString &fileName, const int endTime);
+    void onVideoPlayerInformation(const int type, const int index,const QString &fileName, const int endTime);
     void onVideoPlayerElapsedInformation(const int elapsedTime, const int elapsedMillesimal);
 private slots:
     void onToolButtonRelease();

@@ -30,8 +30,6 @@ class MultimediaDelegate : public CustomItemDelegate
 public:
     explicit MultimediaDelegate(QWidget* widget = NULL);
     ~MultimediaDelegate();
-    void onCurrentIndexChange(const QModelIndex &index) ;
-    void onPressIndexChanged(const QModelIndex &index) ;
 protected:
     void mousePressEvent(QMouseEvent* event,
                          QAbstractItemModel *model,
@@ -48,6 +46,10 @@ protected:
     void paint(QPainter* painter,
                const QStyleOptionViewItem &option,
                const QModelIndex &index) const;
+protected slots:
+    void onCurrentIndexChange(const QModelIndex &index) ;
+    void onPressIndexChanged(const QModelIndex &index) ;
+
 private:
     QModelIndex m_PressIndex;
     QModelIndex m_CurrentIndex;
@@ -102,19 +104,9 @@ void MultimediaListView::appendListView(QString path)  //媒体列表中单个�
 
 void MultimediaListView::setCurrentIndex(const QModelIndex &index)
 {
+    qDebug() << "setCurrentIndex"<<index;
     CustomListView::setCurrentIndex(index);
-    qDebug() << "asaadda";
     emit onCurrentIndexChange(index);
-}
-
-void MultimediaListView::onCurrentIndexChange(const QModelIndex &index)
-{
-    m_Private->m_MultimediaDelegate->onCurrentIndexChange(index);
-}
-
-void MultimediaListView::onPressIndexChanged(const QModelIndex &index)
-{
-    m_Private->m_MultimediaDelegate->onPressIndexChanged(index);
 }
 
 MultimediaListViewPrivate::MultimediaListViewPrivate(MultimediaListView *parent)
@@ -124,7 +116,7 @@ MultimediaListViewPrivate::MultimediaListViewPrivate(MultimediaListView *parent)
     m_MultimediaDelegate = NULL;
     m_CustomScrollBar = NULL;
     initialize();
-    connectAllSlots();
+  //  connectAllSlots();
 
 }
 
@@ -178,16 +170,8 @@ void MultimediaListViewPrivate::initialize()
     m_Parent->setModel(m_StandardItemModel);
     qDebug() << "DDDDDDDDDDDDDD";
 }
-void MultimediaListViewPrivate::connectAllSlots(){
-    Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::UniqueConnection | Qt::AutoConnection);
-    QObject::connect(m_Parent,   SIGNAL(onCurrentIndexChange(const QModelIndex &)),
-                     m_Parent,    SLOT(onCurrentIndexChange(const QModelIndex &)),
-                     type);
-    QObject::connect(m_Parent,   SIGNAL(onPressIndexChanged(const QModelIndex &)),
-                     m_Parent,    SLOT(onPressIndexChanged(const QModelIndex &)),
-                     type);
 
-}
+
 MultimediaVariant::MultimediaVariant()
 {
     m_Text.clear();

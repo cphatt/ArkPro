@@ -245,13 +245,13 @@ Q_SIGNALS: // SIGNALS
     void onMusicFilePath(const QString &path, int type);
     void onMusicPlayerElapsedInformation(int elapsedTime, int elapsedMillesimal);
     void onMusicPlayerFileNames(int type, const QString &xml);
-    void onMusicPlayerID3TagChange(int index, const QString &fileName, int endTime);
+    void onMusicPlayerID3TagChange(int type, int index, const QString &fileName, int endTime);
     void onMusicPlayerPlayMode(int mode);
     void onMusicPlayerPlayStatus(int status);
     void onVideoFilePath(const QString &path, int type);
     void onVideoPlayerElapsedInformation(int elapsedTime, int elapsedMillesimal);
     void onVideoPlayerFileNames(int type, const QString &xml);
-    void onVideoPlayerInformation(const QString &fileName, int endTime);
+    void onVideoPlayerInformation(const int type, const int index,const QString &fileName, int endTime);
     void onVideoPlayerPlayStatus(int status);
     void onVideoPlayerShowStatus(int status);
 };

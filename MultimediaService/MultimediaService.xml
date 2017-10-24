@@ -1,0 +1,155 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <interface name="Local.DbusServer.Multimedia">
+    <signal name="onDeviceWatcherStatus">
+      <arg name="type" type="i" direction="out"/>
+      <arg name="status" type="i" direction="out"/>
+    </signal>
+    <signal name="onMusicFilePath">
+      <arg name="path" type="s" direction="out"/>
+      <arg name="type" type="i" direction="out"/>
+    </signal>
+    <signal name="onImageFilePath">
+      <arg name="path" type="s" direction="out"/>
+      <arg name="type" type="i" direction="out"/>
+    </signal>
+    <signal name="onVideoFilePath">
+      <arg name="path" type="s" direction="out"/>
+      <arg name="type" type="i" direction="out"/>
+    </signal>
+    <signal name="onMusicPlayerPlayMode">
+      <arg name="mode" type="i" direction="out"/>
+    </signal>
+    <signal name="onMusicPlayerPlayStatus">
+      <arg name="status" type="i" direction="out"/>
+    </signal>
+    <signal name="onMusicPlayerElapsedInformation">
+      <arg name="elapsedTime" type="i" direction="out"/>
+      <arg name="elapsedMillesimal" type="i" direction="out"/>
+    </signal>
+    <signal name="onMusicPlayerID3TagChange">
+      <arg name="index" type="i" direction="out"/>
+      <arg name="fileName" type="s" direction="out"/>
+      <arg name="endTime" type="i" direction="out"/>
+    </signal>
+    <signal name="onMusicPlayerFileNames">
+      <arg name="type" type="i" direction="out"/>
+      <arg name="xml" type="s" direction="out"/>
+    </signal>
+    <signal name="onImagePlayerFileNames">
+      <arg name="type" type="i" direction="out"/>
+      <arg name="xml" type="s" direction="out"/>
+    </signal>
+    <signal name="onImagePlayerPlayStatus">
+      <arg name="status" type="i" direction="out"/>
+    </signal>
+    <signal name="onImagePlayerChange">
+      <arg name="type" type="i" direction="out"/>
+      <arg name="filePath" type="s" direction="out"/>
+      <arg name="index" type="i" direction="out"/>
+      <arg name="scale" type="i" direction="out"/>
+      <arg name="rotate" type="i" direction="out"/>
+    </signal>
+    <signal name="onVideoPlayerShowStatus">
+      <arg name="status" type="i" direction="out"/>
+    </signal>
+    <signal name="onVideoPlayerPlayStatus">
+      <arg name="status" type="i" direction="out"/>
+    </signal>
+    <signal name="onVideoPlayerFileNames">
+      <arg name="type" type="i" direction="out"/>
+      <arg name="xml" type="s" direction="out"/>
+    </signal>
+    <signal name="onVideoPlayerInformation">
+      <arg name="fileName" type="s" direction="out"/>
+      <arg name="endTime" type="i" direction="out"/>
+    </signal>
+    <signal name="onVideoPlayerElapsedInformation">
+      <arg name="elapsedTime" type="i" direction="out"/>
+      <arg name="elapsedMillesimal" type="i" direction="out"/>
+    </signal>
+    <method name="releaseAudioSource">
+      <arg name="source" type="i" direction="in"/>
+    </method>
+    <method name="synchronize">
+    </method>
+    <method name="deviceWatcherCheckStatus">
+      <arg name="type" type="i" direction="in"/>
+    </method>
+    <method name="musicPlayerRequestFileNames">
+    </method>
+    <method name="musicPlayerSetPlayModeToggle">
+    </method>
+    <method name="musicPlayerSetPlayMode">
+      <arg name="mode" type="i" direction="in"/>
+    </method>
+    <method name="musicPlayerSetPlayStatusToggle">
+    </method>
+    <method name="musicPlayerSetPlayStatus">
+      <arg name="status" type="i" direction="in"/>
+    </method>
+    <method name="musicPlayerPlayListViewIndex">
+      <arg name="type" type="i" direction="in"/>
+      <arg name="index" type="i" direction="in"/>
+    </method>
+    <method name="musicPlayerPlayPreviousListViewIndex">
+    </method>
+    <method name="musicPlayerPlayNextListViewIndex">
+    </method>
+    <method name="musicPlayerSeekToMillesimal">
+      <arg name="millesimal" type="i" direction="in"/>
+    </method>
+    <method name="musicPlayerExit">
+    </method>
+    <method name="imagePlayerRequestFileNames">
+      <arg name="type" type="i" direction="in"/>
+    </method>
+    <method name="imagePlayerPlayListViewIndex">
+      <arg name="type" type="i" direction="in"/>
+      <arg name="index" type="i" direction="in"/>
+    </method>
+    <method name="imagePlayerPlayPreviousListViewIndex">
+    </method>
+    <method name="imagePlayerPlayNextListViewIndex">
+    </method>
+    <method name="imagePlayerRotateImage">
+    </method>
+    <method name="imagePlayerZoomInImage">
+    </method>
+    <method name="imagePlayerZoomOutImage">
+    </method>
+    <method name="imagePlayerSetPlayStatusToggle">
+    </method>
+    <method name="imagePlayerSetPlayStatus">
+      <arg name="status" type="i" direction="in"/>
+    </method>
+    <method name="imagePlayerExit">
+    </method>
+    <method name="videoPlayerRequestFileNames">
+      <arg name="type" type="i" direction="in"/>
+    </method>
+    <method name="videoPlayerSetPlayStatusToggle">
+    </method>
+    <method name="videoPlayerSetShowStatus">
+      <arg name="status" type="i" direction="in"/>
+    </method>
+    <method name="videoPlayerSetPlayStatus">
+      <arg name="status" type="i" direction="in"/>
+    </method>
+    <method name="videoPlayerPlayListViewIndex">
+      <arg name="type" type="i" direction="in"/>
+      <arg name="index" type="i" direction="in"/>
+      <arg name="x" type="i" direction="in"/>
+      <arg name="y" type="i" direction="in"/>
+      <arg name="width" type="i" direction="in"/>
+      <arg name="height" type="i" direction="in"/>
+    </method>
+    <method name="videoPlayerPlayPreviousListViewIndex">
+    </method>
+    <method name="videoPlayerPlayNextListViewIndex">
+    </method>
+    <method name="videoPlayerSeekToMillesimal">
+      <arg name="millesimal" type="i" direction="in"/>
+    </method>
+  </interface>
+</node>

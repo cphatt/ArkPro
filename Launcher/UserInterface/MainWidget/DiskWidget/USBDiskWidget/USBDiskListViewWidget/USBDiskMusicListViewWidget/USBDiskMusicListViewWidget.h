@@ -31,6 +31,10 @@ protected slots:
     void onMusicPlayerFileNames(const int type, const QString &xml);
     void onMusicPlayerPlayStatus(const int status);
     //    void onMusicPlayerPlayStatus(const MusicPlayerPlayStatus status);
+    void onMusicPlayerID3TagChange(const int type,
+                                   const int index,
+                                   const QString &fileName,
+                                   const int endTime);
 private slots:
     void onMusicListViewItemRelease(const int index);
     void onToolButtonRelease();

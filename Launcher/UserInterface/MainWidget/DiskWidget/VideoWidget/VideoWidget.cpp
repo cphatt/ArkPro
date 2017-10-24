@@ -127,7 +127,7 @@ void VideoWidget::onVideoPlayerPlayStatus(const VideoPlayerPlayStatus playStatus
     }
 }
 
-void VideoWidget::onVideoPlayerInformation(const QString &fileName, const int endTime)
+void VideoWidget::onVideoPlayerInformation(const DeviceWatcherType type, const int index,const QString &fileName, const int endTime)
 {
     m_Private->m_Timer->start();
     //    qDebug() << "onVideoInformation" << fileName << endTime;

@@ -78,7 +78,7 @@ void HomeWidget::resizeEvent(QResizeEvent *event)
     int bmpWidth(261);
     int bmpHeight(172);
     g_Widget->geometryFit(628, 103, 79, 82, m_Private->m_Media);
-    g_Widget->geometryFit(639, 202, 60, 28, m_Private->m_MediaText);
+    g_Widget->geometryFit(619, 202, 100, 28, m_Private->m_MediaText);
     g_Widget->geometryFit(359, 143, 87, 143, m_Private->m_Link);
     g_Widget->geometryFit(339, 331, 128, 50, m_Private->m_LinkText);
     g_Widget->geometryFit(628, 270, 88, 82, m_Private->m_Setting);

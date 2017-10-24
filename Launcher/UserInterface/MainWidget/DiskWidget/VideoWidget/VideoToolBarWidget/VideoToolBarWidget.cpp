@@ -162,7 +162,7 @@ void VideoToolBarWidget::onVideoPlayerPlayStatus(const VideoPlayerPlayStatus sta
     }
 }
 
-void VideoToolBarWidget::onVideoPlayerInformation(const QString &fileName, const int endTime)
+void VideoToolBarWidget::onVideoPlayerInformation(const DeviceWatcherType type, const int index,const QString &fileName, const int endTime)
 {
     m_Private->m_EndTimeText->setText(m_Private->convertTime(endTime));
     m_Private->m_EndTimeText->setVisible(true);

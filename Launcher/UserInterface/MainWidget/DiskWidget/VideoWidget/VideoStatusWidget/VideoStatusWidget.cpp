@@ -96,7 +96,7 @@ void VideoStatusWidget::ontWidgetTypeChange(const Widget::Type type, const QStri
     }
 }
 
-void VideoStatusWidget::onVideoPlayerInformation(const QString &fileName, const int endTime)
+void VideoStatusWidget::onVideoPlayerInformation(const DeviceWatcherType type, const int index,const QString &fileName, const int endTime)
 {
     qDebug() << "VideoStatusWidget::onVideoPlayerInformation" << fileName;
     m_Private->m_FileNameText->setText(fileName);

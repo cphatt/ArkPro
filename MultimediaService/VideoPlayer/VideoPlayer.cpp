@@ -553,14 +553,14 @@ void VideoPlayerPrivate::endTimePositionHandler(const QString &output)
             if (QChar('\n') == output.at(startPos + length + i)) {
                 m_EndTime = static_cast<int>(endTime.toFloat());
                 qDebug() << "m_EndTime" << m_EndTime;
-                emit m_Parent->onVideoPlayerInformation(QFileInfo(temp.at(m_PlayIndex)).fileName(), m_EndTime);
+                emit m_Parent->onVideoPlayerInformation(m_DiskType, m_PlayIndex, QFileInfo(temp.at(m_PlayIndex)).fileName(), m_EndTime);
                 break;
             }
             endTime += output.at(startPos + length + i);
         }
     }
     if (0 == m_EndTime) {
-        emit m_Parent->onVideoPlayerInformation(QFileInfo(temp.at(m_PlayIndex)).fileName(), m_EndTime);
+        emit m_Parent->onVideoPlayerInformation(m_DiskType, m_PlayIndex,QFileInfo(temp.at(m_PlayIndex)).fileName(), m_EndTime);
     }
     qDebug() << "m_EndTime" << m_EndTime;
 }

@@ -28,7 +28,8 @@ protected slots:
     void onMusicPlayerPlayStatus(const int status);
     //        void onMusicPlayerPlayStatus(const MusicPlayerPlayStatus status);
     void onMusicPlayerElapsedInformation(const int elapsedTime, const int elapsedMillesimal);
-    void onMusicPlayerID3TagChange(const int index,
+    void onMusicPlayerID3TagChange(const int type,
+                                   const int index,
                                    const QString &fileName,
                                    const int endTime);
 public slots:

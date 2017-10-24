@@ -28,6 +28,7 @@ public:
     MessageBox* m_USBDiskVideoMessageBox;
     BmpButton* m_ListBtn;
     bool m_RequestShow;
+    int m_LastIndex = -1;
 private:
     USBDiskVideoListViewWidget* m_Parent;
 };
@@ -222,7 +223,14 @@ void USBDiskVideoListViewWidget::onVideoPlayerPlayStatus(const VideoPlayerPlaySt
     }
     }
 }
-
+void USBDiskVideoListViewWidget::onVideoPlayerInformation(const DeviceWatcherType type, const int index, const QString &fileName, const int endTime)
+{
+    qDebug() << "USBDiskVideoListViewWidget::onVideoPlayerInformation" << index;
+    if (DWT_USBDisk == type) {
+        m_Private->m_LastIndex = index;
+        m_Private->m_VideoListView->setCurrentIndex(m_Private->m_VideoListView->model()->index(index, 0, QModelIndex()));
+    }
+}
 void USBDiskVideoListViewWidget::onVideoListViewItemRelease(const int index)
 {
     m_Private->m_RequestShow = true;

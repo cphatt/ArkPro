@@ -27,7 +27,7 @@ public:
         //    virtual void onVideoPlayerPlayStatus(const VideoPlayerPlayStatus status) = 0;
         virtual void onVideoPlayerFileNames(const int type, const QString &xml) = 0;
         //    virtual void onVideoPlayerFileNames(const DeviceWatcherType type, const QString &xml) = 0;
-        virtual void onVideoPlayerInformation(const QString &fileName, const int endTime) = 0;
+        virtual void onVideoPlayerInformation(const int type, const int index,const QString &fileName, const int endTime) = 0;
         virtual void onVideoPlayerElapsedInformation(const int elapsedTime, const int elapsedMillesimal) = 0;
     };
     inline static VideoPlayer* instance() {
@@ -57,7 +57,7 @@ signals:
     //    void onVideoPlayerPlayStatus(const VideoPlayerPlayStatus status);
     void onVideoPlayerFileNames(const int type, const QString &xml);
     //    void onVideoPlayerFileNames(const DeviceWatcherType type, const QString &xml);
-    void onVideoPlayerInformation(const QString &fileName, const int endTime);
+    void onVideoPlayerInformation(const int type, const int index,const QString &fileName, const int endTime);
     void onVideoPlayerElapsedInformation(const int elapsedTime, const int elapsedMillesimal);
 protected slots:
     //DeviceWatcher::Interface

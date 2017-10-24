@@ -27,7 +27,8 @@ public:
         //    virtual void onMusicPlayerPlayStatus(const MusicPlayerPlayStatus status) = 0;
         virtual void onMusicPlayerElapsedInformation(const int elapsedTime,
                                                      const int elapsedMillesimal) = 0;
-        virtual void onMusicPlayerID3TagChange(const int index,
+        virtual void onMusicPlayerID3TagChange(const int type,
+                                               const int index,
                                                const QString &fileName,
                                                const int endTime) = 0;
         virtual void onMusicPlayerFileNames(const int type, const QString &xml) = 0;
@@ -61,7 +62,9 @@ signals:
     //    void onMusicPlayerPlayStatus(const MusicPlayerPlayStatus status);
     void onMusicPlayerElapsedInformation(const int elapsedTime,
                                          const int elapsedMillesimal);
-    void onMusicPlayerID3TagChange(const int index,
+
+    void onMusicPlayerID3TagChange(const int type,
+                                   const int index,
                                    const QString &fileName,
                                    const int endTime);
     void onMusicPlayerFileNames(const int type, const QString &xml);

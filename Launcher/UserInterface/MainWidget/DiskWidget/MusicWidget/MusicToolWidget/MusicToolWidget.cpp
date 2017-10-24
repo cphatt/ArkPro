@@ -238,7 +238,7 @@ void MusicToolWidget::onMusicPlayerElapsedInformation(const int elapsedTime, con
 
 }
 
-void MusicToolWidget::onMusicPlayerID3TagChange(const int index, const QString &filePath, const int endTime)
+void MusicToolWidget::onMusicPlayerID3TagChange(const DeviceWatcherType type, const int index, const QString &filePath, const int endTime)
 {
     qDebug() << filePath << endTime;
 
