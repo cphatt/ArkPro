@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'Multimedia.h'
 **
-** Created: Mon Oct 23 11:19:09 2017
+** Created: Tue Oct 24 11:31:57 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -38,15 +38,15 @@ static const uint qt_meta_data_Multimedia[] = {
      157,  152,   11,   11, 0x05,
      191,  184,   11,   11, 0x05,
      250,  220,   11,   11, 0x05,
-     314,  291,   11,   11, 0x05,
-     366,  357,   11,   11, 0x05,
-     402,  357,   11,   11, 0x05,
-     438,  184,   11,   11, 0x05,
-     502,  467,   11,   11, 0x05,
-     547,  184,   11,   11, 0x05,
-     576,  184,   11,   11, 0x05,
-     605,  357,   11,   11, 0x05,
-     658,  641,   11,   11, 0x05,
+     319,  291,   11,   11, 0x05,
+     375,  366,   11,   11, 0x05,
+     411,  366,   11,   11, 0x05,
+     447,  184,   11,   11, 0x05,
+     511,  476,   11,   11, 0x05,
+     556,  184,   11,   11, 0x05,
+     585,  184,   11,   11, 0x05,
+     614,  366,   11,   11, 0x05,
+     650,  291,   11,   11, 0x05,
      696,  220,   11,   11, 0x05,
 
  // slots: signature, parameters, type, tag, flags
@@ -66,8 +66,8 @@ static const char qt_meta_stringdata_Multimedia[] = {
     "onMusicPlayerPlayStatus(int)\0"
     "elapsedTime,elapsedMillesimal\0"
     "onMusicPlayerElapsedInformation(int,int)\0"
-    "index,fileName,endTime\0"
-    "onMusicPlayerID3TagChange(int,QString,int)\0"
+    "type,index,fileName,endTime\0"
+    "onMusicPlayerID3TagChange(int,int,QString,int)\0"
     "type,xml\0onMusicPlayerFileNames(int,QString)\0"
     "onImagePlayerFileNames(int,QString)\0"
     "onImagePlayerPlayStatus(int)\0"
@@ -76,7 +76,7 @@ static const char qt_meta_stringdata_Multimedia[] = {
     "onVideoPlayerShowStatus(int)\0"
     "onVideoPlayerPlayStatus(int)\0"
     "onVideoPlayerFileNames(int,QString)\0"
-    "fileName,endTime\0onVideoPlayerInformation(QString,int)\0"
+    "onVideoPlayerInformation(int,int,QString,int)\0"
     "onVideoPlayerElapsedInformation(int,int)\0"
     "service\0onServiceRegistered(QString)\0"
     "onServiceUnregistered(QString)\0"
@@ -122,7 +122,7 @@ int Multimedia::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 4: onMusicPlayerPlayMode((*reinterpret_cast< const int(*)>(_a[1]))); break;
         case 5: onMusicPlayerPlayStatus((*reinterpret_cast< const int(*)>(_a[1]))); break;
         case 6: onMusicPlayerElapsedInformation((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
-        case 7: onMusicPlayerID3TagChange((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const int(*)>(_a[3]))); break;
+        case 7: onMusicPlayerID3TagChange((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< const int(*)>(_a[4]))); break;
         case 8: onMusicPlayerFileNames((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         case 9: onImagePlayerFileNames((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         case 10: onImagePlayerPlayStatus((*reinterpret_cast< const int(*)>(_a[1]))); break;
@@ -130,7 +130,7 @@ int Multimedia::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 12: onVideoPlayerShowStatus((*reinterpret_cast< const int(*)>(_a[1]))); break;
         case 13: onVideoPlayerPlayStatus((*reinterpret_cast< const int(*)>(_a[1]))); break;
         case 14: onVideoPlayerFileNames((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
-        case 15: onVideoPlayerInformation((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
+        case 15: onVideoPlayerInformation((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< const int(*)>(_a[4]))); break;
         case 16: onVideoPlayerElapsedInformation((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
         case 17: onServiceRegistered((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 18: onServiceUnregistered((*reinterpret_cast< const QString(*)>(_a[1]))); break;
@@ -191,9 +191,9 @@ void Multimedia::onMusicPlayerElapsedInformation(const int _t1, const int _t2)
 }
 
 // SIGNAL 7
-void Multimedia::onMusicPlayerID3TagChange(const int _t1, const QString & _t2, const int _t3)
+void Multimedia::onMusicPlayerID3TagChange(const int _t1, const int _t2, const QString & _t3, const int _t4)
 {
-    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)) };
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)) };
     QMetaObject::activate(this, &staticMetaObject, 7, _a);
 }
 
@@ -247,9 +247,9 @@ void Multimedia::onVideoPlayerFileNames(const int _t1, const QString & _t2)
 }
 
 // SIGNAL 15
-void Multimedia::onVideoPlayerInformation(const QString & _t1, const int _t2)
+void Multimedia::onVideoPlayerInformation(const int _t1, const int _t2, const QString & _t3, const int _t4)
 {
-    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)) };
     QMetaObject::activate(this, &staticMetaObject, 15, _a);
 }
 

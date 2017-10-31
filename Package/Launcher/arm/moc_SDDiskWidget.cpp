@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'SDDiskWidget.h'
 **
-** Created: Mon Oct 23 11:18:58 2017
+** Created: Tue Oct 24 11:31:48 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

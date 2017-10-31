@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'MusicPlayer.h'
 **
-** Created: Mon Oct 23 11:17:13 2017
+** Created: Tue Oct 24 11:30:53 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -34,21 +34,21 @@ static const uint qt_meta_data_MusicPlayer[] = {
       18,   13,   12,   12, 0x05,
       52,   45,   12,   12, 0x05,
      111,   81,   12,   12, 0x05,
-     175,  152,   12,   12, 0x05,
-     227,  218,   12,   12, 0x05,
+     180,  152,   12,   12, 0x05,
+     236,  227,   12,   12, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-     275,  263,   12,   12, 0x09,
-     316,  306,   12,   12, 0x09,
-     345,  306,   12,   12, 0x09,
-     374,  306,   12,   12, 0x09,
-     403,   12,   12,   12, 0x08,
-     415,   12,   12,   12, 0x08,
-     447,  427,   12,   12, 0x08,
-     490,  484,   12,   12, 0x08,
-     528,  522,   12,   12, 0x08,
-     567,   12,   12,   12, 0x08,
-     595,   12,   12,   12, 0x08,
+     284,  272,   12,   12, 0x09,
+     325,  315,   12,   12, 0x09,
+     354,  315,   12,   12, 0x09,
+     383,  315,   12,   12, 0x09,
+     412,   12,   12,   12, 0x08,
+     424,   12,   12,   12, 0x08,
+     456,  436,   12,   12, 0x08,
+     499,  493,   12,   12, 0x08,
+     537,  531,   12,   12, 0x08,
+     576,   12,   12,   12, 0x08,
+     604,   12,   12,   12, 0x08,
 
        0        // eod
 };
@@ -58,8 +58,8 @@ static const char qt_meta_stringdata_MusicPlayer[] = {
     "status\0onMusicPlayerPlayStatus(int)\0"
     "elapsedTime,elapsedMillesimal\0"
     "onMusicPlayerElapsedInformation(int,int)\0"
-    "index,fileName,endTime\0"
-    "onMusicPlayerID3TagChange(int,QString,int)\0"
+    "type,index,fileName,endTime\0"
+    "onMusicPlayerID3TagChange(int,int,QString,int)\0"
     "type,xml\0onMusicPlayerFileNames(int,QString)\0"
     "type,status\0onDeviceWatcherStatus(int,int)\0"
     "path,type\0onMusicFilePath(QString,int)\0"
@@ -105,7 +105,7 @@ int MusicPlayer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 0: onMusicPlayerPlayMode((*reinterpret_cast< const int(*)>(_a[1]))); break;
         case 1: onMusicPlayerPlayStatus((*reinterpret_cast< const int(*)>(_a[1]))); break;
         case 2: onMusicPlayerElapsedInformation((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
-        case 3: onMusicPlayerID3TagChange((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const int(*)>(_a[3]))); break;
+        case 3: onMusicPlayerID3TagChange((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< const int(*)>(_a[4]))); break;
         case 4: onMusicPlayerFileNames((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         case 5: onDeviceWatcherStatus((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
         case 6: onMusicFilePath((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
@@ -147,9 +147,9 @@ void MusicPlayer::onMusicPlayerElapsedInformation(const int _t1, const int _t2)
 }
 
 // SIGNAL 3
-void MusicPlayer::onMusicPlayerID3TagChange(const int _t1, const QString & _t2, const int _t3)
+void MusicPlayer::onMusicPlayerID3TagChange(const int _t1, const int _t2, const QString & _t3, const int _t4)
 {
-    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)) };
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)) };
     QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'USBDiskMusicListViewWidget.h'
 **
-** Created: Mon Oct 23 11:18:53 2017
+** Created: Tue Oct 24 11:31:44 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_USBDiskMusicListViewWidget[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -35,9 +35,10 @@ static const uint qt_meta_data_USBDiskMusicListViewWidget[] = {
       82,   28,   27,   27, 0x09,
      122,  113,   27,   27, 0x09,
      165,  158,   27,   27, 0x09,
-     200,  194,   27,   27, 0x08,
-     232,   27,   27,   27, 0x08,
-     254,   27,   27,   27, 0x08,
+     222,  194,   27,   27, 0x09,
+     275,  269,   27,   27, 0x08,
+     307,   27,   27,   27, 0x08,
+     329,   27,   27,   27, 0x08,
 
        0        // eod
 };
@@ -48,6 +49,8 @@ static const char qt_meta_stringdata_USBDiskMusicListViewWidget[] = {
     "onDeviceWatcherStatus(int,int)\0type,xml\0"
     "onMusicPlayerFileNames(int,QString)\0"
     "status\0onMusicPlayerPlayStatus(int)\0"
+    "type,index,fileName,endTime\0"
+    "onMusicPlayerID3TagChange(int,int,QString,int)\0"
     "index\0onMusicListViewItemRelease(int)\0"
     "onToolButtonRelease()\0onTimeOut()\0"
 };
@@ -89,12 +92,13 @@ int USBDiskMusicListViewWidget::qt_metacall(QMetaObject::Call _c, int _id, void 
         case 1: onDeviceWatcherStatus((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
         case 2: onMusicPlayerFileNames((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         case 3: onMusicPlayerPlayStatus((*reinterpret_cast< const int(*)>(_a[1]))); break;
-        case 4: onMusicListViewItemRelease((*reinterpret_cast< const int(*)>(_a[1]))); break;
-        case 5: onToolButtonRelease(); break;
-        case 6: onTimeOut(); break;
+        case 4: onMusicPlayerID3TagChange((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< const int(*)>(_a[4]))); break;
+        case 5: onMusicListViewItemRelease((*reinterpret_cast< const int(*)>(_a[1]))); break;
+        case 6: onToolButtonRelease(); break;
+        case 7: onTimeOut(); break;
         default: ;
         }
-        _id -= 7;
+        _id -= 8;
     }
     return _id;
 }

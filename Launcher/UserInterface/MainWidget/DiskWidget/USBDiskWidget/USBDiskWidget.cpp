@@ -67,7 +67,8 @@ void USBDiskWidget::ontWidgetTypeChange(const Widget::Type type, const QString &
         if (isVisible()) {
             if (m_Private->m_USBDiskDeviceMessageBox->isVisible()) {
                 if (WidgetStatus::RequestShow == status) {
-                    g_Widget->setWidgetType(Widget::T_Home, WidgetStatus::RequestShow);
+                    //返回当前正在播放的媒体界面
+                    //g_Widget->setWidgetType(Widget::T_Home, WidgetStatus::RequestShow);
                 }
             }
         }

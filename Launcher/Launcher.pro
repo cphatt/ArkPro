@@ -139,7 +139,6 @@ HEADERS += \
     UserInterface/Common/Utility.h \
     UserInterface/MainWidget/HomeWidget/HomeWidget.h \
     UserInterface/MainWidget/IdleWidget/IdleWidget.h \
-#    UserInterface/MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.h \
     UserInterface/MainWidget/LinkWidget/MirrorLinkWidget/MirrorLinkWidget.h \
     UserInterface/MainWidget/LinkWidget/LinkWidget.h \
     UserInterface/MainWidget/MessageBoxWidget/MessageBoxWidget.h \
@@ -197,7 +196,6 @@ HEADERS += \
     UserInterface/MainWidget/DiskWidget/MultimediaLoadingWidget.h \
     UserInterface/MainWidget/DiskWidget/MusicWidget/MusicLoadingWidget/MusicLoadingWidget.h \
     UserInterface/MainWidget/DiskWidget/VideoWidget/VideoLoadingWidget/VideoLoadingWidget.h \
-#    UserInterface/MainWidget/LinkWidget/CarplayLinkWidget/CarplayShortCutWidget/CarplayShortCutWidget.h \
     UserInterface/MainWidget/LinkWidget/MirrorLinkWidget/MirrorShortCutWidget/MirrorShortCutWidget.h \
     UserInterface/MainWidget/DiskWidget/ImageWidget/ImageLoadingWidget/ImageLoadingWidget.h \
     UserInterface/MainWidget/LinkWidget/MirrorLinkWidget/MirrorToolWidget/MirrorToolWidget.h \
@@ -210,7 +208,7 @@ HEADERS += \
     BusinessLogic/Link/CarlifeLinkProxy.h \
     UserInterface/MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeShortCutWidget/CarlifeShortCutWidget.h \
     BusinessLogic/Port/Port.h \
-    UserInterface/MainWidget/DiskWidget/MusicWidget/MusicToolWidget/MusicInformation/MusicInformation.h \
+#    UserInterface/MainWidget/DiskWidget/MusicWidget/MusicToolWidget/MusicInformation/MusicInformation.h \
     UserInterface/MainWidget/DateTimeWidget/DateTimeWidget.h \
     UserInterface/MainWidget/CarPlayWidget/CarPlayWidget.h \
     UserInterface/MainWidget/CarPlayWidget/CarplayLinkWidget/CarplayShortCutWidget/CarplayShortCutWidget.h \

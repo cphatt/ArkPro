@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'VideoPlayer.h'
 **
-** Created: Mon Oct 23 11:17:14 2017
+** Created: Tue Oct 24 11:30:54 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -34,21 +34,21 @@ static const uint qt_meta_data_VideoPlayer[] = {
       20,   13,   12,   12, 0x05,
       49,   13,   12,   12, 0x05,
       87,   78,   12,   12, 0x05,
-     140,  123,   12,   12, 0x05,
-     208,  178,   12,   12, 0x05,
+     151,  123,   12,   12, 0x05,
+     227,  197,   12,   12, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-     261,  249,   12,   12, 0x09,
-     302,  292,   12,   12, 0x09,
-     331,  292,   12,   12, 0x09,
-     360,  292,   12,   12, 0x09,
-     389,   12,   12,   12, 0x08,
-     401,   12,   12,   12, 0x08,
-     433,  413,   12,   12, 0x08,
-     476,  470,   12,   12, 0x08,
-     514,  508,   12,   12, 0x08,
-     553,   12,   12,   12, 0x08,
-     581,   12,   12,   12, 0x08,
+     280,  268,   12,   12, 0x09,
+     321,  311,   12,   12, 0x09,
+     350,  311,   12,   12, 0x09,
+     379,  311,   12,   12, 0x09,
+     408,   12,   12,   12, 0x08,
+     420,   12,   12,   12, 0x08,
+     452,  432,   12,   12, 0x08,
+     495,  489,   12,   12, 0x08,
+     533,  527,   12,   12, 0x08,
+     572,   12,   12,   12, 0x08,
+     600,   12,   12,   12, 0x08,
 
        0        // eod
 };
@@ -57,7 +57,8 @@ static const char qt_meta_stringdata_VideoPlayer[] = {
     "VideoPlayer\0\0status\0onVideoPlayerShowStatus(int)\0"
     "onVideoPlayerPlayStatus(int)\0type,xml\0"
     "onVideoPlayerFileNames(int,QString)\0"
-    "fileName,endTime\0onVideoPlayerInformation(QString,int)\0"
+    "type,index,fileName,endTime\0"
+    "onVideoPlayerInformation(int,int,QString,int)\0"
     "elapsedTime,elapsedMillesimal\0"
     "onVideoPlayerElapsedInformation(int,int)\0"
     "type,status\0onDeviceWatcherStatus(int,int)\0"
@@ -104,7 +105,7 @@ int VideoPlayer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 0: onVideoPlayerShowStatus((*reinterpret_cast< const int(*)>(_a[1]))); break;
         case 1: onVideoPlayerPlayStatus((*reinterpret_cast< const int(*)>(_a[1]))); break;
         case 2: onVideoPlayerFileNames((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
-        case 3: onVideoPlayerInformation((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
+        case 3: onVideoPlayerInformation((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< const int(*)>(_a[4]))); break;
         case 4: onVideoPlayerElapsedInformation((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
         case 5: onDeviceWatcherStatus((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
         case 6: onMusicFilePath((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
@@ -146,9 +147,9 @@ void VideoPlayer::onVideoPlayerFileNames(const int _t1, const QString & _t2)
 }
 
 // SIGNAL 3
-void VideoPlayer::onVideoPlayerInformation(const QString & _t1, const int _t2)
+void VideoPlayer::onVideoPlayerInformation(const int _t1, const int _t2, const QString & _t3, const int _t4)
 {
-    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)) };
     QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 

@@ -31,6 +31,7 @@
 #include <QWSCalibratedMouseHandler>
 #include <QDomDocument>
 #include <QSettings>
+#include <QTimer>
 
 class MainWidgetPrivate
 {
@@ -56,6 +57,7 @@ public:
     MessageBoxWidget* m_MessageBoxWidget;
     IdleWidget* m_IdleWidget;
     CarPlayWidget* m_CarPlayWidget;
+    QTimer* m_Timer;
 private:
     MainWidget* m_Parent;
 };
@@ -91,13 +93,15 @@ bool MainWidget::event(QEvent* event)
             if (!flag) {
                 flag = true;
 #ifndef gcc
-                if (0 == system(QString("echo 23 > /proc/display").toLocal8Bit().constData())) {
-                    qDebug() << "Hide startup logo!";
-                }
+                //这里启动定时器
+//                if (0 == system(QString("echo 23 > /proc/display").toLocal8Bit().constData())) {
+//                    qDebug() << "Hide startup logo!";
+//                }
+                m_Private->m_Timer->start();
                 QSettings setting(QString("/data/Launcher.ini"), QSettings::IniFormat, qApp);
 #else
-                QSettings setting(QString("/tmp/Launcher.ini"), QSettings::IniFormat, qApp);
-#endif
+                    QSettings setting(QString("/tmp/Launcher.ini"), QSettings::IniFormat, qApp);
+    #endif
                 if (QString(qgetenv("QWS_ARK_MT_DEVICE").data()).isEmpty()) {
                     if (!setting.contains(QString("Launcher"))) {
                         qDebug() << "";
@@ -166,7 +170,14 @@ void MainWidget::mousePressEvent(QMouseEvent *)
     g_Setting->test();
     g_Setting->test1();
 }
-
+void MainWidget::onTimeOut()
+{
+        qDebug() << "MainWidget::onTimeOut";
+    if (0 == system(QString("echo 23 > /proc/display").toLocal8Bit().constData())) {
+        qDebug() << "Hide startup logo!";
+    }
+//    QSettings setting(QString("/data/Launcher.ini"), QSettings::IniFormat, qApp);
+}
 void MainWidget::ontWidgetTypeChange(const Widget::Type type, const QString &status)
 {
     //    switch (type) {
@@ -268,6 +279,7 @@ MainWidgetPrivate::MainWidgetPrivate(MainWidget *parent)
     m_MessageBoxWidget = NULL;
     m_IdleWidget = NULL;
     m_CarPlayWidget = NULL;
+    m_Timer = NULL;
     //    if (qApp->arguments().contains(QString("-calibrate"))) {
     //        m_Parent->setVisible(true);
     //        m_CalibrateWidget = new CalibrateWidget(m_Parent);
@@ -319,9 +331,16 @@ void MainWidgetPrivate::initialize()
     //                                          SLOT(onFinishCalibrate(const QString&)));
     //    bool ret = QProcess::startDetached(qApp->applicationFilePath(), cmd);
     //    qDebug() << "start" << QString("-calibrate") << ret;
+    m_Timer = new QTimer(m_Parent);
+    m_Timer->setSingleShot(true);
+    m_Timer->setInterval(10000);
 }
 
 void MainWidgetPrivate::connectAllSlots()
 {
     connectSignalAndSlotByNamesake(g_Widget, m_Parent);
+     Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::UniqueConnection | Qt::AutoConnection);
+    QObject::connect(m_Timer,  SIGNAL(timeout()),
+                     m_Parent, SLOT(onTimeOut()),
+                     type);
 }

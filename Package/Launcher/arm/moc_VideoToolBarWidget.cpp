@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'VideoToolBarWidget.h'
 **
-** Created: Mon Oct 23 11:18:45 2017
+** Created: Tue Oct 24 11:31:40 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -34,12 +34,12 @@ static const uint qt_meta_data_VideoToolBarWidget[] = {
       32,   20,   19,   19, 0x09,
       81,   74,   19,   19, 0x09,
      110,   74,   19,   19, 0x09,
-     156,  139,   19,   19, 0x09,
-     224,  194,   19,   19, 0x09,
-     265,   19,   19,   19, 0x08,
-     298,  287,   19,   19, 0x08,
-     330,  287,   19,   19, 0x08,
-     360,  287,   19,   19, 0x08,
+     167,  139,   19,   19, 0x09,
+     243,  213,   19,   19, 0x09,
+     284,   19,   19,   19, 0x08,
+     317,  306,   19,   19, 0x08,
+     349,  306,   19,   19, 0x08,
+     379,  306,   19,   19, 0x08,
 
        0        // eod
 };
@@ -49,7 +49,8 @@ static const char qt_meta_stringdata_VideoToolBarWidget[] = {
     "ontWidgetTypeChange(Widget::Type,QString)\0"
     "status\0onVideoPlayerShowStatus(int)\0"
     "onVideoPlayerPlayStatus(int)\0"
-    "fileName,endTime\0onVideoPlayerInformation(QString,int)\0"
+    "type,index,fileName,endTime\0"
+    "onVideoPlayerInformation(int,int,QString,int)\0"
     "elapsedTime,elapsedMillesimal\0"
     "onVideoPlayerElapsedInformation(int,int)\0"
     "onToolButtonRelease()\0millesimal\0"
@@ -94,7 +95,7 @@ int VideoToolBarWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 0: ontWidgetTypeChange((*reinterpret_cast< const Widget::Type(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         case 1: onVideoPlayerShowStatus((*reinterpret_cast< const int(*)>(_a[1]))); break;
         case 2: onVideoPlayerPlayStatus((*reinterpret_cast< const int(*)>(_a[1]))); break;
-        case 3: onVideoPlayerInformation((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
+        case 3: onVideoPlayerInformation((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< const int(*)>(_a[4]))); break;
         case 4: onVideoPlayerElapsedInformation((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
         case 5: onToolButtonRelease(); break;
         case 6: onTickMarksMillesimalStart((*reinterpret_cast< const int(*)>(_a[1]))); break;

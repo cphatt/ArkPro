@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'MainWidget.h'
 **
-** Created: Wed Oct 18 10:38:16 2017
+** Created: Fri Oct 27 10:37:58 2017
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWidget[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -34,6 +34,7 @@ static const uint qt_meta_data_MainWidget[] = {
       24,   12,   11,   11, 0x09,
       66,   11,   11,   11, 0x08,
       89,   85,   11,   11, 0x08,
+     116,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -42,7 +43,7 @@ static const char qt_meta_stringdata_MainWidget[] = {
     "MainWidget\0\0type,status\0"
     "ontWidgetTypeChange(Widget::Type,QString)\0"
     "onStartCalibrate()\0xml\0"
-    "onFinishCalibrate(QString)\0"
+    "onFinishCalibrate(QString)\0onTimeOut()\0"
 };
 
 void MainWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -54,6 +55,7 @@ void MainWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 0: _t->ontWidgetTypeChange((*reinterpret_cast< const Widget::Type(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         case 1: _t->onStartCalibrate(); break;
         case 2: _t->onFinishCalibrate((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 3: _t->onTimeOut(); break;
         default: ;
         }
     }
@@ -93,9 +95,9 @@ int MainWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }

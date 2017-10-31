@@ -491,6 +491,7 @@ void VideoPlayerPrivate::playVideoIndex(const DeviceWatcherType type, const int 
         QString cmd = QString("mplayer");
         QStringList arguments;
         arguments << QString("-slave");
+        arguments << QString("-idle");
         //        arguments << QString("-quiet");
         arguments << QString("-geometry");
         arguments << QString(QString::number(m_Width)

@@ -173,7 +173,10 @@ void VideoToolBarWidget::onVideoPlayerElapsedInformation(const int elapsedTime, 
     m_Private->m_ElapsedTimeText->setText(m_Private->convertTime(elapsedTime));
     m_Private->m_Slider->setTickMarksMillesimal(elapsedMillesimal);
     //g_Widget->geometryFit(211 , 352, elapsedMillesimal * 0.4, 35, m_Private->m_SliderPress);
+    qDebug() << "elapsedMillesimal" << elapsedMillesimal;
     g_Widget->geometryFit(100 , 7, elapsedMillesimal * 0.56, 27, m_Private->m_SliderPress);
+    if(elapsedMillesimal >= 1000)
+        g_Multimedia->videoPlayerPlayNextListViewIndex();
 }
 
 void VideoToolBarWidget::onToolButtonRelease()

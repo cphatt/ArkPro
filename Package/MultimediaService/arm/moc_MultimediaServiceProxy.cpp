@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'MultimediaServiceProxy.h'
 **
-** Created: Mon Oct 23 11:17:14 2017
+** Created: Tue Oct 24 11:30:55 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -39,13 +39,13 @@ static const uint qt_meta_data_LocalDbusServerMultimediaInterface[] = {
      277,   79,   35,   35, 0x05,
      336,  306,   35,   35, 0x05,
      377,  196,   35,   35, 0x05,
-     436,  413,   35,   35, 0x05,
-     484,  479,   35,   35, 0x05,
-     511,  241,   35,   35, 0x05,
-     540,   79,   35,   35, 0x05,
-     569,  306,   35,   35, 0x05,
-     610,  196,   35,   35, 0x05,
-     663,  646,   35,   35, 0x05,
+     441,  413,   35,   35, 0x05,
+     493,  488,   35,   35, 0x05,
+     520,  241,   35,   35, 0x05,
+     549,   79,   35,   35, 0x05,
+     578,  306,   35,   35, 0x05,
+     619,  196,   35,   35, 0x05,
+     655,  413,   35,   35, 0x05,
      701,  241,   35,   35, 0x05,
      730,  241,   35,   35, 0x05,
 
@@ -67,7 +67,7 @@ static const uint qt_meta_data_LocalDbusServerMultimediaInterface[] = {
     1218,   35,  759,   35, 0x0a,
     1257,   35,  759,   35, 0x0a,
     1298, 1287,  759,   35, 0x0a,
-    1331,  479,  759,   35, 0x0a,
+    1331,  488,  759,   35, 0x0a,
     1359,   35,  759,   35, 0x0a,
     1390,  241,  759,   35, 0x0a,
     1420,   35,  759,   35, 0x0a,
@@ -97,14 +97,14 @@ static const char qt_meta_stringdata_LocalDbusServerMultimediaInterface[] = {
     "elapsedTime,elapsedMillesimal\0"
     "onMusicPlayerElapsedInformation(int,int)\0"
     "onMusicPlayerFileNames(int,QString)\0"
-    "index,fileName,endTime\0"
-    "onMusicPlayerID3TagChange(int,QString,int)\0"
+    "type,index,fileName,endTime\0"
+    "onMusicPlayerID3TagChange(int,int,QString,int)\0"
     "mode\0onMusicPlayerPlayMode(int)\0"
     "onMusicPlayerPlayStatus(int)\0"
     "onVideoFilePath(QString,int)\0"
     "onVideoPlayerElapsedInformation(int,int)\0"
     "onVideoPlayerFileNames(int,QString)\0"
-    "fileName,endTime\0onVideoPlayerInformation(QString,int)\0"
+    "onVideoPlayerInformation(int,int,QString,int)\0"
     "onVideoPlayerPlayStatus(int)\0"
     "onVideoPlayerShowStatus(int)\0"
     "QDBusPendingReply<>\0type\0"
@@ -177,13 +177,13 @@ int LocalDbusServerMultimediaInterface::qt_metacall(QMetaObject::Call _c, int _i
         case 5: onMusicFilePath((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 6: onMusicPlayerElapsedInformation((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 7: onMusicPlayerFileNames((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
-        case 8: onMusicPlayerID3TagChange((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
+        case 8: onMusicPlayerID3TagChange((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4]))); break;
         case 9: onMusicPlayerPlayMode((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 10: onMusicPlayerPlayStatus((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 11: onVideoFilePath((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 12: onVideoPlayerElapsedInformation((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 13: onVideoPlayerFileNames((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
-        case 14: onVideoPlayerInformation((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 14: onVideoPlayerInformation((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4]))); break;
         case 15: onVideoPlayerPlayStatus((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 16: onVideoPlayerShowStatus((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 17: { QDBusPendingReply<> _r = deviceWatcherCheckStatus((*reinterpret_cast< int(*)>(_a[1])));
@@ -312,9 +312,9 @@ void LocalDbusServerMultimediaInterface::onMusicPlayerFileNames(int _t1, const Q
 }
 
 // SIGNAL 8
-void LocalDbusServerMultimediaInterface::onMusicPlayerID3TagChange(int _t1, const QString & _t2, int _t3)
+void LocalDbusServerMultimediaInterface::onMusicPlayerID3TagChange(int _t1, int _t2, const QString & _t3, int _t4)
 {
-    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)) };
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)) };
     QMetaObject::activate(this, &staticMetaObject, 8, _a);
 }
 
@@ -354,9 +354,9 @@ void LocalDbusServerMultimediaInterface::onVideoPlayerFileNames(int _t1, const Q
 }
 
 // SIGNAL 14
-void LocalDbusServerMultimediaInterface::onVideoPlayerInformation(const QString & _t1, int _t2)
+void LocalDbusServerMultimediaInterface::onVideoPlayerInformation(const int _t1, const int _t2, const QString & _t3, int _t4)
 {
-    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)) };
     QMetaObject::activate(this, &staticMetaObject, 14, _a);
 }
 

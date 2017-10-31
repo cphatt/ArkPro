@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'VideoStatusWidget.h'
 **
-** Created: Mon Oct 23 11:18:44 2017
+** Created: Tue Oct 24 11:31:39 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -32,7 +32,7 @@ static const uint qt_meta_data_VideoStatusWidget[] = {
 
  // slots: signature, parameters, type, tag, flags
       31,   19,   18,   18, 0x09,
-      90,   73,   18,   18, 0x09,
+     101,   73,   18,   18, 0x09,
 
        0        // eod
 };
@@ -40,7 +40,8 @@ static const uint qt_meta_data_VideoStatusWidget[] = {
 static const char qt_meta_stringdata_VideoStatusWidget[] = {
     "VideoStatusWidget\0\0type,status\0"
     "ontWidgetTypeChange(Widget::Type,QString)\0"
-    "fileName,endTime\0onVideoPlayerInformation(QString,int)\0"
+    "type,index,fileName,endTime\0"
+    "onVideoPlayerInformation(int,int,QString,int)\0"
 };
 
 const QMetaObject VideoStatusWidget::staticMetaObject = {
@@ -77,7 +78,7 @@ int VideoStatusWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: ontWidgetTypeChange((*reinterpret_cast< const Widget::Type(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
-        case 1: onVideoPlayerInformation((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
+        case 1: onVideoPlayerInformation((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< const int(*)>(_a[4]))); break;
         default: ;
         }
         _id -= 2;

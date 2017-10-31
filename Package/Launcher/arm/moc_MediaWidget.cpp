@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'MediaWidget.h'
 **
-** Created: Mon Oct 23 11:19:25 2017
+** Created: Tue Oct 24 11:32:03 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

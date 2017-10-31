@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'USBDiskImageListViewWidget.h'
 **
-** Created: Mon Oct 23 11:18:54 2017
+** Created: Tue Oct 24 11:31:45 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_USBDiskImageListViewWidget[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -35,8 +35,9 @@ static const uint qt_meta_data_USBDiskImageListViewWidget[] = {
       82,   28,   27,   27, 0x09,
      122,  113,   27,   27, 0x09,
      165,  158,   27,   27, 0x09,
-     200,  194,   27,   27, 0x08,
-     232,   27,   27,   27, 0x08,
+     229,  194,   27,   27, 0x09,
+     280,  274,   27,   27, 0x08,
+     312,   27,   27,   27, 0x08,
 
        0        // eod
 };
@@ -47,6 +48,8 @@ static const char qt_meta_stringdata_USBDiskImageListViewWidget[] = {
     "onDeviceWatcherStatus(int,int)\0type,xml\0"
     "onImagePlayerFileNames(int,QString)\0"
     "status\0onImagePlayerPlayStatus(int)\0"
+    "type,filePath,index,percent,rotate\0"
+    "onImagePlayerChange(int,QString,int,int,int)\0"
     "index\0onImageListViewItemRelease(int)\0"
     "onListBtnRelease()\0"
 };
@@ -88,11 +91,12 @@ int USBDiskImageListViewWidget::qt_metacall(QMetaObject::Call _c, int _id, void 
         case 1: onDeviceWatcherStatus((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
         case 2: onImagePlayerFileNames((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         case 3: onImagePlayerPlayStatus((*reinterpret_cast< const int(*)>(_a[1]))); break;
-        case 4: onImageListViewItemRelease((*reinterpret_cast< const int(*)>(_a[1]))); break;
-        case 5: onListBtnRelease(); break;
+        case 4: onImagePlayerChange((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const int(*)>(_a[3])),(*reinterpret_cast< const int(*)>(_a[4])),(*reinterpret_cast< const int(*)>(_a[5]))); break;
+        case 5: onImageListViewItemRelease((*reinterpret_cast< const int(*)>(_a[1]))); break;
+        case 6: onListBtnRelease(); break;
         default: ;
         }
-        _id -= 6;
+        _id -= 7;
     }
     return _id;
 }

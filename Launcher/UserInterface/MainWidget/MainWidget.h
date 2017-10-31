@@ -29,6 +29,7 @@ protected slots:
 private slots:
     void onStartCalibrate();
     void onFinishCalibrate(const QString& xml);
+    void onTimeOut();
 private:
     friend class MainWidgetPrivate;
     QScopedPointer<MainWidgetPrivate> m_Private;

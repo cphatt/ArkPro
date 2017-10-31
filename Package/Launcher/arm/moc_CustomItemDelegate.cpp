@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'CustomItemDelegate.h'
 **
-** Created: Mon Oct 23 11:19:23 2017
+** Created: Tue Oct 24 11:32:02 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,18 +23,24 @@ static const uint qt_meta_data_CustomItemDelegate[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
+ // slots: signature, parameters, type, tag, flags
+      26,   20,   19,   19, 0x09,
+      60,   20,   19,   19, 0x09,
+
        0        // eod
 };
 
 static const char qt_meta_stringdata_CustomItemDelegate[] = {
-    "CustomItemDelegate\0"
+    "CustomItemDelegate\0\0index\0"
+    "onCurrentIndexChange(QModelIndex)\0"
+    "onPressIndexChanged(QModelIndex)\0"
 };
 
 const QMetaObject CustomItemDelegate::staticMetaObject = {
@@ -64,6 +70,14 @@ int CustomItemDelegate::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     _id = QItemDelegate::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: onCurrentIndexChange((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 1: onPressIndexChanged((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        default: ;
+        }
+        _id -= 2;
+    }
     return _id;
 }
 QT_END_MOC_NAMESPACE
